@@ -1,0 +1,8 @@
+package laboratorio2;
+import laboratorio.SuperClase;
+
+public class TestConstructors {
+    public static void main(String[] args) {
+        Subclase sc = new Subclase();
+    }
+}

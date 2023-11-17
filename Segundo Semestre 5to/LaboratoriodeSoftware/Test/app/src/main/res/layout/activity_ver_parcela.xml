@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".VerParcela">
+
+        <EditText
+            android:id="@+id/campoDescripcion"
+            android:layout_width="371dp"
+            android:layout_height="102dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="43dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            app:layout_constraintBottom_toTopOf="@+id/checkBox"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="80dp"
+            android:text="Descripción"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Parcela"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/idTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textView15"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="43dp"
+            android:text="Cubierto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/campoDescripcion" />
+
+        <Button
+            android:id="@+id/button17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#4CAF50"
+            android:onClick="guardar"
+            android:text="Guardar"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button18"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox"
+            app:layout_constraintVertical_bias="0.177" />
+
+        <Button
+            android:id="@+id/button18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#BC0000"
+            android:onClick="eliminar"
+            android:text="Eliminar"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toEndOf="@+id/button17"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox"
+            app:layout_constraintVertical_bias="0.177" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

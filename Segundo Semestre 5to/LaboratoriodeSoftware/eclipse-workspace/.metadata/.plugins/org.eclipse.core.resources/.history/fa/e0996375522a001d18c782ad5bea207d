@@ -1,0 +1,4 @@
+#Robocode window sizes
+#Mon Aug 29 14:59:46 ART 2022
+net.sf.robocode.ui.dialog.NewBattleDialog=39,26,850,650
+net.sf.robocode.ui.dialog.RobocodeFrame=0,0,929,703

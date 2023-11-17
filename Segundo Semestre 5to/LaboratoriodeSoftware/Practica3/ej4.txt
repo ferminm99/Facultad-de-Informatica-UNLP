@@ -1,0 +1,35 @@
+4) 
+	❏ Se pueden instanciar más allá del punto en donde fueron declaradas.
+		Verdadero. Esto se puede hacer solo en caso de que esta clase sea publica y es necesario usar la clase
+		contenedora como intermediario, por ejemplo, si uno quiere generar una instancia de una clase anidada 
+		desde un archivo que no es el que le corresponde y esta clase anidada es publica entonces la sintaxis 
+		seria tal que asi:
+			ClaseContenedora.ClaseAnidada intancia = new ClaseContenedora.ClaseAnidada(); 
+	❏ Unos de los usos más comunes de este tipo de clases es la creación de objetos función y procesos on the 
+	fly.
+		Verdadero.
+		Es cierto que es comun su uso para la creacion de los objetos función, ya que, junto a las interfaces
+		permite hacer uso de patrones como strategy, de forma que la parte del objeto es facilmente 
+		intercamviable por cualquier implementacion concreta del objeto.
+		Por otro lado respecto a la creacion de objetos 'on the fly', entiendo que esto se refiere a la creacion 
+		de objetos sobre la marcha, osea en ejecucion. Teniendo esto en cuenta entiendo que si, ya que las clases
+		anonimas permiten una creacion rapida de implementaciones y el intercambio rapido entre objetos de tipos 
+		distintos que entienden los mismos mensajes.
+		IMPORTANTE: No estoy seguro de a que se refiere con "on the fly"
+	❏ Se puede utilizar el instanceof siempre y cuando la interfaz de la que deriva la clase anónima sea de tipo 
+	marker.
+		Falso. El intanceof se puede usar tanto con clases como con interfaces, ademas, no es necesario que la 
+		interfaz de la que deriva la clase anonima sea de tipo marker.
+		Aunque cabe destacar que describe el enunciado, si bien no es obligatorio si es algo que suele ocurrir,
+		ya que sirven para indicar que una clase cumple con una interfaz concreta. Pero remarco que no es 
+		obligatorio tampoco que la interfaz sea de tipo marker.
+	❏ No se puede implementar múltiples interfaces o extender clases e implementar interfaces al mismo tiempo.
+		Verdadero. Recordemos que una clse anonima no es lo mismo que una clase anidada y esta no acepta mas 
+		de una interfaz o extencion al mismo tiempo, tampoco se puede una de cada, es 1 de cualquiera a lo 
+		mucho.
+		//Falso. 
+		//Se puede extender a lo mucho de 1 clase. 
+		//La cantidad de interfaces que se pueden implementar es sin dudas mayor a 1, y no esta relacionada con si 
+		//la clase extiende de algun metodo.
+	 	
+	

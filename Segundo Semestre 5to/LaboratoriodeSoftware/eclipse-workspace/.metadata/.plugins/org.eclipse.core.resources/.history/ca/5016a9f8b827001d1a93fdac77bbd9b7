@@ -1,0 +1,7 @@
+package laboratorio2;
+
+import laboratorio.SuperClase;
+
+public class Subclase extends SuperClase {
+
+}

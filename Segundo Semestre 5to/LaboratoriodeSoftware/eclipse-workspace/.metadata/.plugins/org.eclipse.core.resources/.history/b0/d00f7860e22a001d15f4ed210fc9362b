@@ -1,0 +1,11 @@
+package laboratorio;
+
+public interface Estrategia {
+	
+	public void run(LaboRobot26 XAEA_12);
+	public void onScannedRobot(LaboRobot26 XAEA_12);
+	public void onHitByBullet(LaboRobot26 XAEA_12);
+	public void onHitWall(LaboRobot26 XAEA_12);
+	public void onHitRobot(LaboRobot26 XAEA_12);
+	
+}

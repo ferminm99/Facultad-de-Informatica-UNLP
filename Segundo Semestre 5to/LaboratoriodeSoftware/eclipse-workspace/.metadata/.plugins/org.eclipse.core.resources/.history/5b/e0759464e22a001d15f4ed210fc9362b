@@ -1,0 +1,34 @@
+package grupo26;
+
+import robocode.*;
+
+public class LaboRobot26 extends JuniorRobot {
+	protected boolean adelante = false;
+	private Estratega estratega = EstrategaGallardo.getInstance();
+	
+	@Override	
+	public void run() {
+		setColors(black, purple, white, yellow, black);
+		this.estratega.strategyForRunning(this).run(this);
+	}
+
+	@Override
+	public void onScannedRobot() {
+		this.estratega.strategyForOnScannedRobot(this).onScannedRobot(this);
+	}
+
+	@Override
+	public void onHitByBullet() {
+		this.estratega.strategyForOnHitByBullet(this).onHitByBullet(this);
+	}
+	
+	@Override
+	public void onHitWall() {
+		this.estratega.strategyForOnHitWall(this).onHitWall(this);
+	}	
+	
+	@Override
+	public void onHitRobot() {
+		this.estratega.strategyForOnHitRobot(this).onHitRobot(this);
+	}
+}

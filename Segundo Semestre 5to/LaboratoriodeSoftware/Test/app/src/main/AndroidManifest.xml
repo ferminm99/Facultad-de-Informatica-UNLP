@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Test">
+        <activity
+            android:name=".VerVisita"
+            android:parentActivityName=".Visitas" />
+        <activity
+            android:name=".CrearVisita"
+            android:parentActivityName=".Visitas" />
+        <activity
+            android:name=".VerBolson"
+            android:parentActivityName=".Bolsones" />
+        <activity
+            android:name=".CrearBolson"
+            android:parentActivityName=".Bolsones" />
+        <activity
+            android:name=".VerVerdurasDeParcela"
+            android:exported="false" />
+        <activity
+            android:name=".VerQuinta"
+            android:parentActivityName=".Quintas">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Quintas" />
+        </activity>
+        <activity
+            android:name=".MapActivity"
+            android:exported="false" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <activity
+            android:name=".AgregarDatosParcela"
+            android:exported="false" />
+        <activity
+            android:name=".ParcelasParaAgregar"
+            android:exported="false" />
+        <activity
+            android:name=".CrearQuinta"
+            android:parentActivityName=".Quintas">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Quintas" />
+        </activity>
+        <activity
+            android:name=".Quintas"
+            android:parentActivityName=".MainActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".VerVerdura"
+            android:parentActivityName=".Verduras">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Verduras" />
+        </activity>
+        <activity
+            android:name=".CrearVerdura"
+            android:parentActivityName=".Verduras">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Verduras" />
+        </activity>
+        <activity
+            android:name=".Verduras"
+            android:parentActivityName=".MainActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".VerParcela"
+            android:parentActivityName=".Parcelas">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Parcelas" />
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="Test">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CrearParcela"
+            android:parentActivityName=".Parcelas">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Parcelas" />
+        </activity>
+        <activity
+            android:name=".Parcelas"
+            android:parentActivityName=".MainActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".Bolsones"
+            android:parentActivityName=".MainActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".Visitas"
+            android:parentActivityName=".MainActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".ConexionSQLiteHelper$MainActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

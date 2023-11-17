@@ -1,0 +1,115 @@
+package laboratorio;
+
+import java.util.Random;
+
+public class EstrategiaPared implements Estrategia{
+	private int cabezeadas = 0; 
+	
+	public void run(LaboRobot26 XAEA_12) {
+		if ((XAEA_12.robotX >= XAEA_12.fieldWidth-30 && XAEA_12.robotX <= XAEA_12.fieldWidth)  || (XAEA_12.robotX >= 0 && XAEA_12.robotX <= 30)) {
+			int r;
+			int high;
+			int low;
+			Random random = new Random();
+			if (XAEA_12.heading == 270) {
+				XAEA_12.turnTo(360);
+				high = XAEA_12.fieldHeight-XAEA_12.robotY-30;
+				low = (int) (high*0.4);
+				r = random.nextInt(high-low) + low;
+			} else if (XAEA_12.heading == 90) {
+				XAEA_12.turnTo(360);
+				high = XAEA_12.fieldHeight-XAEA_12.robotY-30;
+				low = (int) (high*0.4);
+				r = random.nextInt(high-low) + low;
+			} else {
+				if (!XAEA_12.adelante) {
+					high = XAEA_12.fieldHeight-XAEA_12.robotY-30;
+					low = (int) (high*0.4);
+					r = random.nextInt(high-low) + low;	
+				} else {
+					high = XAEA_12.robotY-30;
+					low = (int) (high*0.4);
+					r = random.nextInt(high-low) + low;
+				}
+			}
+			if (XAEA_12.robotX >= 0 && XAEA_12.robotX <= 30) {
+				XAEA_12.turnGunTo(90);
+			} else {
+				XAEA_12.turnGunTo(270);
+			}
+			if (!XAEA_12.adelante) {
+				XAEA_12.adelante = true;
+				XAEA_12.ahead(r);
+			} else {
+				XAEA_12.adelante = false;
+				XAEA_12.back(r);
+			}
+		} else {
+			if (XAEA_12.robotX >= XAEA_12.fieldWidth/2) {
+				XAEA_12.turnTo(90);
+				XAEA_12.ahead(XAEA_12.fieldWidth-XAEA_12.robotX-30);
+			} else {
+				XAEA_12.turnTo(270);
+				XAEA_12.ahead(XAEA_12.robotX-30);
+			}
+		}
+	}
+	
+	public void onScannedRobot(LaboRobot26 XAEA_12) {
+		XAEA_12.fire(2);
+	}
+	
+	public void onHitByBullet(LaboRobot26 XAEA_12) {
+		if (this.cabezeadas >= 2) {
+			this.cabezeadas = 0;
+			XAEA_12.ahead(1);
+			XAEA_12.adelante = false;
+			if (XAEA_12.robotX >= 0 && XAEA_12.robotX <= 30) {
+				XAEA_12.turnTo(30);
+				if (XAEA_12.robotY >= XAEA_12.fieldHeight/2) {
+					XAEA_12.turnGunTo(180);
+				} else {
+					XAEA_12.turnGunTo(360);
+				}
+				XAEA_12.ahead(XAEA_12.fieldWidth-XAEA_12.robotX-30);
+			} else if (XAEA_12.robotX >= XAEA_12.fieldWidth-30 && XAEA_12.robotX <= XAEA_12.fieldWidth) {
+				XAEA_12.turnTo(270);
+				if (XAEA_12.robotY >= XAEA_12.fieldHeight/2) {
+					XAEA_12.turnGunTo(180);
+				} else {
+					XAEA_12.turnGunTo(360);
+				}
+				XAEA_12.ahead(XAEA_12.robotX-30);
+			}
+		} else {
+			this.cabezeadas++;
+		}
+	}
+	
+	public void onHitRobot(LaboRobot26 XAEA_12) {
+		XAEA_12.ahead(1);
+		XAEA_12.adelante = false;
+		if (XAEA_12.robotX >= 0 && XAEA_12.robotX <= 30) {
+			XAEA_12.turnTo(90);
+			if (XAEA_12.robotY >= XAEA_12.fieldHeight/2) {
+				XAEA_12.turnGunTo(180);
+			} else {
+				XAEA_12.turnGunTo(360);
+			}
+			XAEA_12.ahead(XAEA_12.fieldWidth-XAEA_12.robotX-30);
+		} else if (XAEA_12.robotX >= XAEA_12.fieldWidth-30 && XAEA_12.robotX <= XAEA_12.fieldWidth) {
+			XAEA_12.turnTo(270);
+			if (XAEA_12.robotY >= XAEA_12.fieldHeight/2) {
+				XAEA_12.turnGunTo(180);
+			} else {
+				XAEA_12.turnGunTo(360);
+			}
+			XAEA_12.ahead(XAEA_12.robotX-30);
+		}
+		
+	}
+	
+	public void onHitWall(LaboRobot26 XAEA_12) {
+		XAEA_12.back(100);
+	}
+}

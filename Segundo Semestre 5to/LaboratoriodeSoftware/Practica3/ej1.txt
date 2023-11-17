@@ -1,0 +1,27 @@
+1) 
+	a) Listo, esta implementado en el archivo 'Test.java'.
+		Evidentemente solo se puede recorrer 1 vez la pila, ya que al recorrerla 1 vez se eliminan los elementos
+		que la conforman, si quisieramos recorrerla otra vez con los mismos elementos habria que llenarla otra 
+		vez de forma identica.
+		Tal como escribi el main, lo que ocurrira es que la primera vez imprimira los elementos, pero luego 
+		imprimira siempre listas vacias.
+	b) Me base en los ejemplos proveidos por las diapositivas de la teoria de clases internas y anidadas.
+		Luego de implementar el uso de objetos que cumplan con la interfaz Iterator se puede recorrer la pila 
+		una cantidad indefinida de veces, sin perder informacion en el proceso.
+		En el proceso tambien hice que Stack cumpla con la interfaz iterable, para que pueda ser recorrida con 
+		un foreach.
+	c) Pues ya lo habia hecho en el inciso b), el metodo se llama iterator() devuelve una instancia de algo 
+		que cumpla con la interfaz Iterator, y en este caso concreto devuelve concretamente un objeto de tipo 
+		StackIterator.
+		con este metodo implementado se puede recorrer la pila una cantidad indefinida de veces, sin perder 
+		informacion en el proceso.
+	d) En este caso NO, por que la clase StackIterator es privada, pero si fuera publico entonces seria posible
+		con una secuencia de instrucciones tal que asi:
+			Stack<Object> pila = new Stack<Object>;
+			Iterator pila_itarator = pila.new StackIterator<Object>;
+	e) Haciendo justamente lo que hice en el inciso b), declarando la clase anidada como privada y haciendo que 
+		solo se pueda obtener instancias de la misma mediante el uso de un metodo que defina la clase contenedora. 
+		Notar que en Test.java directamente no se conoce la clase StackIterator, ellos simplemente saben que 
+		tienen un objeto que cumple con la interfaz iterator. Por lo que se ve el importante papel que juegan las
+		interfaces a la hora de hacer arreglos como este.
+		

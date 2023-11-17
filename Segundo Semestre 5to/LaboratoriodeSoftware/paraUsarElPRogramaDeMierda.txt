@@ -1,0 +1,3 @@
+Para usar el programa de poronga este con git bash
+'/c/Program Files (x86)/Facultad/SegundoSemestre5to/LaboratoriodeSoftware/RobocodeLabo'
+sh robocode.sh

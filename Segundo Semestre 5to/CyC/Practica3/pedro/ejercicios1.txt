@@ -1,0 +1,209 @@
+//-------CONFIGURATION
+name: 1a
+init: q0
+accept: q0
+
+//-------DELTA FUNCTION:
+q0,_
+q0,1,-
+
+
+
+//-------CONFIGURATION
+name: 1b
+init: q0
+accept: q1
+
+//-------DELTA FUNCTION:
+q0,_
+q1,_,-
+
+//-------CONFIGURATION
+name: 1c
+init: q0
+accept: q1
+
+//-------DELTA FUNCTION:
+q0,_
+q0,1,-
+
+
+
+
+//-------CONFIGURATION
+name: 1d
+init: q0
+accept: qA
+
+//-------DELTA FUNCTION:
+
+q0,_
+qA,_,-
+
+q0,0
+qEnd,_,r
+
+// qEnd me lleva al final de la entrada
+qEnd,0
+qEnd,0,r
+
+qEnd,1
+qEnd,1,r
+
+qEnd,_
+q2,_,l
+
+// q2 y q3 borran los ultimos dos 1s de la entrada
+
+q2,1
+q3,_,l
+
+q3,1
+qIni,_,l
+
+// qIni me lleva al comienzo de la entrada
+
+qIni,1
+qIni,1,l
+
+qIni,0
+qIni,0,l
+
+qIni,_
+qCheck,_,r
+
+// qCheck chequea si termine de procesar una entrada correcta
+
+qCheck,_
+qA,_,-
+
+qCheck,0
+q0,0,-
+
+
+//-------CONFIGURATION
+name: 1e
+init: q0
+accept: qa
+
+//-------DELTA FUNCTION:
+
+q0,a
+qs,A,r
+
+qs,a
+qs,a,r
+
+qs,B
+qs,B,r
+
+qs,b
+qb,b,-
+
+qb,b
+qs2,B,r
+
+qs2,b
+qs2,b,r
+
+qs2,C
+qs2,C,r
+
+qs2,c
+qc,c,-
+
+qc,c
+qCh,C,r
+
+qCh,c
+qRes,c,l
+
+qRes,c
+qRes,c,l
+
+qRes,C
+qRes,C,l
+
+qRes,b
+qRes,b,l
+
+qRes,B
+qRes,B,l
+
+qRes,a
+qRes,a,l
+
+qRes,A
+q0,A,r
+
+qCh,_
+qa,_,-
+
+q0,_
+qa,_,-
+
+
+
+
+//-------CONFIGURATION
+name: 1e
+init: q0
+accept: qAcc
+
+//-------DELTA FUNCTION:
+
+// q0 chequea que el input comience con 'a'
+
+q0,a,_
+qa,a,_,-,-
+
+qa,a,_
+qa,a,a,r,r
+
+qa,b,_
+qb,b,_,-,l
+
+qb,b,a
+qb,b,b,r,l
+
+qb,c,_
+qc,c,_,-,r
+
+qc,c,b
+qc,c,c,r,r
+
+qc,_,_
+qAcc,_,_,-,-
+
+
+
+
+//-------CONFIGURATION
+name: 1f
+init: q0
+accept: qAcc
+
+//-------DELTA FUNCTION:
+
+// q0 chequea que el input comience con 'a'
+
+q0,a,_
+qa,a,_,-,-
+
+qa,a,_
+qa,a,X,r,r
+
+qa,b,_
+qb,b,_,-,-
+
+qb,b,_
+qb,b,X,r,r
+
+qb,c,_
+qc,c,_,-,l
+
+qc,c,X
+qc,c,X,r,l
+
+qc,_,_
+qAcc,_,_,-,-

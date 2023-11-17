@@ -1,0 +1,42 @@
+package laboratorio;
+
+import robocode.*;
+
+public class LaboRobot26 extends JuniorRobot {
+	protected boolean adelante = false;
+	private Estrategia estrategia;
+
+	public void setEstrategia(Estrategia e) {
+		this.estrategia = e;
+	}
+	@Override	
+	public void run() {
+		setColors(black, purple, white, yellow, black);
+		if (this.estrategia == null) {
+			this.setEstrategia(new EstrategiaPared());				
+		} else if (this.others == 1) {
+			this.setEstrategia(new EstrategiaFocus());	
+		}
+		this.estrategia.run(this);
+	}
+
+	@Override
+	public void onScannedRobot() {
+		estrategia.onScannedRobot(this);
+	}
+
+	@Override
+	public void onHitByBullet() {
+		estrategia.onHitByBullet(this);
+	}
+	
+	@Override
+	public void onHitWall() {
+		estrategia.onHitWall(this);
+	}	
+	
+	@Override
+	public void onHitRobot() {
+		estrategia.onHitRobot(this);
+	}
+}

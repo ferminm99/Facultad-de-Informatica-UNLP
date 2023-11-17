@@ -1,0 +1,9 @@
+package grupo26;
+
+public interface Estratega {
+	public Estrategia strategyForRunning(LaboRobot26 XAEA_12);
+	public Estrategia strategyForOnScannedRobot(LaboRobot26 XAEA_12);
+	public Estrategia strategyForOnHitByBullet(LaboRobot26 XAEA_12);
+	public Estrategia strategyForOnHitWall(LaboRobot26 XAEA_12);
+	public Estrategia strategyForOnHitRobot(LaboRobot26 XAEA_12);
+}

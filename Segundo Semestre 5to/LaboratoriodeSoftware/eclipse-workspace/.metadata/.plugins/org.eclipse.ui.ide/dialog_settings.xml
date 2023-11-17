@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Program Files (x86)\Facultad\SegundoSemestre5to\LaboratoriodeSoftware\examenes\CarreraLabo\src"/>
+			<item value="C:\Program Files (x86)\Facultad\SegundoSemestre5to\LaboratoriodeSoftware\CarreraLabo"/>
+			<item value="C:\Program Files (x86)\Facultad\SegundoSemestre5to\LaboratoriodeSoftware\examenes\1\ServicioDeStreaming\src"/>
+			<item value="C:\Program Files (x86)\Facultad\SegundoSemestre5to\LaboratoriodeSoftware\practicas de tipa github\p9"/>
+			<item value="C:\Program Files (x86)\Facultad\SegundoSemestre5to\LaboratoriodeSoftware\Practica6"/>
+			<item value="C:\Program Files (x86)\Facultad\SegundoSemestre5to\LaboratoriodeSoftware\practicas de tipa github\p6"/>
+			<item value="C:\Program Files (x86)\Facultad\SegundoSemestre5to\LaboratoriodeSoftware\Lo de los chicos\EntregaP6"/>
+			<item value="C:\Program Files (x86)\Facultad\SegundoSemestre5to\LaboratoriodeSoftware\Lo de los chicos\EntregableP8"/>
+			<item value="C:\Program Files (x86)\Facultad\SegundoSemestre5to\LaboratoriodeSoftware\Lo de los chicos\EntregaP5"/>
+			<item value="C:\Program Files (x86)\Facultad\SegundoSemestre5to\LaboratoriodeSoftware\Practica5"/>
+			<item value="C:\Program Files (x86)\Facultad\SegundoSemestre5to\LaboratoriodeSoftware\Practica4"/>
+			<item value="C:\Program Files (x86)\Facultad\SegundoSemestre5to\LaboratoriodeSoftware\Practica4\src"/>
+			<item value="C:\Program Files (x86)\Facultad\SegundoSemestre5to\LaboratoriodeSoftware\Lo de los chicos\Parcial 1\Parcial"/>
+			<item value="C:\Program Files (x86)\Facultad\SegundoSemestre5to\LaboratoriodeSoftware\practicas de chabon github\practica3"/>
+			<item value="C:\Program Files (x86)\Facultad\SegundoSemestre5to\LaboratoriodeSoftware\RobocodeLabo"/>
+			<item value="C:\Users\fermi\Downloads\RobocodeLabo26"/>
+			<item value="C:\Program Files (x86)\Facultad\Segundo Semestre5to\Laboratorio de Software\RobocodeLabo"/>
+			<item value="C:\Users\fermi\Downloads\RobocodeLabo"/>
+			<item value="C:\Program Files (x86)\Facultad\Segundo Semestre5to\Laboratorio de Software\RobocodeLabo26"/>
+			<item value="C:\Program Files (x86)\Facultad\Segundo Semestre5to\Laboratorio de Software"/>
+		</list>
+	</section>
+	<section name="SaveAsDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="706"/>
+		<item key="DIALOG_Y_ORIGIN" value="142"/>
+		<item key="DIALOG_WIDTH" value="525"/>
+		<item key="DIALOG_HEIGHT" value="580"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>
