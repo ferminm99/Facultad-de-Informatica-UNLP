@@ -1,0 +1,35 @@
+procedure agregar(var a : arch; dni : integer; nombre : String);
+	var
+		cabecera : integer;
+		r : reg;
+		pos_eli : integer;
+	begin
+		reset(a); // abrir archivo
+
+		// leer cabecera
+		read_reg(a, r);
+		cabecera := r.dni;
+
+		pos_eli := 0; 
+		if(cabecera = 0) then seek(a, filesize(a)) // si la cabecera es 0 ir al final del archivo
+		else begin
+			seek(a, cabecera * -1); // ir a la cabecera
+			read_reg(a, r); // leer lo que hay
+			pos_eli := r.dni; // guardar el puntero del registro que se va a reemplazar
+			seek(a, filepos(a)-1); // volver un lugar para quedarse apuntando al registro a reemplazar
+		end;
+		// preparar el registro con los nuevos daros
+		r.dni := dni;
+		r.nombre := nombre;
+
+		write(a, r); // escribir el registro en el archivo
+
+		// actualizar la cabecera
+ 		seek(a, 0);
+		r.dni := pos_eli;
+		r.nombre := '';
+		write(a, r);
+
+		// cerrar el archivo
+		close(a);
+	end;

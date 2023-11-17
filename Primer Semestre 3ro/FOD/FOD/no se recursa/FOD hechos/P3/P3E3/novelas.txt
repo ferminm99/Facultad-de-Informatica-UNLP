@@ -1,0 +1,12 @@
+123 --> codigo
+0 --> enlace
+321 --> codigo
+0 --> enlace
+1000911 --> codigo
+0 --> enlace
+1000005 --> codigo
+-7 --> enlace
+50 --> codigo
+0 --> enlace
+1000119 --> codigo
+-4 --> enlace

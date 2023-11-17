@@ -1,0 +1,8 @@
+procedure leer(var a : arch; var r : registro);
+	begin
+	     if(eof(a)) then
+		  r.cod1 := valor_alto
+	     else
+		  read(a, r); // puede ser leer de long variable
+	end;
+	

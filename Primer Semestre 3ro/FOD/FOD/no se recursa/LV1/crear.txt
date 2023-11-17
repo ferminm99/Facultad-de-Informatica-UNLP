@@ -1,0 +1,46 @@
+procedure crear();
+	var
+		nombre_archivo : String;
+		r : producto;
+		aux : String;
+		arch : file;
+	begin
+		writeln('Ingresar nombre del archivo'); readln(nombre_archivo);
+		assign(arch,nombre_archivo);
+		rewrite(arch, 1); // abrir archivo, nunca olvidar el 1
+		leer_registro(r); // leer primer registro
+
+		while(r.nombre <> 'fin') do begin
+			
+			///// blockwrite(archivo, elemento, longitud) //////
+			///// si el elemento es string se arranca del primer elemento "string[1]" y para la longitud "length(string)" /////
+			///// si el elemento es integer se escribe como esta y para la longitud "sizeof(integer)"  o pasarlo a string ///
+			///// siempre dos blockwrite por cada campo, uno para el campo en si y otro para el separador /////
+
+
+			blockwrite(arch, r.nombre[1], length(r.nombre));
+			blockwrite(arch, sc, length(sc));
+			
+			blockwrite(arch, r.descripcion[1], length(r.descripcion));
+			blockwrite(arch, sc, length(sc));
+			
+			str(r.precio, aux); // lo convierto a string
+			blockwrite(arch, aux[1], length(aux));
+			blockwrite(arch, sc, length(sc));
+
+			str(r.st_minimo, aux); // lo convierto a string
+			blockwrite(arch, aux[1], length(aux));
+			blockwrite(arch, sc, length(sc));
+			
+			str(r.st_actual, aux); // lo convierto a string
+			blockwrite(arch, aux[1], length(aux));
+			blockwrite(arch, sc, length(sc));
+			
+			// despues de todos los campos escribir el separador de registros 
+			
+			blockwrite(arch, sr, length(sr));
+			
+			leer_registro(r);
+		end;
+		close(arch);
+	end;

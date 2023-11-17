@@ -1,0 +1,26 @@
+
+Estructuras de datos
+
+Producto Cartesiano: Tiene n conjuntos y cada conjunto tiene n elementos ordenado.
+
+es un registro????
+
+Correspendencia finita: Es un vector/lista
+
+Union:La declaración es muy similar a la del producto cartesiano.
+La diferencia es que sus campos son mutuamente
+excluyentes.  
+
+Union discriminada:  Unión discriminada agrega un discriminante para
+indicar la opción elegida.
+La unión discriminada se puede manejar en forma segura
+consultando el discriminante antes de utilizar el valor del elemento
+
+TAD: imula-67 proporciona una estructura sintáctica que
+permite que las operaciones y la representación puedan
+especificarse en una única unidad sintáctica (class).
+Pero no satisface el ocultamiento de la información.
+● Modula-2 módulo
+● Ada paquete
+● C++ clase
+● Java clase

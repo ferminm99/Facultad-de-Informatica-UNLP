@@ -1,0 +1,15 @@
+procedure minimo(var V_det : vector_detalles; V_reg : vector_registros; min : registro);
+	var
+	    i : integer;
+  	    pos_mim : integer;
+	begin
+	    min.cod := valor_alto;
+	    for i := 1 to n do begin
+		if(min.cod < V_reg[i].cod)then begin
+		    pos_min := i;
+		    min := V_reg[i];
+	    end;
+	    if(min.cod <> valor_alto) then begin
+	    	leer(V_det[pos_min], V_reg[pos_min]);
+	    end;
+	     

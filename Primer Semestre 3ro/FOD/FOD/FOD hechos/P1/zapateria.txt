@@ -1,0 +1,24 @@
+ nike
+13.50
+ zapas nike
+150
+ abidas
+20.00
+ adidas truchas
+0
+ adidas air
+500.00
+ adidas super speed
+99
+ nike air
+504.75
+
+104
+puma
+15.00
+altas shantas
+3
+puma air
+20.00
+ahre se copaba con las air
+123

@@ -1,0 +1,13 @@
+procedure leerRegistro (var aPer:file; var r:rPersona);
+	var
+		tam:integer;
+	begin
+	    BlockRead(aPer,tam,sizeOf(tam));   // lee la longitud del String apellido
+	    BlockRead(aPer,r.apellido,tam);   // lee el contenido
+	    
+	    BlockRead(aPer,tam,sizeOf(tam));   // lee longitud del String nombre
+	    BlockRead(aPer,r.nombre,tam); // lee el contenido
+	    
+	    BlockRead(aPer,r.fnac,sizeOf(r.fnac));     // lee la fecha de nacimiento
+
+	end;

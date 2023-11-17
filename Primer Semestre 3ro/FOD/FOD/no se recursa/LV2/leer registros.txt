@@ -1,0 +1,43 @@
+procedure read_reg(var a : file; var e : empleado);
+	var
+		tamCampo, tamReg, i : byte;
+		datos : array[1..256] of byte;
+	begin
+		blockread(a, tamReg, sizeof(tamReg)); // primero que nada leer lo primero que se cargo, el tamaño total del registros
+		blockread(a, datos, tamReg); // leer todos los datos, se guardan en un vactor de bytes de 255 posiciones (1 a 256)
+		
+		i := 1; // esto es una especie de variable de un for que arranca en 1 siempre
+
+		// para los datos integer, directamente se mueve desde la pos i del vector de datos hasta el tamaño del campo como tal ya que es //integer
+
+		move(dato[i], e.cod, sizeof(e.cod)); // primer campo (cod)
+		i := i + sizeof(e.cod); // la i siempre se incrementa en el valor que se puso en el move
+
+		move(dato[i], e.cod, sizeof(e.dni)); // segundo campo(dni)
+		i := i + sizeof(e.dni);
+
+		// para los strins primero se lee el tamaño, recordar que la posicion 0 del string es el tamaño (en el blockwrite no se hace la de   // escribir desde la posicion 1 para estas cosas)
+
+		tamCampo := dato[i];	// terce rcampo (apellido) // se guarda el tamaño del campo
+		setLength(e.apellido, tamCampo); // al campo del registro que es variable local se le setea de largo el mismo largo del campo del //archivo
+		mov(dato[i], e.apellido, tamCampo + 1) // y despues ya se hace el mismo mov que con los integer pero hasta el tamaño +1, importante el // +1
+
+		i := i + tamCampo + 1; // de nuevo se incrementa segundo lo que se puso en el mov
+
+		// repetir 
+
+		tamCampo := dato[i];	// cuarto campo (nombre)
+		setLength(e.nombre, tamCampo);
+		mov(dato[i], e.apellido, tamCampo + 1)
+		i := i + tamCampo + 1;
+
+		move(dato[i], e.peso, sizeof(e.peso)); // quinto campo (peso)
+		i := i + sizeof(e.peso);
+
+		move(dato[i], e.estatura, sizeof(e.estatura)); // sexto campo (estatura)
+		i := i + sizeof(e.estatura);
+
+		move(dato[i], e.fecha, sizeof(e.fecha)); // septimo campo (fecha)
+		i := i + sizeof(e.fecha);
+
+	end;

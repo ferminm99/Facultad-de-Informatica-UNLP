@@ -1,0 +1,11 @@
+13.50 nike
+150 zapas nike
+
+20.00 abidas
+0 adidas truchas
+
+500.00 adidas air
+99 adidas super speed
+
+504.75 nike air
+104

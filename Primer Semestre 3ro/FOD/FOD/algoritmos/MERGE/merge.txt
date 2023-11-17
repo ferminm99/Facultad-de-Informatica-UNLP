@@ -1,0 +1,29 @@
+procedure merge(var Vdet : vec_det);
+	var
+		Vreg : vec_reg;
+		min : registro;
+		mae : file of maestro;
+		reg_mae : maestro;
+	begin
+		rewrite(mae); // abrir archivo que se va a crear
+		for i:= 1 to n do begin
+			reset(Vdet[i]); leer(Vdet[i], Vreg[i]); // abrir detalles y leer
+		end;
+		minimo(Vdet, Vreg, min); // calcular minimo de los detalles
+		while(min.cod <> valor_alto) do begin // hasta que no se terminen todos los detalles
+			reg_mae.cod := min.cod; // guardar el codigo de usuario actual
+			while(reg_mae.cod = min.cod)do begin // corte de control clasico
+				reg_mae.fecha := min.fecha; // segundo actual
+				reg_mae.tiempo_total := min.tiempo_sesion; // total
+				while (reg_mae.cod = min.cod) and (reg_mae.fecha = min.fecha) do begin
+					minimo2(Vdet, Vreg, min); // importante usar el minimo2, para tener el mino de los dos (cod y fecha)
+					reg_mae.tiempo_total := reg_mae.tiempo_total + min.tiempo_sesion; // incrementar el total
+				end;
+				write(mae,reg_mae); // escribir
+			end;
+		end;
+		for i:= 1 to n do begin
+			close(Vdet[i]);
+		end;
+		close(mae);
+	end;

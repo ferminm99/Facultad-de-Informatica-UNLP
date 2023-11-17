@@ -1,0 +1,12 @@
+123 --> codigo
+-15 --> stock
+0 --> enlace
+321 --> codigo
+5 --> stock
+0 --> enlace
+132 --> codigo
+1 --> stock
+0 --> enlace
+333 --> codigo
+-23 --> stock
+1 --> enlace

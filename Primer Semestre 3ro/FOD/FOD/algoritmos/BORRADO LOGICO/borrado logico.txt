@@ -1,0 +1,48 @@
+procedure BorradoLogico(var per : archivo_personas_list);
+var
+  dni_eliminar : integer;
+  persona : persona_list;
+  posicion_eliminado : integer;
+  primera_posicion : integer;
+  eliminado : boolean;
+begin
+
+   reset(per);
+   // me fijo que el archivo no este vacio
+   if (eof(per)) then
+      writeln('El archivo esta vacio')
+   else begin
+      read(per,persona);
+
+      primera_posicion := persona.nrr; // guardo el valor que esta en la cabecera
+
+      eliminado := false;
+
+      write('Ingrese dni a eliminar: '); readln(dni_eliminar);
+
+      while(not eof(per))and (not eliminado) do begin  //recorro el archivo hasta encontrar a la persona a eliminar o hasta que se termine
+        read(per,persona);
+        if (persona.apellido <> '******') and  (persona.dni = dni_eliminar) then begin // si la persona no se elimino antes
+
+           write('Se eliminara a la persona: ');
+           ImprimirPersona_list(persona);
+           persona.apellido := '******';   // marco el apellido de la persona como eliminado
+           seek(per,filepos(per)-1);
+           posicion_eliminado := filepos(per)*-1; // guardo la posicion de la persona eliminada
+           persona.nrr := primera_posicion;   // cargo la posicion de la cabecera en la persona que se acaba de eliminar
+           write(per,persona);
+
+           eliminado := true;   // seteo que encontre y elimine la persona
+
+           //actualizo el valor de la cabecera
+           seek(per,0);
+           read(per,persona);
+           persona.nrr := posicion_eliminado;
+           seek(per,filepos(per)-1);
+           write(per,persona);
+
+         end else if (persona.dni = dni_eliminar) then writeln('la persona no existe');
+
+
+      end;
+   end;

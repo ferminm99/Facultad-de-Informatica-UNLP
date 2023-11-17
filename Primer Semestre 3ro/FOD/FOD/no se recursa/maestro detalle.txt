@@ -1,0 +1,51 @@
+procedure actualizar(var mae : mae; var Vdet : vec_det);
+	var
+		Vreg : vec_reg;
+		reg_mae : producto;
+		i : integer;
+		min : pedido;
+		cant_pedida : integer;
+		pedido_actual : pedido;
+		sucursal : integer;
+	begin
+		// hacer un leer para los detalles y otro para el maestro, solo los villanos usan el read()
+		for i:=1 to n do begin
+			reset(Vdet[i]); leer_det(Vdet[i],Vreg[i]); // abrir y leer de todos los detalles
+		end; 
+		reset(mae); // abrir maestro
+		leer_mae(mae, reg_maeg); // leer del maestro
+		minimo(Vdet, Vreg, min, sucursal); // calcular minimo entre detalles (minimo1)
+		while(min.cod <> valor_alto) do begin
+			cant_pedida := 0; // inicializar el total que necesito
+			pedido_actual := min; // inicializar el actual
+			while(pedido_actual.cod = min.cod)do begin // corte de control clasico
+				cant_pedida := cant_pedida + min.cant; // incrementar total
+				minimo(Vdet, Vreg, min, sucursal); // volver a leer
+			end;
+			
+			// procesar segun lo que pida el enunciado
+
+			if(reg_mae.stock_actual - cant_pedida <= 0)then
+				writeln("faltan elementos");
+				wirteln("sucursal: ", sucursal);
+				writeln("producto: ", reg_mae.cod):
+				writeln("elementos faltantes: ", (cant_pedida - reg_mae.stock_actual) );
+			else begin
+				if(reg_mae.stock_actual - cant_pedida < reg_mae.stock_minimo) then
+					writeln("el producto quedo por debajo del stock minimo")
+			end;
+			
+			// actualizar el registro de donde se leyo el maestro
+
+			reg_mae.stock_actual := reg_mae.stock_actual - cant_pedida; // en este caso solo es un campo
+			
+			seek(mae, filepos(mae) - 1); // volver una posicion
+
+			write(mae, reg_mae); // escribir en maestro
+		end;
+		// cerrar todos los archivos
+		for i:=1 to n do begin
+			close(Vdet[i]);
+		end;
+		close(mae);
+	end;
