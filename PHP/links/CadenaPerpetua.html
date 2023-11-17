@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Listado de películas</title>
+		<link rel="stylesheet" type="text/css" href="../estilosZoom.css">
+	</head>
+	
+	<body>
+		<header>		
+			<img src="../Peliculas/peliculas2.jpg" alt=Peliculas Perpetua height="300" width="100%">	
+			<div class="registro">	
+			<a href="Registro.html">Registrarse</a>
+			<a href="#">Inicio de sesion</a>	
+			</div>
+			<form>
+				<input type="text" placeholder="Buscar">
+				<div class="selects">
+				<select>
+					<option value="año">Año</option>
+					<option value="año">1957</option>
+					<option value="año">1972</option>
+					<option value="año">1994</option>
+					<option value="año">1995</option>
+					<option value="año">1999</option>
+					<option value="año">2002</option>
+					<option value="año">2008</option>
+					<option value="año">2014</option>
+				</select>
+				<select>
+					<option value="genero">Genero</option>
+					<option value="genero">Drama</option>
+					<option value="genero">Comedia</option>
+					<option value="genero">Acción</option>
+					<option value="genero">Gangsters</option>
+					<option value="genero">Comedia negra</option>
+					<option value="genero">Fantasía</option>
+					<option value="genero">Aventuras</option>
+					<option value="genero">Ciencia ficción</option>
+					<option value="genero">Thriller</option>
+				</select>
+				<input type="submit" value="Buscar">
+				</div>
+				<!---->
+			</form>
+		</header>
+		<div>
+			<!--
+			<table>
+				<tr>
+					<td>
+						<img src="../Peliculas/cadenaPerpetua.jpg" alt=Cadena Perpetua height="600" width="600">
+					</td>
+					<td class="mod">
+						<h3>Cadena Perpetua</h3>
+						<h4>Sinopsis:</h4>
+						<p>
+							Acusado del asesinato de su mujer, Andrew Dufresne (Tim Robbins), tras ser condenado a cadena perpetua, es enviado a la cárcel de Shawshank. Con el paso de los años conseguirá ganarse la confianza del director del centro y el respeto de sus compañeros de prisión, especialmente de Red (Morgan Freeman), el jefe de la mafia de los sobornos. 
+						</p>
+						<h5>Genero: Drama</h5>
+						<h5>Año: 1995</h5>
+					</td>
+				</tr>
+			</table>
+		-->
+			<section class="pelicula" style="display: flex;">
+				<img src="../Peliculas/cadenaPerpetua.jpg" alt=Cadena Perpetua height="600" width="600" style="max-width: 50%; ">
+				<div class="info" style="max-width: 50%;margin: 10px">
+					<h3>Cadena Perpetua</h3>
+					<h4>Sinopsis:</h4>
+					<p>
+						Acusado del asesinato de su mujer, Andrew Dufresne (Tim Robbins), tras ser condenado a cadena perpetua, es enviado a la cárcel de Shawshank. Con el paso de los años conseguirá ganarse la confianza del director del centro y el respeto de sus compañeros de prisión, especialmente de Red (Morgan Freeman), el jefe de la mafia de los sobornos. 
+					</p>
+					<h5>Genero: Drama</h5>
+					<h5>Año: 1995</h5>
+				</div>
+			</section>
+			<h3>Comentarios</h3>
+			<ul>
+				<li>
+					<h5>NOTA: 10/10</h5>
+					<h4>Jorge345</h4>
+					<p>
+						La mejor pelicula que vi en mi vida
+					</p>
+				</li>
+				<li>
+					<h5>NOTA: 10/10</h5>
+					<h4>Zark3</h4>
+					<p>
+						La mejor pelicula que vi en mi vida aa
+					</p>
+				</li>
+			</ul>
+			<form  onsubmit=" return verificarComentar()" method="post">
+				<textarea name='comment' class="comment" id="commentId"></textarea><br />
+				<input type='submit' value='Comentar' />  
+				<select id ="nota" name="nota">
+					<option value="0">Puntuación</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+				</select>
+			</form>
+		</div>
+	</body>
+
+	<script src="../verificaComentar.js"></script>
+</html>
+
+

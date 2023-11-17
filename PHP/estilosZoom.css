@@ -1,0 +1,82 @@
+.mod{
+	padding-bottom: 300px;
+	font-size:20px;
+	font-family: "Georgia";
+}
+							
+.registro{
+	overflow: auto;
+	width: 100%;
+}
+
+section{
+	display: flex;
+}
+
+section img{
+	height: 600px;
+	width: 600px;
+	max-width:50%;
+}
+
+section div{
+	margin: 5px;
+	max-width: 50%;
+}
+header img{
+	height: 300px;
+	width:100%;
+}
+
+.selects{
+	margin: 5px auto;
+	width: fit-content;
+	width: -moz-fit-content;
+}
+
+.buttons{
+ 	padding: 5px;
+	margin: 5px auto;
+	border: none;
+}
+
+header a{
+	background-color: #95ADD1;
+	color: white;
+	padding: 7px 7px;
+	float: right;
+	opacity: 0.9;
+	margin: 0px 10px 0px 0px;
+}
+
+header input[type=number]{
+  width: 50px;
+}
+
+header input[type=text]{
+	width: fit-content;
+	width: moz-fit-content;
+ 	padding: 5px;
+	margin: 0px auto;
+ 	border: none;
+ 	background: #f1f1f1;
+	border-style: inset;
+	display: block;
+}
+
+header input[type=submit]{
+	width: fit-content;
+	width: moz-fit-content;
+	margin: 5px auto;
+	display: block;
+}
+
+.verifC{
+	width: fit-content;
+	width: moz-fit-content;
+}
+
+.comment{
+	width: 500px;
+	height: 70px;
+}
