@@ -1,0 +1,127 @@
+programa cuadrado
+procesos
+  proceso juntarF(ES f: numero)
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      f:=f+1
+  fin
+  proceso juntarP(ES p: numero)
+  comenzar
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+      p:=p+1
+  fin
+  proceso florero(ES f: numero;E avI: numero; E caI: numero)
+  comenzar
+    BloquearEsquina(avI,caI)
+    juntarF(f)
+    mover
+    LiberarEsquina(avI,caI)
+    repetir 9
+      juntarF(f)
+      mover
+    derecha
+    repetir 10
+      juntarF(f)
+      mover
+  fin  
+  proceso papelero(ES p: numero;E avI: numero; E caI: numero)
+  comenzar 
+    BloquearEsquina(avI,caI)
+    repetir 2
+      derecha 
+    juntarP(p)  
+    mover 
+    LiberarEsquina(avI,caI) 
+    repetir 9  
+      juntarP(p) 
+      mover 
+    derecha 
+    repetir 10 
+      juntarP(p) 
+      mover 
+  fin   
+areas
+  c1: AreaPC(3,3,13,13)
+  c2: AreaPC(16,3,26,13)
+  cj: AreaP(14,6,14,6)
+robots
+  robot tipo1
+  variables
+    quienSoy,f: numero
+  comenzar
+    RecibirMensaje(quienSoy,rj)
+    f:=0
+    florero(f,PosAv,PosCa)
+    EnviarMensaje(quienSoy,rj)
+    EnviarMensaje(f,rj)
+  fin
+  robot tipo2
+  variables
+    quienSoy,p: numero
+  comenzar 
+    RecibirMensaje(quienSoy,rj)
+    p:=0
+    papelero(p,PosAv,PosCa)
+    EnviarMensaje(quienSoy,rj)
+    EnviarMensaje(p,rj)
+  fin 
+  robot tipoJ
+  variables
+    quienSos,max1,max2,fop,total: numero
+    ok: boolean
+  comenzar
+    EnviarMensaje(1,r1)
+    EnviarMensaje(2,r2)
+    EnviarMensaje(3,r3)
+    EnviarMensaje(4,r4)
+    max1:=0
+    max2:=0
+    ok:=F
+    repetir 4
+      RecibirMensaje(quienSos,*)
+      si(quienSos = 1)
+        RecibirMensaje(fop,r1)
+        total:=total+fop
+        max1:=max1+1
+      sino
+        si(quienSos = 2)
+          RecibirMensaje(fop,r2)
+          total:=total+fop
+          max1:=max1+1
+        sino
+          si(quienSos = 3)
+            RecibirMensaje(fop,r3)
+            total:=total+fop
+            max2:=max2+1
+          sino
+            si(quienSos = 4)
+              RecibirMensaje(fop,r4)
+              total:=total+fop
+              max2:=max2+1
+      si(ok=F)
+        si(max1=2)
+          Informar(1)
+          ok:=V
+        sino
+          si(max=2)
+            Informar(2)
+            ok:=V
+    Informar(total)
+  fin
+variables
+  r1,r3: tipo1
+  r2,r4: tipo2
+  rj: tipoJ
+comenzar
+  AsignarArea(r1,c1)
+  AsignarArea(r2,c1)
+  AsignarArea(r3,c2)
+  AsignarArea(r4,c2)
+  AsignarArea(rj,cj)
+  Iniciar(r1,3,3)
+  Iniciar(r2,13,13)
+  Iniciar(r3,16,3)
+  Iniciar(r4,26,13)
+fin 

@@ -1,0 +1,46 @@
+programa Ejercicio3-1
+procesos
+  proceso juntarFlores(ES flores: numero;ES ok:boolean)
+  comenzar
+    si (HayFlorEnLaEsquina)
+      tomarFlor
+      flores:= flores+1
+    sino
+      ok := F  
+  fin
+areas
+  c1: AreaP(20,20,20,20) 
+  c2: AreaP(21,21,21,21) 
+  ciudad : AreaC(25,25,25,25)
+
+robots  
+  robot tipo1
+  variables 
+    flores,a,c: numero
+    ok: boolean 
+  comenzar
+    a:=PosAv
+    c:=PosCa
+    ok:= V 
+    flores:= 0 
+    mientras (ok = V)
+      BloquearEsquina(25,25)
+      Pos(25,25)
+      juntarFlores(flores,ok)
+      Pos(a,c)
+      LiberarEsquina(25,25)
+    Informar(flores)  
+  fin
+
+variables 
+  robot1,robot2: tipo1 
+  
+comenzar 
+  AsignarArea(robot1,c1) 
+  AsignarArea(robot2,c2)  
+  AsignarArea(robot1,ciudad) 
+  AsignarArea(robot2,ciudad) 
+  
+  Iniciar(robot1, 20, 20) 
+  Iniciar(robot2, 21, 21)  
+fin 

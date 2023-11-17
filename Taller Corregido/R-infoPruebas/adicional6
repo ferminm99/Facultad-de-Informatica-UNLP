@@ -1,0 +1,171 @@
+programa adicional6 
+procesos  
+  proceso juntarF 
+  comenzar 
+    mientras(HayFlorEnLaEsquina) 
+      tomarFlor 
+  fin 
+  proceso depositarF 
+  comenzar 
+    si(HayFlorEnLaBolsa) 
+      depositarFlor 
+  fin 
+  proceso rectangulo1(E alto: numero; E ancho: numero;E quienSoy : numero) 
+  variables
+    avI,caI: numero
+  comenzar 
+    repetir 2 
+      repetir alto 
+        juntarF 
+        mover 
+      derecha 
+      repetir ancho 
+        juntarF 
+        mover 
+      derecha 
+    si(quienSoy = 1)
+      depositar(PosAv,PosCa,15)
+    sino
+      depositar(PosAv,PosCa,40)
+  fin 
+  proceso rectangulo2(E alto: numero; E ancho: numero) 
+  comenzar 
+    repetir 2 
+      repetir alto 
+        depositarF 
+        mover 
+      derecha 
+      repetir ancho 
+        depositarF 
+        mover 
+      derecha 
+  fin 
+  proceso depositar(E avI: numero; E caI: numero; E ca: numero) 
+  comenzar 
+    mientras(HayFlorEnLaBolsa) 
+      Pos(5,ca) 
+      depositarFlor 
+      Pos(avI,caI) 
+  fin 
+  proceso tomarTodo(E avI: numero;E caI: numero; E ca: numero) 
+  variables 
+    ok: boolean 
+  comenzar 
+    ok:=V 
+    mientras(ok) 
+      Pos(5,ca) 
+      si(HayFlorEnLaEsquina) 
+        tomarFlor 
+      si(HayFlorEnLaEsquina) 
+        ok:=V 
+      sino 
+        ok:=F 
+      Pos(avI,caI) 
+  fin 
+areas 
+  c1: AreaP(1,1,1,1) 
+  c2: AreaP(2,2,2,2) 
+  c3: AreaP(3,3,3,3) 
+  c4: AreaP(4,4,4,4)       
+  cj: AreaP(5,5,5,5) 
+  cc1: AreaPC(1,30,100,45) 
+  cc2: AreaPC(1,10,100,25) 
+robots 
+  robot tipo1 
+  variables 
+    quienSoy,avI,caI,ancho,av,ca,alto: numero 
+    ok: boolean 
+  comenzar   
+    RecibirMensaje(quienSoy,rj) 
+    RecibirMensaje(ancho,rj) 
+    RecibirMensaje(alto,rj) 
+    RecibirMensaje(av,rj) 
+    RecibirMensaje(ca,rj) 
+    RecibirMensaje(ok,rj)
+    avI:=PosAv 
+    caI:=PosCa   
+    Pos(av,ca) 
+    rectangulo1(alto,ancho,quienSoy)  
+    Pos(avI,caI)
+    si(quienSoy = 1) 
+      EnviarMensaje(ok,r2)  
+    sino 
+      EnviarMensaje(ok,r4) 
+  fin 
+  robot tipo2 
+  variables 
+    quienSoy,avI,caI,ancho,av,ca,alto: numero  
+    ok: boolean  
+  comenzar 
+    RecibirMensaje(quienSoy,rj) 
+    RecibirMensaje(ancho,rj) 
+    RecibirMensaje(alto,rj) 
+    RecibirMensaje(av,rj) 
+    RecibirMensaje(ca,rj) 
+    avI:=PosAv 
+    caI:=PosCa  
+    si(quienSoy = 1) 
+      RecibirMensaje(ok,r1) 
+      tomarTodo(avI,caI,15) 
+    sino 
+      RecibirMensaje(ok,r3) 
+      tomarTodo(avI,caI,40) 
+    Pos(av,ca) 
+    rectangulo2(alto,ancho) 
+    EnviarMensaje(quienSoy,rj) 
+  fin 
+  robot tipoJ 
+  variables 
+    quienSos,av,ca,ancho: numero 
+    aviso: boolean
+  comenzar 
+    EnviarMensaje(1,r1) 
+    EnviarMensaje(1,r2) 
+    EnviarMensaje(2,r3) 
+    EnviarMensaje(2,r4) 
+    Random(ancho,1,5) 
+    EnviarMensaje(ancho,r1) 
+    EnviarMensaje(ancho,r2) 
+    EnviarMensaje(ancho,r3) 
+    EnviarMensaje(ancho,r4) 
+    EnviarMensaje(15,r1) 
+    EnviarMensaje(15,r2) 
+    EnviarMensaje(15,r3) 
+    EnviarMensaje(15,r4) 
+    Random(av,1,95) 
+    EnviarMensaje(av,r1)  
+    EnviarMensaje(av,r2)  
+    EnviarMensaje(av,r3)  
+    EnviarMensaje(av,r4)      
+    EnviarMensaje(10,r1)  
+    EnviarMensaje(10,r2) 
+    EnviarMensaje(30,r3) 
+    EnviarMensaje(30,r4) 
+    EnviarMensaje(aviso,r1)
+    EnviarMensaje(aviso,r2)
+    EnviarMensaje(aviso,r3)
+    EnviarMensaje(aviso,r4)
+    RecibirMensaje(quienSos,*) 
+    Informar(quienSos)
+    RecibirMensaje(quienSos,*) 
+  fin 
+variables   
+  r1,r3: tipo1 
+  r2,r4: tipo2 
+  rj: tipoJ 
+comenzar 
+  AsignarArea(r1,c1)   
+  AsignarArea(r2,c2)   
+  AsignarArea(r3,c3)   
+  AsignarArea(r4,c4)   
+  AsignarArea(r1,cc2)   
+  AsignarArea(r2,cc2)   
+  AsignarArea(r3,cc1)   
+  AsignarArea(r4,cc1)    
+  AsignarArea(rj,cj)   
+  Iniciar(r1,1,1) 
+  Iniciar(r2,2,2) 
+  Iniciar(r3,3,3) 
+  Iniciar(r4,4,4) 
+  Iniciar(rj,5,5) 
+fin    

@@ -1,0 +1,124 @@
+programa adicional3 
+procesos 
+  proceso tomar(E avI: numero; E caI: numero; ES cant: numero;ES ok: boolean) 
+  comenzar 
+    BloquearEsquina(5,5) 
+    Pos(5,5) 
+    si(HayPapelEnLaEsquina) 
+      tomarPapel 
+      cant:=cant+1 
+    si(HayFlorEnLaEsquina) 
+      tomarFlor 
+      cant:=cant+1 
+    si(HayFlorEnLaEsquina | HayFlorEnLaEsquina) 
+      ok:=V 
+    sino 
+      ok:=F 
+    Pos(avI,caI) 
+    LiberarEsquina(5,5) 
+  fin 
+  proceso recorrer 
+  comenzar 
+    Pos(10,10) 
+    mientras((HayPapelEnLaBolsa | HayFlorEnLaBolsa) & (PosCa<99)) 
+      si(HayPapelEnLaBolsa) 
+        depositarPapel 
+      sino 
+        si(HayFlorEnLaBolsa) 
+          depositarFlor 
+      mover 
+      si(HayFlorEnLaBolsa) 
+        depositarFlor 
+        si(PosCa<99)
+          mover 
+      sino 
+        si(HayPapelEnLaBolsa) 
+          depositarPapel 
+          si(PosCa<99)
+            mover 
+  fin 
+  proceso maximo(ES rMax: numero; E o1: numero; E o2: numero; E o3: numero) 
+  variables 
+    max: numero 
+  comenzar 
+    max:=-1 
+    si(max<o1) 
+      max:=o1 
+      rMax:=1 
+    si(max<o2) 
+      max:=o2 
+      rMax:=2 
+    si(max<o3) 
+      max:=o3 
+      rMax:=3 
+  fin 
+areas 
+  cr: AreaPC(10,10,10,100) 
+  c1: AreaP(2,2,2,2) 
+  c2: AreaP(3,3,3,3) 
+  c3: AreaP(4,4,4,4) 
+  cc: AreaPC(5,5,5,5) 
+  cj: AreaP(1,1,1,1) 
+robots 
+  robot tipo1 
+  variables 
+    quienSoy,quienEs,avI,caI,cant: numero 
+    ok: boolean 
+  comenzar 
+    RecibirMensaje(quienSoy,rj) 
+    ok:=V 
+    avI:=PosAv 
+    caI:=PosCa 
+    cant:=0 
+    mientras(ok) 
+      tomar(avI,caI,cant,ok) 
+    EnviarMensaje(quienSoy,rj) 
+    EnviarMensaje(cant,rj) 
+    RecibirMensaje(quienEs,rj) 
+    si(quienSoy = quienEs) 
+      recorrer 
+  fin  
+  robot tipoJ 
+  variables 
+    quienSos,o1,o2,o3,rMax: numero 
+  comenzar 
+    EnviarMensaje(1,r1) 
+    EnviarMensaje(2,r2) 
+    EnviarMensaje(3,r3) 
+    RecibirMensaje(quienSos,*) 
+    Informar(quienSos) 
+    EnviarMensaje(quienSos,r1) 
+    EnviarMensaje(quienSos,r2) 
+    EnviarMensaje(quienSos,r3) 
+    repetir 2 
+      si(quienSos = 1) 
+        RecibirMensaje(o1,r1) 
+      sino 
+        si(quienSos = 2) 
+          RecibirMensaje(o2,r2) 
+        sino 
+          si(quienSos = 3) 
+            RecibirMensaje(o3,r3) 
+      RecibirMensaje(quienSos,*) 
+    maximo(rMax,o1,o2,o3) 
+    Informar(rMax) 
+  fin  
+variables   
+  r1,r2,r3: tipo1 
+  rj: tipoJ 
+comenzar 
+  AsignarArea(r1,c1) 
+  AsignarArea(r2,c2) 
+  AsignarArea(r3,c3) 
+  AsignarArea(rj,cj) 
+  AsignarArea(r1,cc) 
+  AsignarArea(r2,cc) 
+  AsignarArea(r3,cc) 
+  AsignarArea(r1,cr) 
+  AsignarArea(r2,cr) 
+  AsignarArea(r3,cr) 
+  Iniciar(rj,1,1) 
+  Iniciar(r1,2,2) 
+  Iniciar(r2,3,3) 
+  Iniciar(r3,4,4) 
+fin

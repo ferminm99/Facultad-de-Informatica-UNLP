@@ -1,0 +1,70 @@
+programa Ejercicio-1
+  
+procesos
+  proceso juntar (ES flor:numero)
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      flor:= flor + 1
+  fin    
+areas
+  ciudad1: AreaP(2,2,5,7)
+robots 
+  robot tipo1
+  variables
+    f:numero
+  comenzar
+    f:= 0
+    repetir 2
+      repetir 5
+        mover 
+        juntar (f)
+      derecha
+      repetir 3
+        mover
+        juntar(f)
+      derecha
+    Informar (f)
+  fin
+       
+variables 
+  robot1: tipo1
+comenzar 
+  AsignarArea(robot1,ciudad1)
+
+  Iniciar(robot1, 2,2)
+fin
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+
+
+

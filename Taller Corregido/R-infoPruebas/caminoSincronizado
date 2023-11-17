@@ -1,0 +1,102 @@
+programa caminoSincronizado
+procesos
+  proceso limpiar
+  comenzar
+    BloquearEsquina(10,10)
+    Pos(10,10)
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+    Pos(5,5)
+    LiberarEsquina(10,10)
+  fin
+  proceso juntar(ES cant: numero)
+  comenzar
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+      cant:=cant+1
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      cant:=cant+1
+  fin
+  proceso recorrer(ES cant: numero)
+  comenzar
+    repetir 4
+      juntar(cant)
+      mover
+  fin
+  proceso depositar(E avI: numero; E caI: numero)
+  comenzar
+    BloquearEsquina(10,10)
+    Pos(10,10)
+    mientras(HayFlorEnLaBolsa)
+      depositarFlor
+    mientras(HayPapelEnLaBolsa)
+      depositarPapel
+    Pos(avI,caI)
+    LiberarEsquina(10,10)
+  fin
+areas
+  c1: AreaP(1,1,1,90)
+  c2: AreaP(4,1,4,90)
+  c3: AreaP(8,1,8,90)
+  cj: AreaP(5,5,5,5)
+  cc: AreaC(10,10,10,10)
+robots
+  robot tipo1
+  variables
+    cant,ca: numero
+    ok:boolean
+  comenzar
+    RecibirMensaje(ca,rj)
+    Pos(PosAv,ca)
+    cant:=0
+    repetir 5
+      recorrer(cant)
+      EnviarMensaje(ok,rj)
+      RecibirMensaje(ok,rj)
+    depositar(PosAv,PosCa)
+    EnviarMensaje(cant,rj)
+  fin
+  robot tipoJ
+  variables
+    ca,total,cant: numero
+    ok: boolean
+  comenzar
+    limpiar
+    total:=0
+    Random(ca,1,69)
+    EnviarMensaje(ca,r1)
+    Random(ca,1,69)
+    EnviarMensaje(ca,r2)
+    Random(ca,1,69)
+    EnviarMensaje(ca,r3)
+    repetir 5
+      repetir 3
+        RecibirMensaje(ok,*)
+      EnviarMensaje(ok,r1)
+      EnviarMensaje(ok,r2)
+      EnviarMensaje(ok,r3)
+    repetir 3
+      RecibirMensaje(cant,*)
+      total:=total+cant
+    Informar(total)
+  fin
+variables
+  r1,r2,r3: tipo1
+  rj: tipoJ
+comenzar
+  AsignarArea(r1,c1)
+  AsignarArea(r2,c2)
+  AsignarArea(r3,c3)
+  AsignarArea(rj,cj)
+  AsignarArea(r1,cc)
+  AsignarArea(r2,cc)
+  AsignarArea(r3,cc)
+  AsignarArea(rj,cc)
+  Iniciar(r1,1,1)
+  Iniciar(r2,4,1)
+  Iniciar(r3,8,1)
+  Iniciar(rj,5,5)
+fin

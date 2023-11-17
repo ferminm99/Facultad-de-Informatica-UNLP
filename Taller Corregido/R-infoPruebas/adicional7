@@ -1,0 +1,207 @@
+programa adicional7
+procesos
+  proceso vaciar
+  comenzar
+    mientras(HayPapelEnLaBolsa)
+      depositarPapel
+    mientras(HayFlorEnLaBolsa)
+      depositarFlor
+  fin
+  proceso juntarF
+  comenzar
+    si(HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+  proceso juntarP
+  comenzar
+    si(HayPapelEnLaEsquina)
+      tomarPapel
+  fin 
+  proceso depositar1(E avI: numero; E caI: numero)
+  comenzar
+    BloquearEsquina(21,13)
+    Pos(21,13)
+    depositarFlor
+    Pos(avI,caI)
+    LiberarEsquina(21,13)
+  fin
+  proceso depositar2(E avI: numero; E caI: numero)
+  comenzar 
+    BloquearEsquina(9,13)
+    Pos(9,13)
+    depositarPapel
+    Pos(avI,caI)
+    LiberarEsquina(9,13)
+  fin  
+  proceso recorrer1
+  variables
+    avI,caI: numero
+  comenzar
+    derecha
+    repetir 10
+      juntarF
+      mover
+    avI:=PosAv
+    caI:=PosCa
+    mientras(HayFlorEnLaBolsa)  
+      depositar1(avI,caI)
+  fin
+  proceso recorrer2
+  variables 
+    avI,caI: numero 
+  comenzar
+    repetir 2
+      derecha
+    repetir 10
+      juntarP
+      mover
+    avI:=PosAv
+    caI:=PosCa 
+    mientras(HayPapelEnLaBolsa)
+      depositar2(avI,caI)
+  fin
+areas
+  c1: AreaP(1,1,1,1) 
+  c2: AreaP(2,2,2,2) 
+  c3: AreaP(3,3,3,3) 
+  c4: AreaP(4,4,4,4) 
+  cj: AreaP(5,5,5,5)   
+  cc1: AreaP(10,10,20,10) 
+  cc2: AreaP(10,12,20,12) 
+  cc3: AreaP(10,14,20,14) 
+  cc4: AreaP(10,16,20,16) 
+  d1: AreaPC(9,13,9,13)    
+  d2: AreaPC(21,13,21,13)
+  f1: AreaPC(10,11,20,11)        
+  f2: AreaPC(10,15,20,15)  
+robots
+  robot tipo1
+  variables
+    quienSoy,ca,quienEs,avI,caI: numero
+    listo,ok: boolean
+  comenzar
+    RecibirMensaje(quienSoy,rj)
+    RecibirMensaje(ca,rj)
+    vaciar
+    avI:=PosAv
+    caI:=PosCa
+    Pos(10,ca)
+    EnviarMensaje(listo,rj)
+    RecibirMensaje(listo,rj)
+    recorrer1
+    EnviarMensaje(quienSoy,rj)
+    ok:=F
+    repetir 2
+      RecibirMensaje(quienEs,rj)
+      si(quienSoy = quienEs)
+        ok:=V
+    si(ok)
+      RecibirMensaje(ca,rj)
+      Pos(20,ca)
+      recorrer2
+      EnviarMensaje(quienSoy,rj)
+    Pos(avI,caI)
+  fin
+  robot tipoJ
+  variables
+    quienSos,f1,f2: numero
+    ok: boolean
+  comenzar
+    EnviarMensaje(1,r1)
+    EnviarMensaje(2,r2)
+    EnviarMensaje(3,r3)
+    EnviarMensaje(4,r4)
+    EnviarMensaje(10,r1)
+    EnviarMensaje(12,r2)
+    EnviarMensaje(14,r3)
+    EnviarMensaje(16,r4)
+    repetir 4
+      RecibirMensaje(ok,*)
+    EnviarMensaje(ok,r1)
+    EnviarMensaje(ok,r2)
+    EnviarMensaje(ok,r3)
+    EnviarMensaje(ok,r4)
+    RecibirMensaje(f1,*)
+    RecibirMensaje(f2,*)
+    EnviarMensaje(f1,r1)
+    EnviarMensaje(f1,r2)
+    EnviarMensaje(f1,r3)
+    EnviarMensaje(f1,r4)
+    EnviarMensaje(f2,r1)
+    EnviarMensaje(f2,r2)
+    EnviarMensaje(f2,r3)
+    EnviarMensaje(f2,r4)
+    Informar(f1)
+    Informar(f2)
+    repetir 2
+      RecibirMensaje(quienSos,*)
+      si(f1 = 1)
+        EnviarMensaje(11,r1)
+        f1:=0
+      sino
+        si(f2=1)
+          EnviarMensaje(15,r1)
+          f2:=0
+        sino
+          si(f1 = 2)
+            EnviarMensaje(11,r2)
+            f1:=0
+          sino
+            si(f2=2)
+              EnviarMensaje(15,r2)
+              f2:=0
+            sino
+              si(f1 = 3)
+                EnviarMensaje(11,r3)
+                f1:=0
+              sino
+                si(f2=3)
+                  EnviarMensaje(15,r3)
+                  f2:=0
+                sino
+                  si(f1 = 4)
+                    EnviarMensaje(11,r4)
+                    f1:=0
+                  sino
+                    si(f2=4)
+                      EnviarMensaje(15,r4)
+                      f2:=0
+    RecibirMensaje(quienSos,*)
+    Informar(quienSos)
+    RecibirMensaje(quienSos,*)
+  fin
+variables
+  r1,r2,r3,r4: tipo1
+  rj: tipoJ
+comenzar
+  AsignarArea(r1,c1)
+  AsignarArea(r2,c2)
+  AsignarArea(r3,c3)
+  AsignarArea(r4,c4)
+  AsignarArea(r1,f1)
+  AsignarArea(r2,f1)
+  AsignarArea(r3,f1)
+  AsignarArea(r4,f1)
+  AsignarArea(r1,f2)
+  AsignarArea(r2,f2)
+  AsignarArea(r3,f2)
+  AsignarArea(r4,f2)
+  AsignarArea(r1,d1)
+  AsignarArea(r2,d1)
+  AsignarArea(r3,d1)
+  AsignarArea(r4,d1)
+  AsignarArea(r1,d2)
+  AsignarArea(r2,d2)
+  AsignarArea(r3,d2)
+  AsignarArea(r4,d2)
+  AsignarArea(r1,cc1)
+  AsignarArea(r2,cc2)
+  AsignarArea(r3,cc3)
+  AsignarArea(r4,cc4)
+  AsignarArea(rj,cj)
+  Iniciar(r1,1,1)
+  Iniciar(r2,2,2)
+  Iniciar(r3,3,3)
+  Iniciar(r4,4,4)
+  Iniciar(rj,5,5)
+fin

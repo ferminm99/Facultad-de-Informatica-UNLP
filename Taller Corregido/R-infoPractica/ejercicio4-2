@@ -1,0 +1,90 @@
+programa Ejercicio-1
+  
+procesos
+  proceso juntar (ES flor:numero)
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      flor:= flor + 1
+  fin    
+areas
+  ciudad1: AreaP(2,2,2,2)
+  ci1: AreaP(12,10,15,15)
+  c2: AreaP(6,2,6,2)
+  ci2: AreaP(16,10,19,15)
+  c3: AreaP(10,2,10,2)
+  ci3: AreaP(20,10,23,15)
+  c4: AreaP(14,2,14,2)
+  ci4: AreaP(24,10,27,15)
+  c5: AreaP(18,2,18,2)
+  ci5: AreaP(28,10,31,15)
+  c6: AreaP(22,2,22,2)
+  ci6: AreaP(32,10,35,15)
+  cj: AreaP(1,1,1,1)
+robots 
+  robot tipo1
+  variables
+    f,ca,av:numero
+  comenzar
+    RecibirMensaje(ca,rj)
+    RecibirMensaje(av,rj)
+    Pos(av,ca)
+    f:= 0
+    repetir 2
+      repetir 5
+        mover 
+        juntar (f)
+      derecha
+      repetir 3
+        mover
+        juntar(f)
+      derecha
+    EnviarMensaje(f,rj)
+  fin
+  robot tipoJ  
+  variables 
+    flores,total: numero 
+  comenzar 
+    EnviarMensaje(10,r1)
+    EnviarMensaje(12,r1)
+    EnviarMensaje(10,r2)
+    EnviarMensaje(16,r2)
+    EnviarMensaje(10,r3)
+    EnviarMensaje(20,r3) 
+    EnviarMensaje(10,r4)
+    EnviarMensaje(24,r4) 
+    EnviarMensaje(10,r5) 
+    EnviarMensaje(28,r5) 
+    EnviarMensaje(10,r6)
+    EnviarMensaje(32,r6)
+    total:= 0
+    repetir 6
+      RecibirMensaje(flores,*)
+      total:= total+flores 
+    Informar(total)    
+  fin       
+variables 
+  r1,r2,r3,r4,r5,r6: tipo1
+  rj: tipoJ
+comenzar 
+  AsignarArea(r1,ciudad1)
+  AsignarArea(r2,c2)
+  AsignarArea(r3,c3)
+  AsignarArea(r4,c4)
+  AsignarArea(r5,c5)
+  AsignarArea(r6,c6)
+  AsignarArea(rj,cj)
+  AsignarArea(r1,ci1)
+  AsignarArea(r2,ci2)
+  AsignarArea(r3,ci3)
+  AsignarArea(r4,ci4)
+  AsignarArea(r5,ci5)
+  AsignarArea(r6,ci6)
+  Iniciar(r1, 2,2)
+  Iniciar(r2,6,2)
+  Iniciar(r3,10,2)
+  Iniciar(r4,14,2)
+  Iniciar(r5,18,2)
+  Iniciar(r6,22,2)
+  Iniciar(rj,1,1)
+fin

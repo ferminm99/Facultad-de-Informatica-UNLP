@@ -1,0 +1,127 @@
+programa prueba 
+procesos 
+  proceso recolectar(E quienSoy : numero) 
+  comenzar 
+    si(quienSoy = 1)  
+      Pos(10,12) 
+      si(HayFlorEnLaEsquina) 
+        tomarFlor  
+      BloquearEsquina(12,11) 
+      Pos(12,11) 
+      si(HayFlorEnLaBolsa)
+        depositarFlor 
+      Pos(11,12)  
+      LiberarEsquina(12,11) 
+    sino 
+      Pos(10,10)  
+      si(HayPapelEnLaEsquina)
+        tomarPapel 
+      BloquearEsquina(12,11) 
+      Pos(12,11) 
+      si(HayPapelEnLaBolsa)
+        depositarPapel 
+      Pos(11,10) 
+      LiberarEsquina(12,11) 
+  fin 
+  proceso depositador(E quienSoy: numero;E av: numero) 
+  comenzar 
+    BloquearEsquina(12,11) 
+    Pos(12,11) 
+    si(quienSoy = 3) 
+      si(HayFlorEnLaEsquina) 
+        tomarFlor 
+      Pos(av,12)  
+      si(HayFlorEnLaBolsa)
+        depositarFlor        
+    sino 
+      si(HayPapelEnLaEsquina)
+        tomarPapel 
+      Pos(av,10) 
+      si(HayPapelEnLaBolsa)
+        depositarPapel 
+    LiberarEsquina(12,11) 
+  fin 
+areas  
+  cf1: AreaP(10,12,10,12) 
+  cf2: AreaP(10,10,10,10) 
+  cr1: AreaP(11,12,11,12) 
+  cr2: AreaP(11,10,11,10)  
+  cd1: AreaP(12,12,20,12) 
+  cd2: AreaP(12,10,20,10) 
+  cc: AreaPC(12,11,12,11) 
+  cj: AreaP(20,11,20,11) 
+robots  
+  robot tipo1  
+  variables  
+    av,quienSoy: numero 
+    listo: boolean 
+  comenzar  
+    RecibirMensaje(quienSoy,rj) 
+    av:=12
+    mientras(av<20) 
+      av:=av+1 
+      si(quienSoy = 3)
+        RecibirMensaje(listo,r1)      
+      sino    
+        RecibirMensaje(listo,r2) 
+      depositador(quienSoy,av) 
+      si(quienSoy = 3)
+        EnviarMensaje(av,r1)             
+      sino
+        EnviarMensaje(av,r2)
+    si(quienSoy = 3) 
+      EnviarMensaje(1,rj) 
+    sino 
+      EnviarMensaje(2,rj)     
+  fin  
+  robot tipo2 
+  variables 
+    av,quienSoy: numero 
+    listo: boolean 
+  comenzar 
+    RecibirMensaje(quienSoy,rj) 
+    av:=12
+    mientras(av<20) 
+      recolectar(quienSoy)  
+      si(quienSoy = 1)            
+        EnviarMensaje(listo,r3)    
+        RecibirMensaje(av,r3) 
+      sino
+        EnviarMensaje(listo,r4)    
+        RecibirMensaje(av,r4) 
+  fin 
+  robot tipoJ   
+  variables  
+    max1,max2,equipo,quienSos,av1,av2: numero 
+    listo: boolean 
+  comenzar  
+    EnviarMensaje(1,r1)  
+    EnviarMensaje(2,r2)  
+    EnviarMensaje(3,r3)  
+    EnviarMensaje(4,r4)  
+    RecibirMensaje(equipo,*) 
+    Informar(equipo) 
+    RecibirMensaje(equipo,*) 
+  fin  
+variables  
+  r1,r2: tipo2
+  r3,r4: tipo1 
+  rj: tipoJ 
+comenzar  
+  AsignarArea(r1,cf1) 
+  AsignarArea(r1,cr1) 
+  AsignarArea(r3,cd1) 
+  AsignarArea(r2,cf2) 
+  AsignarArea(r2,cr2) 
+  AsignarArea(r4,cd2) 
+  AsignarArea(r1,cc) 
+  AsignarArea(r2,cc) 
+  AsignarArea(r3,cc) 
+  AsignarArea(r4,cc) 
+  AsignarArea(rj,cj) 
+  Iniciar(r1,11,12) 
+  Iniciar(r2,11,10) 
+  Iniciar(r3,12,12) 
+  Iniciar(r4,12,10) 
+  Iniciar(rj,20,11) 
+fin  

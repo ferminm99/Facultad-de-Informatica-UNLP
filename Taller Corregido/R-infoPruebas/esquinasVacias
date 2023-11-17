@@ -1,0 +1,108 @@
+programa esquinaVacias 
+procesos 
+  proceso revisar(ES f: numero;E avI: numero;E caI: numero;ES menos: numero) 
+  variables 
+    av,ca: numero 
+  comenzar 
+    Random(av,5,20) 
+    Random(ca,5,20) 
+    BloquearEsquina(av,ca) 
+    Pos(av,ca) 
+    si((HayFlorEnLaEsquina) | (HayPapelEnLaEsquina)) 
+      menos:=menos+1 
+    sino 
+      si(HayFlorEnLaBolsa) 
+        depositarFlor 
+        f:=f+1 
+    Pos(avI,caI) 
+    LiberarEsquina(avI,caI) 
+  fin 
+  proceso maximo(ES minR: numero; E m1: numero; E m2: numero; E m3 : numero) 
+  variables 
+    min: numero 
+  comenzar 
+    min:=-1 
+    si(min<m1) 
+      min:=m1 
+      minR:=1 
+    si(min<m2) 
+      min:=m2 
+      minR:=2 
+    si(min<m3) 
+      min:=m3 
+      minR:=3 
+  fin 
+areas 
+  c1: AreaP(10,1,10,1) 
+  c2: AreaP(12,1,12,1) 
+  c3: AreaP(14,1,14,1) 
+  cj: AreaP(21,21,21,21) 
+  cc: AreaPC(5,5,20,20) 
+robots 
+  robot tipo1 
+  variables 
+    quienSoy,menos,f,avI,caI: numero 
+    ok: boolean 
+  comenzar 
+    RecibirMensaje(quienSoy,rj) 
+    f:=0 
+    menos:=0 
+    avI:=PosAv 
+    caI:=PosCa 
+    repetir 4 
+      revisar(f,avI,caI,menos) 
+    EnviarMensaje(quienSoy,rj) 
+    EnviarMensaje(f,rj) 
+    RecibirMensaje(ok,rj) 
+    EnviarMensaje(menos,rj) 
+  fin 
+  robot tipoJ 
+  variables 
+    quienSos,m1,m2,m3,f1,f2,f3,totalF,minR: numero 
+    ok: boolean 
+  comenzar 
+    EnviarMensaje(1,r1) 
+    EnviarMensaje(2,r2) 
+    EnviarMensaje(3,r3) 
+    totalF:=0 
+    repetir 3 
+      RecibirMensaje(quienSos,*) 
+      si(quienSos = 1) 
+        RecibirMensaje(f1,r1) 
+        EnviarMensaje(ok,r1) 
+        RecibirMensaje(m1,r1) 
+        Informar(m1)
+      sino 
+        si(quienSos = 2) 
+          RecibirMensaje(f2,r2) 
+          EnviarMensaje(ok,r2) 
+          RecibirMensaje(m2,r2) 
+          Informar(m2)
+        sino 
+          si(quienSos = 3) 
+            RecibirMensaje(f3,r3) 
+            EnviarMensaje(ok,r3) 
+            RecibirMensaje(m3,r3) 
+            Informar(m3)
+    totalF:=f1+f2 
+    totalF:=f3+totalF 
+    Informar(totalF) 
+    maximo(minR,m1,m2,m3) 
+    Informar(minR) 
+  fin 
+variables 
+  r1,r2,r3: tipo1 
+  rj: tipoJ 
+comenzar 
+  AsignarArea(r1,c1) 
+  AsignarArea(r2,c2) 
+  AsignarArea(r3,c3) 
+  AsignarArea(r1,cc) 
+  AsignarArea(r2,cc) 
+  AsignarArea(r3,cc) 
+  AsignarArea(rj,cj) 
+  Iniciar(r1,10,1) 
+  Iniciar(r2,12,1) 
+  Iniciar(r3,14,1) 
+  Iniciar(rj,21,21) 
+fin

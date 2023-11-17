@@ -1,0 +1,146 @@
+programa ejAd8
+procesos
+  proceso juntar(ES cant: numero)
+  comenzar
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+      cant:=cant+1
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      cant:=cant+1
+  fin
+  proceso depositar
+  comenzar
+    si(HayFlorEnLaBolsa)
+      depositarFlor
+    si(HayPapelEnLaBolsa)
+      depositarPapel
+  fin
+  proceso recorrer1(ES cant: numero)
+  comenzar
+    repetir 3
+      juntar(cant)
+      mover
+    BloquearEsquina(5,5)
+    juntar(cant)
+    mover
+    repetir 3
+      derecha
+    juntar(cant)
+    mover
+    LiberarEsquina(5,5)
+    repetir 3
+      juntar(cant)
+      mover
+  fin  
+  proceso volver1
+  comenzar
+    repetir 2
+      derecha
+    repetir 3
+      depositar
+      mover
+    BloquearEsquina(5,5)
+    depositar
+    mover
+    derecha
+    depositar
+    mover
+    LiberarEsquina(5,5)
+    repetir 3
+      depositar
+      mover
+    derecha
+  fin
+  proceso recorrer2(ES cant: numero;E av: numero;E ca: numero; E avI: numero; E caI: numero)
+  comenzar
+    BloquearEsquina(avI,caI)
+    juntar(cant)
+    mover
+    LiberarEsquina(avI,caI)
+    repetir 3
+      juntar(cant)
+      mover
+    repetir 3
+      derecha
+    repetir 3
+      juntar(cant)
+      mover
+    BloquearEsquina(av,ca)
+    juntar(cant)
+    mover
+  fin
+  proceso volver2(E av: numero; E ca: numero)
+  comenzar
+    repetir 2
+      derecha
+    depositar
+    mover
+    LiberarEsquina(av,ca)
+    repetir 3
+      depositar
+      mover
+    derecha
+    repetir 4
+      depositar
+      mover
+    derecha
+  fin
+areas
+  c1: AreaPC(1,5,5,9)
+  c2: AreaPC(5,1,9,5)
+  c3: AreaPC(13,3,17,7)
+robots
+  robot tipo1
+  variables
+    quienSoy,cant: numero
+  comenzar
+    EnviarMensaje(1,r1)
+    EnviarMensaje(2,r2)
+    repetir 2
+      RecibirMensaje(quienSoy,*)
+    cant:=0
+    si(quienSoy  = 1)
+      derecha
+    sino
+      repetir 3
+        derecha
+    recorrer1(cant)
+    Informar(cant)
+    volver1
+  fin
+  robot tipo2
+  variables
+    quienSoy,cant,avI,caI: numero
+  comenzar
+    EnviarMensaje(3,r3)
+    EnviarMensaje(4,r4)
+    repetir 2
+      RecibirMensaje(quienSoy,*)
+    cant:=0
+    avI:=PosAv
+    caI:=PosCa
+    si(quienSoy  = 3)
+      derecha
+      recorrer2(cant,13,3,avI,caI)
+      volver2(13,3) 
+    sino
+      repetir 3
+        derecha
+      recorrer2(cant,17,7,avI,caI)
+      Informar(cant)
+      volver2(17,7)
+  fin
+variables
+  r1,r2: tipo1
+  r3,r4: tipo2
+comenzar  
+  AsignarArea(r1,c1)
+  AsignarArea(r2,c2)
+  AsignarArea(r3,c3)
+  AsignarArea(r4,c3)
+  Iniciar(r1,1,5)
+  Iniciar(r2,9,5)
+  Iniciar(r3,13,3)
+  Iniciar(r4,17,7)
+fin   

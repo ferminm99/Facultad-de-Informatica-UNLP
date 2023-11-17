@@ -1,0 +1,98 @@
+programa Ejercicio-1
+  
+procesos
+  proceso juntar (ES flor:numero)
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      flor:= flor + 1
+  fin    
+  proceso buscarMax(E f: numero; ES max : numero;E nr : numero;ES maxf: numero)
+  comenzar
+    si(max<f)
+      max:=f
+      maxf:= nr
+  fin
+areas
+  ciudad1: AreaP(2,2,5,7)
+  c2: AreaP(6,2,9,7)
+  c3: AreaP(10,2,13,7)
+  c4: AreaP(14,2,17,7)
+  c5: AreaP(18,2,21,7)
+  c6: AreaP(22,2,25,7)
+  cj: AreaP(1,1,1,1)
+robots 
+  robot tipo1
+  variables
+    f,quienSoy:numero
+  comenzar
+    RecibirMensaje(quienSoy,rj)
+    f:= 0
+    repetir 2
+      repetir 5
+        mover 
+        juntar (f)
+      derecha
+      repetir 3
+        mover
+        juntar(f)
+      derecha
+    EnviarMensaje(quienSoy,rj)
+    EnviarMensaje(f,rj)
+  fin
+  robot tipoJ 
+  variables
+    flores,total,quienSos,max,maxf: numero
+  comenzar
+    max:=-1
+    maxf:=0
+    EnviarMensaje(1,r1)
+    EnviarMensaje(2,r2)
+    EnviarMensaje(3,r3)
+    EnviarMensaje(4,r4)
+    EnviarMensaje(5,r5)
+    EnviarMensaje(6,r6)
+    total:= 0
+    repetir 6
+      RecibirMensaje(quienSos,*)
+      si (quienSos = 1) 
+        RecibirMensaje(flores,*)
+      sino  
+        si (quienSos = 2) 
+          RecibirMensaje(flores,*)
+        sino  
+          si (quienSos = 3) 
+            RecibirMensaje(flores,*)
+          sino  
+            si (quienSos = 4) 
+              RecibirMensaje(flores,*)
+            sino
+              si (quienSos = 5) 
+                RecibirMensaje(flores,*)
+              sino
+                si (quienSos = 6)
+                  RecibirMensaje(flores,*)
+      buscarMax(flores,max,quienSos,maxf)
+      total:= total+flores  
+    Informar(max,maxf)   
+    Informar(total)    
+  fin       
+variables 
+  r1,r2,r3,r4,r5,r6: tipo1
+  rj: tipoJ
+comenzar 
+  AsignarArea(r1,ciudad1)
+  AsignarArea(r2,c2)
+  AsignarArea(r3,c3)
+  AsignarArea(r4,c4)
+  AsignarArea(r5,c5)
+  AsignarArea(r6,c6)
+  AsignarArea(rj,cj)
+  Iniciar(r1, 2,2)
+  Iniciar(r2,6,2)
+  Iniciar(r3,10,2)
+  Iniciar(r4,14,2)
+  Iniciar(r5,18,2)
+  Iniciar(r6,22,2)
+  Iniciar(rj,1,1)
+fin

@@ -1,0 +1,155 @@
+programa adicional5
+procesos
+  proceso juntar(ES f: numero; ES p: numero)
+  comenzar
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+      p:=p+1
+    mientras(HayFlorEnLaEsquina)
+      f:=f+1
+      tomarFlor
+  fin
+  proceso rectangulo1(ES f: numero; ES p: numero)
+  comenzar
+    repetir 2
+      juntar(f,p)
+      mover
+    derecha
+    repetir 4
+      BloquearEsquina(PosAv+1,PosCa)
+      repetir 2
+        juntar(f,p)
+        mover
+      LiberarEsquina(PosAv -1,PosCa)
+    derecha
+    repetir 2 
+      juntar(f,p)
+      mover
+    derecha
+    repetir 4 
+      BloquearEsquina(PosAv -1,PosCa) 
+      repetir 2
+        juntar(f,p)
+        mover
+      LiberarEsquina(PosAv+1,PosCa)
+    derecha
+  fin
+  proceso rectangulo2(ES f: numero; ES p: numero)
+  comenzar
+    repetir 4
+      BloquearEsquina(PosAv,PosCa+1)
+      repetir 2
+        juntar(f,p)
+        mover
+      LiberarEsquina(PosAv,PosCa -1)
+    derecha
+    repetir 2
+      juntar(f,p)
+      mover
+    derecha
+    repetir 4
+      BloquearEsquina(PosAv,PosCa -1)
+      repetir 2
+        juntar(f,p)
+        mover
+      LiberarEsquina(PosAv,PosCa+1)
+    derecha
+    repetir 2
+      juntar(f,p)
+      mover
+    derecha
+  fin
+areas
+  c1: AreaP(20,1,20,1)
+  c2: AreaP(20,2,20,2)
+  c3: AreaP(20,4,20,4)
+  c4: AreaP(20,5,20,5)
+  cc: AreaPC(1,1,9,9)
+  cj: AreaP(20,15,20,15)
+robots
+  robot tipo1
+  variables
+    quienSoy,f,p: numero
+  comenzar
+    RecibirMensaje(quienSoy,rj)
+    si(quienSoy = 1)
+      Pos(1,2)
+    sino
+      Pos(1,6)
+    rectangulo1(f,p)
+    EnviarMensaje(quienSoy,rj)
+    EnviarMensaje(f,rj)
+    EnviarMensaje(p,rj)
+  fin
+  robot tipo2
+  variables 
+    quienSoy,f,p: numero 
+  comenzar 
+    RecibirMensaje(quienSoy,rj) 
+    si(quienSoy = 3)
+      Pos(2,1)
+    sino
+      Pos(6,1)
+    rectangulo2(f,p) 
+    EnviarMensaje(quienSoy,rj) 
+    EnviarMensaje(f,rj) 
+    EnviarMensaje(p,rj) 
+  fin 
+  robot tipoJ
+  variables
+    quienSos,totalf,totalp,f,p: numero
+  comenzar
+    EnviarMensaje(1,r1)
+    EnviarMensaje(2,r2)
+    EnviarMensaje(3,r3)
+    EnviarMensaje(4,r4)
+    totalf:=0
+    totalp:=0
+    repetir 4
+      RecibirMensaje(quienSos,*)
+      si(quienSos = 1) 
+        RecibirMensaje(f,r1)
+        totalf:=totalf+f
+        RecibirMensaje(p,r1)
+        totalp:=totalp+p
+      sino
+        si(quienSos = 2)
+          RecibirMensaje(f,r2)
+          totalf:=totalf+f
+          RecibirMensaje(p,r2)
+          totalp:=totalp+p
+        sino
+          si(quienSos = 3)
+            RecibirMensaje(f,r3)
+            totalf:=totalf+f
+            RecibirMensaje(p,r3)
+            totalp:=totalp+p
+          sino
+            si(quienSos = 4)
+              RecibirMensaje(f,r4)
+              totalf:=totalf+f
+              RecibirMensaje(p,r4)
+              totalp:=totalp+p    
+    Informar(totalf)
+    Informar(totalp)
+  fin
+variables
+  r1,r2: tipo1
+  r3,r4: tipo2
+  rj: tipoJ
+comenzar
+  AsignarArea(r1,c1)
+  AsignarArea(r2,c2)
+  AsignarArea(r3,c3)
+  AsignarArea(r4,c4)
+  AsignarArea(rj,cj)
+  AsignarArea(r1,cc)
+  AsignarArea(r2,cc)
+  AsignarArea(r3,cc)
+  AsignarArea(r4,cc)
+  Iniciar(r1,20,1)
+  Iniciar(r2,20,2)
+  Iniciar(r3,20,4)
+  Iniciar(r4,20,5)
+  Iniciar(rj,20,15)
+fin
