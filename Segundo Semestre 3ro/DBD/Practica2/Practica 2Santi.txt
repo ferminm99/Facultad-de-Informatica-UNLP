@@ -1,0 +1,355 @@
+Pracica 2
+
+1 - INTRODUCCIÓN AL MODELADO CONCEPTUAL, LÓGICO y FÍSICO.
+	Para cada ejercicio plantear el correspondiente modelo conceptual, pasaje al modelológico y pasaje al modelo físico.
+	
+	1. Se desea modelar la información necesaria para una red social. La red social permite a los usuarios compartir imágenes de 
+	diferentes temáticas y realizar comentarios sobre las mismas. 
+	De los usuarios se registra: nombre y apellido,usuario en la red social (que es único), clave de acceso y cuentas de correoe lectrónico,
+	dirección detallada y un teléfono de contacto. 
+	En la red social, los usuarios pueden subir imágenes, o bien comentar, descargar o compartir una publicación (imagen/es) de otros 
+	usuarios vinculados.
+	Cuando dos usuarios se vinculan, se debe almacenar información de este vínculo, fecha y hora, tipo de vínculo y opcionalmente una 
+	descripción estandarizada en la red social que indica de donde se conocen (lugar de vínculo). 
+	En la misma fecha y hora un usuario no podrá generar dos vínculos. De las imágenes se debe almacenar: fecha y hora de publicación, 
+	temática de la imagen, título, usuario que realiza el posteo y el nombre del archivo correspondiente, además de un conjunto de palabras 
+	claves que caracterizan la imagen. 
+	Un usuario no puede subir dos imágenes con título idéntico.
+	De las temáticas se registra un nombre único y una descripción asociada. 
+	De las imágenes se debe poder determinar los usuarios que compartieron la imagen o la descargaron, indicando fecha y hora y si la 
+	compartió o descargó. 
+	Así mismo, los usuarios pueden realizar comentarios en la red social, se debe almacenar un texto, la fecha y hora de creación del 
+	comentario, que imagen comentó o a que comentario respondió. 
+	Un comentario podría ser respuesta a otro comentario existente. 
+	Un usuario no podrá realizar dos comentarios en la misma fecha y hora.
+		
+		Echo, conceptual guardado como ejercicio1a.csr
+		Logico guardado como ejercicio1b.png
+		Fisico guardado como ejercicio1c.png //pendiente su revicion
+
+	2. Se debe modelar la información necesaria para una agencia dedicada a la comercialización de vehículos. En dicha agencia se 
+	comercializan diferentes tipos de vehiculos: autos, camionetas y camiones. 
+	De todos losvehículos se registra: número de chasis (único), número de motor (único), marca, modelo, año de fabricación, motorización
+	y precio de lista. 
+	De los autos, además, se conoce si son sedanes o no, de las camionetas la capacidad de la caja y de los camiones la capacidad de carga.
+	Interesa, además, almacenar información de los empleados que se desempeñan en la agencia. 
+	Los empleados pueden pertenecer a diferentes áreas (ventas, contable, marketing, etc.).
+	Un empleado trabaja en un momento dado en una sola área pero puede ir rotando de área a lo largo del tiempo. Es necesario almacenar el 
+	histórico de rotaciones de cada empleado, que permita determinar la cronología de los cambios. 
+	De los empleados se conoce: DNI, nombre, apellido, legajo y en caso de que corresponda, los empleados que tiene a cargo. Un empleado 
+	tiene un único jefe y puede tener varios empleados a cargo. 
+	De cada área se conoce el nombre (único) y la ubicación. 
+	Es necesario contar con información del perfil de cada cliente. Para esto es importante conocer los vehículos que ha comprado cada 
+	cliente a lo largo del tiempo. De todos los clientes se conoce: DNI, nombre, apellido, dirección detallada, telefonos y mail en caso 
+	de que posea. 
+	De las ventas se necesita almacenar: fecha, total, vehiculo, vendedor y cliente.
+		
+		Echo, conceptual guardado como ejercicio2a.csr
+		Logico guardado como ejercicio2b.png
+		Fisico //pendiente
+		
+	3. Una videoteca desea mejorar el servicio que brinda a los clientes mediante una App que le permita almacenar información referente a las
+	películas que ofrece para vender o alquilar. La información necesaria es la siguiente: 
+	Las películas se caracterizan por su título, género, que puede no tenerlo, empresa productora, año de estreno, y se identifica por un 
+	código único. En cada película pueden participar varios actores (se conoce nombre completo, nacionalidad y el nro de pasaporte de los 
+	actores) algunos de ellos como protagonista. Un actor puede trabajar en varias películas. 
+	De cada película se dispone de uno o varios ejemplares diferenciados por un número de ejemplar relativo a la película, el número de 
+	ejemplar se puede repetir en diferentes películas. Dichos ejemplares pueden ser para vender o para alquilar.
+	De los ejemplares en alquiler se conoce una descripción del estado del ejemplar. Se sabe que un ejemplar que es para la venta no es 
+	para alquiler y viceversa. De las películas se conoce además el precio de venta, la cantidad en stock y precio de alquiler diario.
+	De los alquileres se registra cliente (se conocen sus datos personales tales como DNI, nombre, dirección completa, teléfono y número 
+	único decliente). Un alquiler puede comprender ejemplares de más de una película. Se desea almacenar la fecha de comienzo del alquiler 
+	y la de devolución,(todos los ejemplares alquilados en un mismo alquiler se devuelven el mismo dia). El alquiler es identificado por 
+	un código único de alquiler. 
+	Para la gestión contable de la videoteca, es necesario registrar la facturación de ventas y alquileres. Para las facturas de 
+	alquileres se registra fecha, hora, cliente, monto total. En cambio, para las facturas de ventas se registra: fecha, el monto total 
+	y los ejemplares vendidos (los precios de venta se discriminan por ejemplar). Las facturas se identifican por un número de factura 
+	más la fecha.
+		
+		Echo, conceptual guardado como ejercicio3a.csr
+		Logico guardado como ejercicio3b.png
+		Fisico //pendiente
+		
+	4.Se desea modelar la información necesaria para una cadena de tiendas de indumentaria. 
+	De cada tienda se desea almacenar: la razón social, su dirección completa, un teléfono de contacto, instagram y facebook de la misma
+	(si posee). Las tiendas están conformadas por un grupo de empleados y un supervisor a cargo de la misma. 
+	De los empleados se registra: DNI, C.U.I.T, nombre, apellido, fecha de nacimiento, dirección, uno o varios teléfonos de contacto, fecha 
+	de ingreso, cantidad de hijos y estado civil. 
+	Las tiendas están divididas en sectores de trabajo: personal, proveedores, ventas, entre otros. De cada sector se registra nombre, 
+	descripción y un código único relativo a la tienda, el mismo código de sector puede estar en varias tiendas. Cada empleado está 
+	asignado a un sector determinado pero con el transcurso del tiempo va cambiando de sector; se debe poder determinar los sectores por 
+	los que pasó un empleado en orden cronológico. Cada empleado trabaja en una y solo una tienda. El supervisor sólo podrá estar a cargo 
+	de una tienda. De los productos que se comercializan en las tiendas se debe registrar: tipo de producto, marca, modelo, talle, 
+	descripción, color, precio de venta y el stock del mismo en la tienda y un código único de producto.
+	Por último, se deben registrar las ventas realizadas, indicando fecha, número de ticket fiscal, empleado que efectúa la venta, 
+	el/los productos involucrados y el total de la misma.
+	Notas​:
+	El supervisor es un empleado de la tienda que se desempeña como tal.
+	Tenga en cuenta que el stock de un producto y el precio de venta del producto podrían variar en las diferentes tiendas.
+	Se debe poder consultar la información mediante diferentes alternativas: marca y/o modelo más vendidos, tipo de productos más vendido, 
+	entre otras.
+	//Consultar* ¿Esta bien la cardinalidad respecto al orden cronologico, principalmente por que dice que solo pueden trabajar en 1 tienda?
+		
+		Echo, conceptual guardado como ejercicio4a.csr
+		Logico guardado como ejercicio4b.png
+		Fisico //pendiente
+	
+	5.Se desea modelar la información necesaria para una empresa dedicada a la realización de eventos gastronómicos al aire libre. 
+	Para cada evento se alquilan cierta cantidad de lugares donde el inquilino podrá vender productos comestibles o bien utilizarlo para 
+	difundir su actividad, además se brindan servicios tales como electricidad, agua corriente y demás, si el inquilino lo requiere. 
+	De los lugares se registra: número único, descripción, m2, ubicación, distancia a la puerta de acceso al predio, precio por dia.
+	De los servicios en cambio se registra: nombre único, descripción y precio del servicio.
+	De cada evento se registra: nombre del evento, fecha y hora de inicio, dirección del evento, duración del evento y el staff de 
+	personas encargadas de la organización y difusión del evento.
+	De cada integrante del staff se debe registrar: DNI, nombre completo, dirección detallada, fecha de nacimiento, correo electrónico,
+	teléfonos de contacto y el rol que cumple dentro del evento.
+	De los inquilinos se registra: DNI, nombre completo, dirección detallada, teléfonos de contacto, razón social (si el inquilino 
+	representa a una empresa), y tipo de gastronomía (si vende comestibles).
+	Además, se debe registrar información de los alquileres: fecha, hora, quien es el inquilino, el evento al que corresponde el 
+	alquiler y el o los lugares que alquila y en caso de que alquile servicios los servicios alquilados.
+	Nota​: 
+	El nombre del evento no se podrá repetir en una misma fecha y hora de inicio.
+	Tenga en cuenta que debe poder determinar el costo de todos los alquileres (valor al que se alquila o alquiló cada lugar o servicio), 
+	actuales e histórico.
+		
+		Echo, conceptual guardado como ejercicio5a.csr
+		Logico guardado como ejercicio5b.png
+		Fisico //pendiente
+		//Consultar* Un integrante de un staff puede participar en mas de un evento, si es asi, como se maneja, hay que cargar dos veces
+		al mismo ya que no necesariamente el rol sera el mismo, ¿como hay que hacer el identificador?.
+		¿Los inquilinos pueden tener mas de un alquiler, entonces como los identifico?
+		¿La cardinalidad en la relacion de los servicios con el alquiler esta bien, digo los servicios no se repiten por nombre cierto, 
+		entonces no estaria diciendo aca que un servisio solo puede estar en un alquiler, como hago si otro alquiler quiere el mismo servicio?
+		juso ahora se puede determinar el costo de los alquileres no?
+	
+	6. Se debe modelar la información correspondiente para la gestión de personal y proyectos de una empresa de software con sede 
+	en la ciudad de la plata.
+	La empresa se encuentra dividida en diferentes áreas, de cada una de ellas se conoce: nombre del área (único), un código de área único 
+	y una descripción de las funciones de la misma.
+	Los empleados de la empresa corresponden a un área de la empresa pudiendo prestar servicios en uno o varios proyectos.
+	De cada empleado se conoce: DNI, CUIT, fecha de nacimiento, cantidad de hijos, fecha de ingreso, una descripción de lo/s título/s 
+	si posee, dirección detallada, uno o varios teléfonos de contacto y el área en la que se desempeña.
+	Cada área cuenta con un gerente encargado de la misma que forma parte de los empleados de la empresa. 
+	Todos los empleados pueden rotar dentro de las áreas de la empresa, se debe poder determinar todos los empleados que trabajaron en 
+	una determinada área en orden cronológico, del mismo modo todos los gerentes que tuvo un área. 
+	La empresa además lleva adelante varios proyectos, de cada proyecto se conoce: nombre único, fecha de comienzo, fecha estimada de 
+	finalización, costo estimado, tipo de proyecto y los empleados que intervienen en su realización.
+	Cuando un empleado es asignado a un proyecto se debe indicar fecha inicio, fecha de fin opcional, cargo que desempeñará dentro del 
+	proyecto, cantidad de horas dedicadas.
+	De los tipos de proyecto se conoce: nombre único del tipo y una descripción asociada. 
+	Además se tiene estandarizado los posibles cargos a asumir dentro de un proyecto, de cada cargo se almacena: código único, nombre y 
+	una descripción del mismo.
+	Tenga en cuenta que podría consultarse cuántos empleados se desempeñan con cargo programador, o bien cuántos proyectos de tipo x 
+	finalizaron este año.
+		
+		Echo, conceptual guardado como ejercicio6a.csr
+		Logico //pendiente
+		Fisico //pendiente
+		//Consultar* ¿Para los historicos de gerente y empleado esta bien asi o es necesario modificar la cardinalidad para que area y 
+		empleado puedan guardar las relaciones pasadas?
+		¿Como uno cargo a la relacion interviene?, no creo que valga ponerlo como relacion de empleado ya que se puede desarrollar en 
+		mas de uno.
+		sobre los ultimos 2 renglones, debo hacer veriables especificas para esto o dejo que el programador lo solucione en base a lactosa
+		base de datos resultante.
+		
+	7. Se debe modelar la información necesaria para la Asociación Argentina de Tejo. 
+	Es necesario almacenar información sobre los afiliados y directivos de la asociación como así también respecto de las sedes que posee 
+	y los torneos de tejo disputados a lo lar go del país. De los afiliados se registra: DNI, nro único de afiliado, nombre completo, 
+	teléfonos, email si posee, fecha de afiliación y dirección detallada.
+	De los directivos, que deben ser afiliados de la Asociación, además se conoce la sede que dirige y la fecha de comienzo en el cargo.
+	De cada sede se desea almacenar: nro.único de sede, dirección detallada, descripción de la sede, teléfono de contacto.
+	Todas las sedes poseen una cancha para los partidos.
+	Tenga en cuenta que los directivos podrían rotar de sede o bien cesar su función en el cargo. 
+	Se debe dejar constancia de las rotaciones.
+	De cada torneo se registra: nombre único del torneo, año calendario que se realiza, si es un torneo de equipos o individual, que 
+	jugador o equipo ganó el torneo y además información sobre los partidos de tejos disputados durante el torneo.
+	De cada partido se registra: fecha, hora y sede donde se lleva a cabo y la información de los jugadores intervinientes en el partido,
+	si el torneo se disputa en modalidad individual. En caso de que el torneo se dispute por equipos, deberá registrar qué equipos 
+	intervienen en el partido.
+	De los jugadores se registra: DNI, nombre completo, teléfonos y dirección detallada.
+	De los equipos se debe registrar: nombre único de equipo, color de remera y los jugadores que componen el equipo.
+	En todos los partidos se debe determinar los puestos en que quedó cada jugador o cada equipo, dependiendo si el torne o es modalidad 
+	individual o por equipo.
+		
+		Echo, conceptual guardado como ejercicio7a.csr
+		Logico //pendiente
+		Fisico //pendiente
+	
+	8. Se debe modelar la información necesaria para una herramienta que permita realizar el seguimiento de tareas que desempeña 
+	determinada empresa en sus proyectos.
+	La herramienta debe permitir almacenar información básica de cada proyecto, el conjunto de tareas que involucra el proyecto e 
+	información sobre los empleados que se desempeñan implementando las tareas o bien coordinando proyectos y los servicios 
+	necesarios para cada proyecto.
+	De los empleados se registra DNI, apellido, nombre, fecha nacimiento, dirección detallada, email y teléfono de contacto.
+	Además, para cada empleado se debe registrar un nombre de usuario y clave para utilizar la herramienta.
+	De cada proyecto se registra un código único, un título, descripción, fechas de inicio y finalización, el presupuesto asignado,
+	quienes el empleado coordinador del proyecto y si requiere servicios externos información de los mismos, indicando además 
+	fecha de inicio y fin del servicio.
+	Cada proyecto se divide en tareas, de cada tarea se registra: número único de tarea, nombre, descripción, tipo de tarea, 
+	porcentaje realizado, fecha de inicio y fecha de fin de la misma, estado de la tarea (pendiente, ejecución, finalizada, 
+	cerrada, etc), empleado que cargó la tarea y empleado asignado para realizar la (si posee).
+	Además,la tarea puede tener uno o varios empleados seguidores de la misma, se debe dejar registro de los seguidores de cada tarea.
+	Las tareas se pueden dividir en varias subtareas, se debe registrar para cada tarea la o las tareas que la componen.
+	De los servicios externos se registra: código de servicio, nombre, costo y la empresa que lo brinda.
+	El código de servicio es relativo a la empresa, es decir no se repite dentro de la empresa.
+	De las empresas se detalla razón social, teléfonos de contacto y dirección detallada de la misma.
+	Tenga en cuenta que ese servicio podría ser utilizado posteriormente en otro proyecto.
+	La herramienta debe permitir realizar estadísticas tales como cuáles son las tareas en determinado estado, que empleado tiene 
+	más tareas asignadas, cuales son las tareas de un determinado proyecto, entre otras.
+		
+		Echo, conceptual guardado como ejercicio8a.csr
+		Logico //pendiente
+		Fisico //pendiente
+		//Consultar* Id_tearea, que hago, el num de tarea se repite en proyectos distintos, el tema es que es opcional, 
+		¿no es eso contradictorio?
+		Problemas con el id de servicio externo.
+		Seguidores esta bien asi o debo agregarle algo mas para que quede el registro
+	
+	9. Se trata de modelar la información de clientes de una peluquería.
+	De cada cliente debe modelarse la información personal: nombre, apellido, fecha de nacimiento, DNI, dirección y teléfonos, 
+	además de una descripción si es alérgico a algún componente químico.
+	De cada cliente se tiene una ficha, la misma permite determinar las atenciones que se le realizaron al cliente.
+	De cada atención se debe registrar fecha de atención, que peluquero lo atendió, si se le realizó tratamiento detalle de los mismos.
+	Se deberá indicar para cada tratamiento aplicado que componentes se utilizaron (en caso de ser necesario) y cantidad de cada 
+	componente. 
+	Existen diferentes tratamientos.
+	Los tratamientos se identifican por su nombre, y además se registra una descripción, precio, duración y los componentes necesarios 
+	para el mismo (algunos tratamientos pueden no requerir componentes), indicando cantidad sugerida por cada componente.
+	De los componentes se registra código único de componente, nombre, marca que lo fabrica.
+	De cada peluquero se registra: DNI, apellido, nombre, domicilio detallado, teléfono de contacto. 
+	Tenga en cuenta que el valor de los tratamientos varía, se debe poder determinar cuánto pagó un cliente x, por el tratamiento y en 
+	una fecha determinada.
+	El cliente puede abonar la atención en efectivo, con débito o crédito, debiéndose registrar el modo de pago.
+	Si abona con débito o crédito, debe quedar registro del número de tarjeta (número único), código de seguridad, banco y entidad que 
+	la emite (visa, mastercard,..).
+	Si el pago es con crédito se debe registrar además la cantidad de cuotas en que realizó el pago. 
+	Los nombres de entidades emisoras y bancos son únicos.
+		
+		Echo, conceptual guardado como ejercicio9a.csr
+		Logico //pendiente
+		Fisico //pendiente
+		//Consultar* ¿Es aceptable como maneje el tema de los componentes? mas que nada pregunto por el tema de la cantidad, por que no
+		estoy seguro si  se diferencia la cantidad de 1 componente de la de otro.
+		esta bien como maneje el valor que varia de los tratamientos?
+		Problema con id_ modo de pago
+	
+	10. Se debe modelar la información necesaria para la gestión de un colegio de la ciudad de LaPlata, el mismo cuenta con tres 
+	niveles de enseñanza: jardin de infantes, primaria y secundaria.
+	Se debe almacenar información de los alumnos indicando: nombre, apellido, DNI, fecha de nacimiento, dirección detallada, teléfonos, 
+	descripción de alergias (si posee), si es celíaco, diabético o intolerante a la lactosa y el nivel de enseñanza que se encuentra.
+	De los alumnos se conoce además información de sus tutores, indicando: DNI, nombre, apellido, telefonos de contacto, email, 
+	dirección detallada, si permite contactar por WhasthApp (nro de telefono para WhasthApp) y vínculo con el alumno.
+	Además, los alumnos de jardín y primaria pueden tener personas autorizadas a retirarlos, de estos se almacena la misma información 
+	que la de los tutores.
+	Si un alumno es retirado se debe dejar constancia de fecha y hora de retiro, alumno y el tutor o persona autorizada que lo retira.
+	El colegio brinda servicio de catering para sus alumnos, para el lo cuenta con un menú diario de platos donde se almacena: día de 
+	la semana, costo del menú de ese día, descripción de posibles platos y una opción de plato para celíacos.
+	Diariamente se debe dejar constancia de los alumnos que consumieron el menú diario, indicando alumno, fecha y menú consumido.
+	Además se debe registrar información relacionada a los pagos realizados al colegio indicando: fecha y hora, tutor que abona, a 
+	que alumno/s correspon de el pago, monto, la forma de pago con la que realiza el mismo y qué concepto está pagando: si es un pago 
+	de catering o de matrícula o bien si es un pago de cuota mensual (se debe almacenar número de cuota y año que abona).
+	Si el pago se realiza con tarjeta de débito o crédito se debe dejar constancia de: nro.de tarjeta, código de seguridad, entidad
+	emisora de la tarjeta ( Visa, Mastercard,...), banco de la tarjeta y cantidad de cuotas en las que realiza el pago.
+	(Tenga en cuenta que la tarjeta se debe poder reutilizar en otros pagos y en otra nro de cuotas)
+		
+		Echo, conceptual guardado como ejercicio10a.csr
+		Logico //pendiente
+		Fisico //pendiente
+	
+2 -  DERIVACIÓN A MODELOS LÓGICO Y FÍSICO:
+	
+	Para cada ejercicio plantear el correspondiente pasaje al modelo lógico y al modelo físico. Convenciones para el modelo físico:
+	● Subrayar con una línea las claves primarias (no tengo como subrrallar en el bloc de notas asi que las pongo entre comillas).
+	● Denotar como fk a las claves externas.
+	● Denotar atributos opcionales con el signo de interrogación (p. ej., b3?)
+	
+	1- Enunciado guardado como ejercicioB1a.png
+		
+		Modelo logico guardado como ejercicioB1b.png.
+		Modelo fisico:
+		
+			Deportista=("DNI",nombre,apellido,direccion)
+			Lesion=("lesion")
+			Posee=("DNI(fk),lesion(fk)")	
+			Futbolista=("DNI(fk)",fecha_debut_primera?)
+			Familiar=("DNI(fk),DNI correlativo(fk)(fk)")
+			Participa=("DNI(fk),codigo(fk)")
+			Torneo=("codigo",nombre_unico)
+			Partido=("codigo",fecha,hora)
+	
+	2- Enunciado guardado como ejercicioB2a.png
+		
+		Modelo logico guardado como ejercicioB2b.png.
+		Modelo fisico:
+			
+			Color=("color")
+			Posee1=("razon_social(fk),color(fk)")
+			Club=("razon_social",cantidad_socios,calle,numero,piso?,dpto?)
+			Deportista=("dni",razon_social(fk),cuit,nombre,apellido)
+			Futbolista=("dni(fk)",apodo,cantidadGoles)
+			JuegaCon=("dni(fk),dni correlativo(fk)")
+			Posee2=("dni(fk),posicion")
+			Posicion=("posicion")
+	
+	3- Enunciado guardado como ejercicioB3a.png
+		
+		Modelo logico guardado como ejercicioB3b.png.
+		Modelo fisico:
+			
+			Telefono=("telefono")
+			Posee=("telefono(fk),codigo(fk)")
+			Area=("codigo",descripcion,calle,numero,piso?,dpto?)
+			Trabaja=("codigo,dni(fk)",fecha_desde,fecha_hasta?)
+			No_docente=("dni(fk)",categoria)
+			Empleado=("dni",cuit,nombre,apellido)
+			Docente=("dni(fk)",codigo(fk),legajo)
+			Materia=("codigo",descripcion)
+	
+	4- Enunciado guardado como ejercicioB4a.png
+		
+		Modelo logico guardado como ejercicioB4b.png.
+		Modelo fisico:
+			
+			Medio("razon_social",calle,numero,piso?)
+			Trabaja=("razon_social,DNI(fk)")
+			Periodista=("DNI(fk)")
+			Posee=("DNI(fk),titulo(fk)")
+			Titulo=("titulo")
+			Persona=("DNI",nombre,apellido)
+			Periodista_deportivo=("DNI(fk)",matricula)	
+			Cubre=("nombre",DNI(fk))
+			Club=("nombre")
+	
+	5- Enunciado guardado como ejercicioB5a.png
+		
+		Modelo logico guardado como ejercicioB5b.png.
+		Modelo fisico:
+			
+			Cargo=("codigo",nombre)
+			Titulo=("titulo")
+			Posee=("DNI(fk),titulo(fk)")
+			Docente=("DNI(fk)",anio_desde_ocupa_cargo,codigo(fk))
+			Persona=("DNI",nombre,apellido,email?)
+			Alumno=("legajo",DNI(fk))
+			Se_inscribe=("DNI(fk),codigo(fk)",anio_inscripcion)
+			Carrera=("codigo",nombre)
+	
+	6- Enunciado guardado como ejercicioB6a.png
+		
+		Modelo logico guardado como ejercicioB6b.png.
+		Modelo fisico:
+			
+			Persona=("DNI",numero,nombre,apellido)
+			Tiene=("DNI(fk),rol(fk)")
+			Rol=("rol",descripcion)
+			Jefe=("DNI(fk)",numero(fk))
+			Posee=("DNI(fk),titulo(fk)")
+			Titulo=("titulo")
+			Comun=("DNI(fk)",legajo,numero(fk))
+			Area=("numero",piso,oficina,ala)
+			
+	7. ​Ejercicios adicionales de repaso:
+	
+		a- ​Realice el pasaje a modelo lógico y físico de los modelos conceptuales realizados al comienzo de esta práctica.
+			
+			Parcialmente echo. (De cualquier forma el enunciado de estos ya lo pedia)
