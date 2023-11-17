@@ -1,0 +1,216 @@
+Practica 4:
+
+L1: (A→(B→A))​
+L2: (A→(B→C))→((A→B)→(A→C))​
+L3: ((¬A)→(¬B))→(B→A) 
+
+1. Dada la siguiente secuencia de fbfs de L.
+	
+	a- ((¬p)→(¬(q→r)))→((q→r)→p)		(L3)
+	b- ((¬p)→(¬(q→r)))					(hipotesis)
+	c- ((q→r)→p)						(MP mediante a y b)
+	{((¬p)→(¬(q→r)))} |-L ((q→r)→p)
+	Analizar si se trata de una demostracion en L de la forma Γ |-L A para algun conjunto Γ de fbfs y alguna fbf A. En ese caso:
+		
+		i-  Describir al conjunto Γ y a la fbf A y explicar cada paso de la secuencia(es decir, axiomas y reglas de inferencia).
+			
+			La secuencia es una derivacion (ver 2.5), la fbf A usada como hipotesis es ((¬p)→(¬(q→r))) (aparece en 2do lugar) y 
+			el inicio es el esquema de axioma L3 instanciado. La tercera fbf es producto de la aplicacion de MP.
+		
+		ii- Decir si A es un teorema de L.
+			
+			A=((¬p)→(¬(q→r)))
+			Si A es un teorema de L -> |-L A. Osea A es derivable a partir de vacio, tambien sabemos que todo teorema de L es una tautologia,
+			lamentablemente si realizamos la tabla de verdad de A (inciso iii) tenemos que A en este caso no es ni contradiccion ni tautologia.
+			.: A no es un teorema de L.
+		
+		iii- Decir si A es tautologıa.
+			
+			La fbf A no es teorema ni es una tautologia, lo demuestro mediante su tabla de verdad:
+			
+				|p|q|r|¬P|q→r|¬(q→r)|(¬p)→(¬(q→r))|
+				|V|V|V|F |V  |F     |V            |
+				|V|V|F|F |F  |V     |V            |
+				|V|F|V|F |V  |F     |V            |
+				|V|F|F|F |V  |F     |V            |
+				|F|V|V|V |V  |F     |F            |
+				|F|V|F|V |F  |V     |V            |
+				|F|F|V|V |V  |F     |F            |
+				|F|F|F|V |V  |F     |F            |
+		
+		
+2.  Sean A, B y C tres formulas bien formadas (fbfs) del sistema formal L. Dar una demostracion sintactica en L de los siguientes teoremas. 
+Justificar cada paso en la derivacion, indicando cuales son los axiomas instanciados y las reglas de inferencia utilizadas. Intente 
+resolverlos sin usar el metateoremade la deduccion y luego usandolo.
+	
+	i- |-L ((¬A→A)→A)
+		
+		Sin MT de deduccion:
+			
+			//Mucho trabajo
+			
+		Con MT de deduccion:
+			
+			1)  (¬A→A)										(hipotesis)
+			2)  (¬A→(¬¬(¬A→A)→¬A))							(L1)
+			3)  ((¬¬(¬A→A))→(¬A))→(A→(¬(¬A→A))) 			(L3)
+			4)  (¬A→(A→(¬(¬A→A)))							(SH,2,3)
+			5)  (¬A→(A→(¬(¬A→A))))→((¬A→A)→(¬A→(¬(¬A→A))))	(L2)
+			6)  ((¬A→A)→(¬A→(¬(¬A→A))))					 	(MP,4,5)
+			7)  ((¬A)→(¬(¬A→A)))							(MP,1,6)
+			8)  ((¬A)→(¬(¬A→A)))→((¬A→A)→A)					(L3)
+			9)  ((¬A→A)→A)									(MP,7,8)
+			10) A											(MP,1,9)
+	
+	ii- |-L ((A→B)→(¬B→¬A))
+		
+		L3:  ((¬A)→(¬B))→(B→A) 
+		Es el esquema L3 con A=¬A y B=¬B
+		
+		Sin MT de deduccion:
+			
+			1) ((¬A→¬B)→(B→A))		(L3)
+		
+		Con MT de deduccion:
+			
+			1) (¬A→¬B)				(hipotesis)
+			2) (¬A→¬B)→(B→A)		(L3)
+			3) (B→A)				(MP,1,2)
+			
+		
+
+3. Sean A, B y C tres formulas bien formadas (fbfs) del sistema formal L. Dar una  demostracion  sintactica en L de las siguientes deducciones. 
+Justificar cada paso en la derivacion, indicando cuales son los axiomas instanciados y las reglas de inferencia utilizadas.
+	
+	i- {((A→B)→C),B} |-L (A→C) 
+		
+		1) ((A→B)→C)				(hipotesis)
+		2) B						(hipotesis)
+		3) (B→(A→B))				(L1)
+		4) (A→B)					(MP,2,3)
+		5) C						(MP,1,4)
+		6) (C→(A→C))				​(L1)
+		7) (A→C)					(MP,5,6)
+
+4. Sea Γ un conjunto de fbfs del C. de Enunciados. Se sabe que Γ |-L A. ¿Escierto que para todo Γi tal que Γi esta incluido 
+en Γ, Γi |-L A?. Fundar.
+	
+		falso (no sucede para todo Gamma i); buscar un contraejemplo dando A, Gamma y los Gamma i.
+		Intentare contradecirlo por contraejemplo:
+			
+			sabemos que : Γ |-L A y Γi esta incluido en Γ
+			la pregunta es: ¿Para todo Γi se cumple que Γi |-L A?
+			sea 
+				Γ={q}
+				Γi=vacio		(vacio es un subconjunto de todo conjunto, por lo tanto Γi esta incluido en Γ)
+				A=p→q
+				
+				a- Demostramos que Γ |-L A
+					
+					1) q		(hipotesis)
+					2) q→(p→q)​	(L1)
+					3) p→q		(MP,1,2)
+				
+					.: A es deribable en Γ
+				
+				b- Demostramos que la propocicion Γi |-L A es falsa:
+					
+					Γi es igual al conjunto vacio, por lo tanto Γi |-L A es lo mismo que decir |-L A, por lo tanto A es deribable si y solo
+					si A es un teorema de L, sabemos que un teorema de L es necesariamente una teutologia, a continuacion armamos la tabla
+					de verdad de A para revisar si lo es:
+						
+						A=p→q
+						|p|q|p→q|
+						|V|V| V |
+						|V|F| F |
+						|F|V| V |
+						|F|F| V |
+					
+					.: A no es una tautologia.
+					.: A no es un teorema de L.
+					.: A no es derivable en Γi.
+				
+				.: dado a y b entonces no para todo Γi se cumple que Γi |-L A.
+
+5. Sea Γ un conjunto de fbfs del C. de Enunciados.  Se sabe que Γ |-L A. ¿Es cierto que para todo Γ existe algun Γ0 incluido o igual a Γ 
+tal que si Γ |-L A entonces Γ0 |-L A?. Fundar.
+	
+	Decimos que para todo Γ existe algun Γ0 incluido o igual a Γ tal que si Γ |-L A entonces Γ0 |-L A.
+	Tambien sabemos que Γ |-L A.
+	Sabemos que Γ0 esta incluido o es igual a Γ.
+	Por lo tanto ante la pregunta de si para todo caso en el que Γ |-L A entonces existe Γ0 |-L A, la respuesta es si.
+	Por que como minimo vamos a tener el caso en que Γ0=Γ, y siempre que se de este caso Γ0 |-L A seria quivalete a decir Γ |-L A.
+	.:Es cierto que para todo Γ existe algun Γ0 incluido o igual a Γ tal que si Γ |-L A entonces Γ0 |-L A
+	
+	Sean Γ0, Γ1,...,Γn todos los conjuntos de fbfs de C. de Enunciados.
+	Para evitar confuciones a Γ0 la llamaremos Γx
+	CASO BASE N=0​:	
+	HIPOTESIS INDUCTIVA (H.I.):
+	CASO N+1​:
+	//Consultar* En las pautas de resolucion decia que lo demuestre por induccion, el problema es que no tengo idea de como implementarla en 
+	este caso ¿Como podria hacerlo?
+
+6. Sean A, B y C fbfs del C. de Enunciados. Sea Γ un conjunto de fbfs del C. de Enunciados.  Se sabe que Γ∪{A,B} |-L C y tambien se sabe 
+que Γ |-L A.
+	
+	i- ¿Es cierto que Γ |-L (C→B)?. Fundar.
+		
+		Contraejemplo:
+            
+Se sabe que: (Γ∪{A,B} |-L C) y que (Γ |-L A)
+            
+Sean:
+                
+       Γ= vacío
+       A= w ∨ ¬w
+       B= w 
+       C= q→(p→q)
+            
+a- Demostramos que Γ∪{A,B} |-L C
+                
+       1) q→(p→q)     (L1)                
+       .: Γ∪{A,B} |-L C
+
+b- Demostramos que la proposición Γ |-L A es verdadera:
+    
+    Sabemos que Γ es igual al conjunto vacío, por lo tanto Γ |-L A es lo mismo que decir |-L A, por lo tanto A es derivable si y solo  si A es un teorema de L, sabemos que un teorema de L es necesariamente una tautología, a continuación armamos la tabla de verdad de A para revisar si lo es:
+
+    (tabla copiado en el drive)              
+                
+   .: A es una tautología.
+   .: A es un teorema de L.
+   .: A es derivable en Γ (Γ |-L A).
+            
+c- ¿Es cierto que Γ |-L (C→ B)?.
+    
+    Sabemos que Γ es igual al conjunto vacío, por lo tanto Γ |-L (C→ B) es lo mismo que |-L (C→ B), por lo tanto (C→ B) es derivable si y solo  si (C→ B) es un teorema de L, sabemos que un teorema de L es necesariamente una tautología, a continuación armamos la tabla de verdad de (C→ B) para revisar si lo es:
+
+	(tabla copiado en el drive)              
+
+.: (C→ B) no es una tautología.
+.: (C→ B) no es un teorema
+.: La proposición |-L (C→ B) es falsa.
+.: Demostramos que existe un Γ, A, B, C para los que la aserción de Γ |-L (C→ B) sabiendo que Γ∪{A,B} |-L C y que Γ |-L A es falsa.
+.: ¿Es cierto que Γ |-L (C→ B)?. Fundar.
+La respuesta es que no, el fundamento fue toda la demostración anterior
+
+	
+	ii- ¿Es cierto que |-L (A)?. Fundar.
+		
+		Totalmente falso, la propocicion |-L (A) indica que A es deribable en el conjunto vacio, eso solo es posible en caso de que A sea un
+		teorema de L, si A fuera un teorema de L entonces la tabla de verdad de A debe ser verdadera, sabemos que a puede contener infinitas 
+		proposisiones distintas y no seria facil demostrar que no todas las tablas de verdad de los posibles proposiciones en A son 
+		tautologias, por suerte, basta con demostrar que existe un A que no es tautologia, .: A no es un teorema de L .: es falso que |-L (A).
+		Eligiendo un valor para A:
+		
+			A=q^¬q
+			
+		Su tabla de verdad es:
+			
+			|q|¬q|q^¬q|
+			|V|F |F   |
+			|F|V |F   |
+		
+		En este caso A no solo no es una tautologia, sino que A es una contradiccion, basandonos en esto podemos afirmar que A no es un teorema 
+		de L.
+		.: Es falso que para todo A se cumple que |-L (A).

@@ -1,0 +1,220 @@
+Logica e inteligencia artificial:
+
+1.  Traduzca al lenguaje simbolico los siguientes enunciados:
+	(a) Juan necesita un matematico o un informatico.
+	
+		a: Juan necesita un matematico.
+		b: Juan necesita un informatico.
+		
+		a ∨ b
+	
+	(b) Si Juan necesita un informatico entonces necesita un matematico.
+		
+		a: Juan necesita un matematico.
+		b: Juan necesita un informatico.
+		
+		b -> a
+		
+	(c) Si Juan no necesita un matematico entonces necesita un informatico.
+		
+		a: Juan necesita un matematico.
+		b: Juan necesita un informatico.
+		
+		~a -> b
+		
+	(d) Si Juan contrata un informatico entonces el proyecto tendra exito.
+		
+		a: Juan contrata un informatico.
+		b: El proyecto tedra exito.
+		
+		a -> b
+		
+	(e) Si  el  proyecto no tiene exito entonces Juan no ha contratado un informatico.
+		
+		a: Juan contrato un informatico.
+		b: El proyecto tedra exito.
+		
+		~b -> ~a
+		
+	(f) El proyecto tendŕa ́exito si y solo si Juan contrata un informatico.
+		
+		a: Juan contrato un informatico.
+		b: El proyecto tedra exito.
+		
+		b <-> a
+		
+	(g) Para aprobar Logica, el alumno debe asistir a clase, desarrollar un cuaderno de practicas aceptable y demostrar que dicho cuaderno ha sido 
+	desarrollado por  ́el; o desarrollar un cuaderno de practicas aceptable y aprobar el examen final.
+		
+		a: El alumno aprueba logica.
+		b: El alumno asiste a clase.
+		c: El alumno desarrollar un cuaderno de practicas aceptable.
+		d: El alumno demostrar que el cuaderno fue echo por el.
+		e: El alumno aprobar el examen final.
+		
+		((b ∧ c ∧ d) ∨ (d ∧ e )) -> a
+		
+	(h) El alumno puede asistir a clase u optar por un examen libre.
+		
+		a: El alumno puede asistir a clase.
+		b: El alumno puede rendir un examen libre.
+		
+		a ∨ b
+		
+	(i) Si x es un numero racional e y es un entero, entonces z no es real.
+		
+		a: X es un numero racional.
+		b: Y es un numero entero.
+		c: Z no es real.
+		
+		a ∧ b -> ~c
+		
+	(j) La suma de dos numeros es par si y solo si los dos numeros son pares o los dos numeros son impares.
+		
+		a: La suma de 2 numeros es par.
+		b: Los 2 numeros son pares.
+		c: Los 2 numeros son impares.
+		
+		a <-> (b ∨ c)
+		
+2.  Dada la siguiente informacion:
+	Si el unicornio es mitico, entonces es inmortal, pero si no es mıtico, entonces es un mamıfero mortal. Si el unicornio es o inmortal o un mamıfero, 
+	entonces tiene un cuerno. El unicornio es magico si tiene un cuerno.
+	
+	Simbolizarla en el Calculo de Enunciados y responder:
+		(a) El unicornio es mitico?. Fundamentar.
+		(b) El unicornio no es mitico?. Fundamentar.
+		(c) El unicornio es magico?.  Fundamentar.
+		
+		q: El uniconio es mitico.
+		p: El unicornio es mortal.
+		r: El unicornio es un mamifero.
+		s: El unicornio tiene 1 cuerno.
+		w: El unicorio es magico.
+		
+		(q -> (~p)) ∧ ((~q) -> (r ∧ p)) ∧ ((p ∨ r) -> s) ∧ (s -> w)
+		
+		//Consultar* ¿Como hago los puntos a, b y c en la teoria no v en ningun momento un ejercicio como este?. mirar hamilton pag 32
+		Hay que armar una tabla de verdad, si es una tautologia el razonamiento es valido
+
+			a) ((q -> (~p)) ∧ ((~q) -> (r ∧ p)) ∧ ((p ∨ r) -> s) ∧ (s -> w)) -> q			
+				 _______________________________________________________________________________				 
+				|q|p|r|s|w|((q -> (~p)) ∧ ((~q) -> (r ∧ p)) ∧ ((p ∨ r) -> s) ∧ (s -> w)) -> q	|
+				| | | | | |																		|
+				|F|F|F|F|F|      							V									|1
+				|F|F|F|F|V|									V									|2
+				|F|F|F|V|F|									V									|3
+				|F|F|F|V|V|									V									|4
+				|F|F|V|F|F|									V									|5
+													....
+				|F|V|V|V|V|									F									|
+				
+				.: Ya que encontramos un caso en el que no se cumple la tautologia el razonamiento no es valido.
+	
+			b) ((q -> (~p)) ∧ ((~q) -> (r ∧ p)) ∧ ((p ∨ r) -> s) ∧ (s -> w)) -> (~q)
+				 _______________________________________________________________________________		
+				|q|p|r|s|w|((q -> (~p)) ∧ ((~q) -> (r ∧ p)) ∧ ((p ∨ r) -> s) ∧ (s -> w)) -> (~q)|
+				| | | | | |																		|
+													   .....
+				|V|F|V|V|V|   								F									|
+				
+				.: Ya que encontramos un caso en el que no se cumple la tautologia el razonamiento no es valido.
+			
+			
+			c) ((q -> (~p)) ∧ ((~q) -> (r ∧ p)) ∧ ((p ∨ r) -> s) ∧ (s -> w)) -> w
+				
+				|q|p|r|s|w|((q -> (~p)) ∧ ((~q) -> (r ∧ p)) ∧ ((p ∨ r) -> s) ∧ (s -> w)) -> w	|
+				| | | | | |																		|
+				|V|V|V|V|V|								V										|1
+				|V|V|V|V|F|								V										|2
+				|V|V|V|F|V|								V										|3
+				|V|V|V|F|F|								V										|4
+				|V|V|F|V|V|								V										|5
+				|V|V|F|V|F|								V										|6
+				|V|V|F|F|V|								V										|7
+				|V|V|F|F|F|								V										|8
+				|V|F|V|V|V|								V										|9
+				|V|F|V|V|F|								V										|10
+				|V|F|V|F|V|								V										|11
+				|V|F|V|F|F|								F										|12
+				
+				.: Ya que encontramos un caso en el que no se cumple la tautologia el razonamiento no es valido.
+		
+3. Se sabe que:
+	La pagina web tiene un error o el examen de algebra no es el 2 de julio. Si el examen de algebra es el 2 de julio entonces la pagina web tiene un 
+	error. El examen de algebra es el 14 de julio si y solo si la pagina web tiene un error y el periodo de examenes no termina el 10 de julio. 
+	
+	Teniendo en cuenta que el periodo de examenes termina el 10 de julio y que la pagina web tiene un  error, deducir la verdad o falsedad de los 
+	siguientes enunciados:
+		(a) El examen de algebra es el 2 de julio.
+		(b) Si la pagina web no tiene un error entonces el examen de algebra es el 14 de julio.
+	
+	Idea: escribalo como forma argumentativa y determine si es valida o invalida.
+	
+		q: La pagina web tiene un error.
+		p: El examen de algebra es el 2 de julio.
+		r: El examen de algebra es el 14 de julio.
+		s: El periodo de examenes termina el 10 de julio.
+		
+		(q ∨ ~p) ∧ (p -> q) ∧ (r <-> (q ∧ ~s))
+		
+			a)((q ∨ ~p) ∧ (p -> q) ∧ (r <-> (q ∧ ~s))) -> p
+				 _______________________________________________________
+				|p|q|r|s|((q ∨ ~p) ∧ (p -> q) ∧ (r <-> (q ∧ ~s))) -> p	|
+				|F|F|F|F|			V			|1
+				|F|F|F|V|			F			|2
+				
+				.: Ya que encontramos un caso en el que no se cumple la tautologia el razonamiento no es valido.
+
+			b) ((q ∨ ~p) ∧ (p -> q) ∧ (r <-> (q ∧ ~s))) -> (~q -> r)
+				
+				 _______________________________________________________________
+				|q|r|p|s|((q ∨ ~p) ∧ (p -> q) ∧ (r <-> (q ∧ ~s))) -> (~q -> r)	|
+				|F|F|F|F| 				F			|1
+				
+				.: Ya que encontramos un caso en el que no se cumple la tautologia el razonamiento no es valido.
+
+4. Se tienen las siguientes premisas:
+	Si Juan tiene suerte y llueve entonces estudia. Juan aprobara si y solo si estudia o tiene suerte. Si Juan no tiene suerte entonces no llueve.
+	Sabiendo que llueve, responder:
+		(a) ¿Aprobara Juan?
+		(b) ¿Tendra suerte Juan?
+		
+	Idea: escribalo como forma argumentativa y determine si es valida o invalida.
+	
+		q: Juan tiene suerte.
+		p: Llueve.
+		w: Juan estudia.
+		r: Juan aprueba.
+		
+		sabemos que p es V sempre.
+		
+		(q ∨ p) ∧ (r <-> (q ∨ w)) ∧ (~q -> ~p)
+		
+			a) ((q ∨ p) ∧ (r <-> (q ∨ w)) ∧ (~q -> ~p)) -> r
+				 _______________________________________________________
+				|r|p|w|q|((q ∨ p) ∧ (r <-> (q ∨ w)) ∧ (~q -> ~p)) -> r	|
+				|F|V|F|F|						V						|1
+				|F|V|F|V|						V						|2
+				|F|V|V|F|						V						|3
+				|F|V|V|V|						V						|4
+				|V|V|F|F|						V						|5
+				|V|V|F|V|						V						|6
+				|V|V|V|F|						V						|7
+				|V|V|V|V|						V						|8
+				
+				.: Ya que siempre se es verdadero entonces es una tautologia y el razonamiento es valido.
+				
+			b) ((q ∨ p) ∧ (r <-> (q ∨ w)) ∧ (~q -> ~p)) -> q
+				 _______________________________________________________
+				|p|q|w|r|((q ∨ p) ∧ (r <-> (q ∨ w)) ∧ (~q -> ~p)) -> q	|
+				|V|F|F|F|						V						|1
+				|V|F|F|V|						V						|2
+				|V|F|V|F|						V						|3
+				|V|F|V|V|						V						|4
+				|V|V|F|F|						V						|5
+				|V|V|F|V|						V						|6
+				|V|V|V|F|						V						|7
+				|V|V|V|V|						V						|8
+			
+				.: Ya que siempre se es verdadero entonces es una tautologia y el razonamiento es valido.

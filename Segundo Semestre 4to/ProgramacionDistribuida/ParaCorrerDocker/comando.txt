@@ -1,0 +1,3 @@
+docker exec --user root -it pdytr bash
+
+para entrar con GUI (el docker desktop) se usa localhost:6901 y contraseña vncpassword

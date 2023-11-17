@@ -1,0 +1,263 @@
+Temario
+	- Logica de Enunciados.  Reglas de manipulacion y sustitucíon. Formas normales. Conjuntos adecuados de conectivas.
+
+Bibliografia
+	- Hamilton. Ĺogica para matematicos. Capıtulo 2.
+	- Pons, Rosenfeld, Smith. Ĺogica para Informatica.  Capıtulo 1.
+
+Ejercicios
+	1. Escribir la forma normal conjuntiva FNC y la forma normal disyuntiva FND de las siguientes f́ormulas bien formadas:
+		
+		i- (p→q)→(p∧q)
+			 ___________________________________
+			|p|q|p→q|p∧q|(p→q)→(p∧q)|FND  |FNC  |
+			|F|F| V | F |     F     |     |     |
+			|F|V| V | F |     F     |     |     |
+			|V|F| F | F |     V     |p∧¬q |p∨¬q	|
+			|V|V| V | V |     V     |p∧q|p∨q  |
+			
+			FND: (p∧¬q)∨(p∧q)
+            FNC: (p∨¬q)∧(p∨q)
+
+		
+		ii- (p→q)∨(¬p∨r)
+			 ______________________________
+			|r|p|q|p→q|¬p|¬p∨r|(p→q)∨(¬p∨r)|
+			|F|F|F| V | V|  V |      V     |
+			|F|F|V| V | V|  V |      V     |
+			|F|V|F| F | F|  F |      F     |
+			|F|V|V| V | F|  F |      V     |
+			|V|F|F| V | V|  V |      V     |
+			|V|F|V| V | V|  V |      V     |
+			|V|V|F| F | F|  V |      V     |
+			|V|V|V| V | F|  V |      V     |
+			
+			FND: (¬r∧¬p∧¬q)∨(¬r∧¬p∧q)∨(¬r∧p∧q)∨(r∧¬p∧¬q)∨(r∧¬p∧q)∨(r∧p∧¬q)∨(r∧p∧q)
+			FNC: (r∨¬p∨q)
+		
+		iii- ((p→¬q)∧r)∨(¬p↔r)
+			 _________________________________________________
+			|r|p|q|¬p|¬q|p→¬q|(p→¬q)∧r)|¬p↔r|((p→¬q)∧r)∨(¬p↔r)|
+			|F|F|F|V |V |  V |    F    | F  |        F        |
+			|F|F|V|V |F |  V |    F    | F  |        F        |
+			|F|V|F|F |V |  V |    F    | V  |        V        |
+			|F|V|V|F |F |  F |    F    | V  |        V        |
+			|V|F|F|V |V |  V |    V    | V  |        V        |
+			|V|F|V|V |F |  V |    V    | V  |        V        |
+			|V|V|F|F |V |  V |    V    | F  |        V        |
+			|V|V|V|F |F |  F |    F    | F  |        F        |
+			
+			FND: (¬r∧p∧¬q)∨(¬r∧p∧q)∨(r∧¬p∧¬q)∨(r∧¬p∧q)∨(r∧p∧¬q)
+			FNC: (r∨p∨q)∧(r∨p∨¬q)∧(¬r∨¬p∨¬q)
+	
+	Encontrar formas normales equivalentes aplicando las reglas de tranformacion del ejercicio anterior.
+
+2. Obtener una FNC para la fbf ¬((¬p→ ¬q)→(q→p)).  Fundar los pasos seguidos.
+	
+	Primero voy a armar la tabla de verdad de la formula ¬((¬p→ ¬q)→(q→p)):
+		 ___________________________________________________
+		|p|q|¬p|¬q|¬p→¬q|q→p|(¬p→¬q)→(q→p)|¬((¬p→ ¬q)→(q→p))|
+		|F|F|V |V |  V  | V |      V      |        F        |
+		|F|V|V |F |  F  | F |      V      |        F        |
+		|V|F|F |V |  V  | V |      V      |        F        |
+		|V|V|F |F |  V  | V |      V      |        F        |
+	
+	Ahora teniendo la tabla de verdad podemos analizar para que valores de p y q la tabla nos da valores falsos, esos valores los vamos a usar
+	para armar la FNC. Construiremos una formula que sea falsa exclusivamente cuando la tabla es falsa, para esto aprobecharemos la naturaleza 
+	de la disyuncion que solo es falsa cuando el todos sus elementos son falsos, por ejempolo, si yo quiero una formula falsa solo cuando p es 
+	falso y q verdadero esa formula la escribiria como:
+		
+		p∨¬q	es falso si y solo si p=F y q=V
+	
+	para cualquier otro valor de p y q seria verdadero, ya que si son otros valores no se cumplirian que todos los elementos son falsos, si yo
+	quiero que sea falso en mas de un renglon entonces puedo escribir las formulas que hacen que sean falsos en un renglon exclusivamente, todas
+	unidas por una conjuncion, de esta forma, si se da la situacion en la que se cumplen las condiciones para que un grupo de disyuciones sea 
+	falso, la conjuncion se encargara de que esa falsedad se extienda a toda la formula, ya que para que sea verdadera esta todos los grupos
+	individuales de disyunciones deben ser verdaderos, asi conseguimos una formula que es falsa en algunos renglones que nosotros determinamos,
+	y verdadera para cualquier otro.
+	Asi podemos escribir ¬((¬p→ ¬q)→(q→p)) como:
+		
+		(p∨q)∧(¬p∨q)∧(p∨¬q)∧(¬p∨¬q)
+	
+	De esta formula construimos una formula que es falsa para todas las convinaciones de p y q.
+
+3. La fbf p→(q→p) tiene forma normal conjuntiva (FNC). Obtenerla, indicando los pasos seguidos.
+	
+	Pues lo mismo que en el 2, armamos la tabla de verdad, separamos los renglones falsos y los utilizamos para mediante la disyuncion hacer 
+	formulas falsas para los mismos renglones que la tabla es falsa, y las unimos mediante conyunciones para hacer una tabla falsa para los
+	mismos renglones en los que las formulas individuales son falsas:
+		 _______________
+		|p|q|q→p|p→(q→p)|
+		|F|F| V |   F   |
+		|F|V| F |   V   |
+		|V|F| V |   V   |
+		|V|V| V |   V   |
+		
+	FNC= p∨q
+
+4. A partir de las conectivas ¬, ∧, ∨, →, ↔ mostrar conjuntos adecuados minimales. Fundamentar que lo son.
+	
+	Los pares {¬, ∧}, {¬, ∨} y {¬, →} son conjuntos adcuados de conectivas.
+	
+	Demostracion: En primer lugar, cualesquiera que sean las formas enunciativas A y B, (A∨B) es logicamente equvalente a ¬((¬A)∧(¬B)),
+	de modo que toda forma enunciativa que contenga {¬, ∧, ∨} puede transformarse en una forma enunciativa que contenga solamente ¬ y ∧.
+	
+	En segundo lugar, podemos usar analogamente la equivalencia logica entre (A∧B) y ¬((¬A)∨(¬B)) para ver que {¬, ∨} es adecuado.
+	
+	En tercer lugar, hemos de encontrar formas enunciativas logicamente equivalentes a (A∧B) y (A∨B) en las que aparezcan solamente ¬ y →
+		
+		(A∧B) es logicamente eqivalente a (¬(A→(¬B)))
+		(A∨B) es logicamente eqivalente a ((¬A)→B)
+	
+	Estas equivalencias pueden usarse para transformar cualquier forma enunciativa en la que figuren {¬, ∧, ∨} en una forma enunciativa
+	logicamente equivalente en la que figuren solamente ¬ y →.
+	
+	{¬, ↔} no es un conjunto adecuado de conectivas.
+
+5. Se dice que un conjunto Γ de fbfs del C. de Enunciados es satisfactible cuando existe al menos una asignacion α de valores de verdad para 
+las letras de proposicion en Γ que hace verdaderas a todas las f́ormulas de Γ. Demostrar que una proposicion A es una tautologıa sı y solo sı
+¬A es insatisfactible.
+	
+	Γ={x|x es una fbf}
+	
+	Γ es satisfactible cuando para la conjuncion de todas las fbfs en Gamma se arma la tabla de verdad y hay un renglón de la tabla que da V.
+	Osea hay una combinacion de valores para los cuales todas las fraces de Γ son verdaderos.
+	
+	Lo que hay que demostrar en el ejercicio es un doble condicional: 
+	1- que si A es tautología entonces su negación es contradicción (o sea -A no tiene ningun renglón verdadero). 
+	2- que si -A no tiene ningún renglón verdadero entonces -(-A) es tautología.
+	
+	Por un lado sabemos que (A)=V siempre, ya que es una tautologia, queremos probar que que ¬A es una contradiccion:
+	Sabemos que: |=V (¬A) si y solo si no es el caso que |=V A.
+	Pero ya sabemos que v(A)=V siempre por lo tanto v(¬A)=F siempre, osea (¬A) sera una contradicion.
+	.: 1- Si A es una tautologia → (¬A) es una contradiccion
+	
+	Por otro lado imaginemos que ¬A no tiene ningun renglon verdadero, osea ¬A es una contradiccion.
+	Sabemos que: |=V (¬A) si y solo si no es el caso que |=V A.
+	El que v(¬A)=F siempre, por la regla de arriba implica que es el caso de que v(A)=V siempre, osea A es una tautologia.
+	Sabemos que A es una tautologia, pero queremos saber si ¬(¬A) es una tautologia, esto es facilmente probable demostrando que A es logicamente
+	equivalente a ¬(¬A):
+		 ____________________
+		|A|¬A|¬(¬A)|A↔(¬(¬A))|
+		|V|F |  V  |    V    |
+		|F|V |  F  |    V    |
+		.:A es logicamente equivalente a ¬(¬A)
+	
+	Ya que si (¬A) es una contradiccion entonces A es una tautologia y que A es logicamente a ¬(¬A) entonces si (¬A) es una contradiccion entonces
+	¬(¬A) es una tautologia.
+	.: 2- Si A es una tautologia → ¬(¬A) es una contradiccion.
+	
+	Demostrar que una proposicion A es una tautologıa sı y solo sı ¬A es insatisfactible:
+		
+		Si ¬A es insatisfactible (por definicion de insatisfactible)
+		→ A no tiene ningun renglon verdadero (por definicion de contradiccion)
+		→ A es una contradiccion (por 2)
+		→ ¬(¬A) es una tautologia (por que ¬(¬A) es equivalente logicamente a A)
+		→ A es una tautologia.
+	
+	Ahi demostre que si ¬A es insatisfactible → A es un tautologia, ahora hay que demostrar que si A es una tautologia → ¬A es insatisfactible:
+		
+		Si A es una tautologia (por 1)
+		→ (¬A) es una contradiccion (Por definicion de contradiccion)
+		→ (¬A) es una insatisfactible
+	
+	Entonces queda demostrado que si A es una tautologia → ¬A es insatisfactible.
+	.: A es una tautologıa sı y solo sı ¬A es insatisfactible.
+	
+6. Determinar si los siguientes conjuntos son satisfactibles. Fundar.
+
+	Γ es satisfactible cuando para la conjuncion de todas las fbfs en Gamma se arma la tabla de verdad y hay un renglón de la tabla que da V.
+	Osea hay una combinacion de valores para los cuales todas las fraces de Γ son verdaderos.
+	
+	i- Γ ={p→q,p↔q,r∨s,s↔¬q}
+		
+		Hay que que armar la tabla de verdad para todas las formulas de verdad de Γ, si 1 es verdadera entonces Γ es satisfacible, caso contrario
+		Γ es insatisfactible:
+		 ____________________________________________________
+		|p|q|r|s|¬q|p→q|p↔q|r∨s|s↔¬q|(p→q)∧(p↔q)∧(r∨s)∧(s↔¬q)|
+		|V|V|V|V|F | V | V | V | F  |           F            |1
+		|V|V|V|F|F | V | V | V | V  |           V            |2
+		|V|V|F|V|F | V | V | V | F  |           F            |3
+		|V|V|F|F|F | V | V | F | V  |           F            |4
+		|V|F|V|V|V | F | F | V | V  |           F            |5
+		|V|F|V|F|V | F | F | V | F  |           F            |6
+		|V|F|F|V|V | F | F | V | V  |           F            |7
+		|V|F|F|F|V | F | F | F | F  |           F            |8
+		|F|V|V|V|F | V | F | V | F  |           F            |9
+		|F|V|V|F|F | V | F | V | V  |           F            |10
+		|F|V|F|V|F | V | F | V | F  |           F            |11
+		|F|V|F|F|F | V | F | F | V  |           F            |12
+		|F|F|V|V|V | V | V | V | V  |           V            |13
+		|F|F|V|F|V | V | V | V | F  |           F            |14
+		|F|F|F|V|V | V | V | V | V  |           V            |15
+		|F|F|F|F|V | V | V | F | F  |           F            |16
+		
+		.: Ya que los para los valores de los renglones 2, 13 y 15 todas las formulas son verdaderas eso significa que Γ es satisfacible.
+	
+	ii- Γ ={a∨¬c,¬b∨¬a,c∨a,b∨¬a}
+	
+		Hay que que armar la tabla de verdad para todas las formulas de verdad de Γ, si 1 es verdadera entonces Γ es satisfacible, caso contrario
+		Γ es insatisfactible:
+		 ______________________________________________________________
+		|a|b|c|¬a|¬b|¬c|a∨¬c|¬b∨¬a|c∨a|b∨¬a|(a∨¬c)∧(¬b∨¬a)∧(c∨a)∧(b∨¬a)|
+		|V|V|V|F |F |V | V  |  F  | V | V  |             F             |1
+		|V|V|F|F |F |F | V  |  F  | V | V  |             F             |2
+		|V|F|V|F |V |V | V  |  V  | V | F  |             F             |3
+		|V|F|F|F |V |F | V  |  V  | V | F  |             F             |4
+		|F|V|V|V |F |V | V  |  V  | V | V  |             V             |5
+		|F|V|F|V |F |F | F  |  V  | F | V  |             F             |6
+		|F|F|V|V |V |V | V  |  V  | V | V  |             V             |7
+		|F|F|F|V |V |F | F  |  V  | F | V  |             F             |8
+		
+		
+		.: Ya que los para los valores de los renglones 5 y 7 todas las formulas son verdaderas eso significa que Γ es satisfacible.
+
+7. Sean Γ1 y Γ2 dos conjuntos satisfactibles de fbfs del C. de Enunciados. Determinar si los siguientes conjuntos tambíen son satisfactibles.  
+Fundamentar.
+	
+	i- Γ3={(A∨B)/A∈Γ1,B∈Γ2}.	
+		
+		Γ1={¬p∧¬q,p∧q}	Es satisfacible
+		Γ2={¬p∧¬q,p∧q}	Es satisfacible
+		Γ3={(p∧q)∨(¬p∧¬q)}	No es satisfacible
+		 _____________________________________
+		|p|q|¬p|¬q|(¬p∧¬q)∨(¬p∧¬q)|(p∧q)∨(p∧q)|
+		|V|V|F |F |       F       |     V     |
+		|V|F|F |V |       F	      |     F     |
+		|F|V|V |F |       F       |     F     |
+		|F|F|V |V |       V       |     F     |
+		
+		.: Que Γ1 y Γ2 sean dos conjuntos satisfactibles no implica que Γ3 sea satisfacible.
+		
+	ii- Γ4={¬A/A∈Γ1}.
+		
+		Podemos demostrarlo por contraejemplo, si A es una tautologia,A es satisfacible, entonces ¬A es una contradiccion, entonces ¬A es 
+		insatisfactible.
+		.: Que Γ1 y Γ2 sean dos conjuntos satisfactibles no implica que Γ4 sea satisfacible.
+	
+	iii-  Γ5={(A∧B)/A∈Γ1,B∈Γ2}.
+		
+		Si A es p y B es -p ambos son conjuntos satisfactibles pero el conj Gamma5 no lo es. ya que (q∧¬q) es una contradiccion.
+		.: Que Γ1 y Γ2 sean dos conjuntos satisfactibles no implica que Γ5 sea satisfacible.
+	
+	iv-  Γ6={A#B/A∈Γ1,B∈Γ2}donde # es el conectivo definido en la practica 2.
+		
+		La siguiente es la tabla de verdad de #:
+		     ___________
+			| p	| q	|p#q|
+			| F	| F	| F	|
+			| F	| V	| V	|
+			| V	| F	| V	|
+			| V	| V	| F	|
+		
+		Considerando esta tabla podemos armar el conjunto Γ6 de la siguiente forma:
+			
+			Γ1={q∨q}	Es satisfacible
+			Γ2={q}	Es satisfacible
+			Γ6={p#(q∨q)}	No es satisfacible
+			 _________
+			|q|q#(q∨q)|
+			|F|   F   |
+			|V|   F	  |
+			
+		.: Que Γ1 y Γ2 sean dos conjuntos satisfactibles no implica que Γ4 sea satisfacible.

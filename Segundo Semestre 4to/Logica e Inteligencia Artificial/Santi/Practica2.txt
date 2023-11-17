@@ -1,0 +1,492 @@
+Practica 2:
+
+1. Retome el Ejercicio 1 de la Practica 1:
+
+	a) Seleccione un par de enunciados que sean logicamente equivalentes (que tengan el mismo significado). Demuestrelo mediante tablas de verdad.
+		
+		Sabemos que siendo A y B dos enunciados "A es logicamente equivalente a B" si la forma enunciativa A <-> B es una tautologia.
+		Voy a ir escribiendo las tablas de verdad hasta encontrar dos iguales:
+			 ________________________________________
+			|c|b|a|a<->(b ∨ c)|a∧b->~c|a∨b|b->a|~a->b|
+			|V|V|V|	V         |F      | V |	V  |V    |
+			|V|V|F|	F         |V      |	V |	F  |V    |
+			|V|F|V|	V         |V      |	V |	V  |V    |
+			|V|F|F|	F         |V      |	F |	V  |F    |
+			|F|V|V|	V         |V      |
+			|F|V|F|	F         |V      |
+			|F|F|V|	F         |V      |
+			|F|F|F| V         |V      |
+		
+		Logre encontrar que el enunciado a (a ∨ b) es logicamente equivalente al c (~a -> b), por lo tanto armare la tabla de verdad con <->
+			 _____________________________
+			|b|a|a∨b|~a->b|(a∨b)<->(~a->b)|
+			|V|V|V	|V    |V              |
+			|V|F|V	|V    |V              |
+			|F|V|V	|V    |V              |
+			|F|F|F	|F    |V              |
+		
+		.: (a ∨ b)<->(~a -> b) es una tautologia y los enunciados de a y c son logicamente equivalentes.
+	
+	b) Para el item ii, construya dos enunciados que sean logicamente equivalentes.
+	
+		El enunciado de b dice: b -> a. Construire su tabla de verdad y luego dos enunciados que posean la misma tabla:
+			 ____________________________
+			|a|b|b->a|b->(a<->b)|~~(b->a)|
+			|F|F|V   |V         |V       |
+			|F|V|F   |F	        |F       |
+			|V|F|V   |V         |V       |
+			|V|V|V   |V         |v       |
+		
+		Entonces ahora mostrare la equivalencia logica mostando que la forma enunciativa A <-> B es una tautologia, siendo A el enunciado de 
+		b y B alguno de los otros dos enunciados que que cree:
+		
+			 _____________________________________________
+			|a|b|(b->a)<->(b->(a<->b))|(b->a)<->(~~(b->a))|
+			|F|F|V                    |V                  |
+			|F|V|V                    |V                  |
+			|V|F|V                    |V                  |
+			|V|V|V                    |V                  |
+		
+		.: Queda demostrado que los dos enunciados son logicamente equivalentes a b -> a del punto 1)b)
+		
+	c) Para el ıtem vii, construya dos enunciados que sean logicamente equivalentes.
+		
+		El enunciado de g dice: ((a ∧ c ∧ d) ∨ (d ∧ e)) -> a. Buscare dos enunciados que posean la misma tabla de verdad:
+			 
+			 original:		((a ∧ c ∧ d) ∨ (d ∧ e)) -> a
+			 equivalente 1:	~~(((a ∧ c ∧ d) ∨ (d ∧ e )) -> a)
+			 equivalente 2:	((a ∧ c ∧ d) ∨ ~(~d ∨ ~e)) -> a
+		
+		Entonces ahora mostrare la equivalencia logica mostando que la forma enunciativa A <-> B es una tautologia, siendo A el enunciado de 
+		b y B alguno de los otros dos enunciados que que cree:
+			 _______________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+			|a|b|c|d|e|a∧c∧d|d∧e|(a∧c∧d)∨(d∧e)|((a∧c∧d)∨(d∧e))->a|(((a∧c∧d)∨(d∧e))->a)<->(~~((a∧c∧d)∨(d∧e))->a)|(((a∧c∧d)∨(d∧e))->a)<->(((a∧c∧d)∨~(~d∨~e))->a)|
+			|F|F|F|F|F|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|F|F|F|F|V|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|F|F|F|V|F	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|F|F|F| V| V	|	  F		|	V	|			V			|				F				|								 V									|								  V									|
+			|F|F|V| F	| F	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|F|F|V| F	| V	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|F|F|V| V	| F	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|F|F|V| V	| V	|	  F		|	V	|			V			|				F				|								 V									|								  V									|
+			|F|V|F| F	| F	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|F|V|F| F	| V	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|F|V|F| V	| F	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|F|V|F| V	| V	|	  F		|	V	|			V			|				F				|								 V									|								  V									|
+			|F|V|V| F	| F	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|F|V| V| F	| V	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|F|V| V| V	| F	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|F|V| V| V	| V	|	  F		|	V	|			V			|				F				|								 V									|								  V									|
+			|V|F| F| F	| F	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|V|F| F| F	| V	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|V|F| F| V	| F	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|V|F| F| V	| V	|	  F		|	V	|			V			|				V				|								 V									|								  V									|
+			|V|F| V| F	| F	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|V|F| V| F	| V	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|V|F| V| V	| F	|	  V		|	F	|			V			|				V				|								 V									|								  V									|
+			|V|F| V| V	| V	|	  V		|	V	|			V			|				V				|								 V									|								  V									|
+			|V|V| F| F	| F	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|V|V| F| F	| V	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|V|V|F| V	| F	|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|V|V|F|V|V|	  F		|	V	|			V			|				V				|								 V									|								  V									|
+			|V|V|V|F|F|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|V|V|V|F|V|	  F		|	F	|			F			|				V				|								 V									|								  V									|
+			|V|V|V|V|F|	  V		|	F	|			V			|				V				|								 V									|								  V									|
+			|V|V|V|V|V|	  V		|	V	|			V			|				V				|								 V									|								  V									|
+			
+			Este es para comprobar una equivalencia que necesitava comprobar para probar la anterior
+				 ___________________________________________________________
+				| d	| e	|~d	|~e	| d ∧ e	| ~~(d ∧ e)	|  ~d ∨ ~e	|~(~d ∨ ~e)	|
+				| F	| F	| V	| V	|	F	|	  F		|	  V		|	  F		|
+				| F	| V	| V	| F	|	F	|	  F		|	  V 	|	  F		|
+				| V	| F	| F	| V	|	F	|	  F		|	  V		|	  F		|
+				| V	| V	| F	| F	|	V	|	  F		|	  F		|	  V		|
+		
+		.: Queda demostrado que los dos enunciados son logicamente equivalentes a ((a ∧ c ∧ d) ∨ (d ∧ e)) -> a del punto 1)g)
+
+2. Sean A, B fbfs que cumplen que (¬A ∨ B) es tautologia. Sea C una fbf cualquiera. Determinar, si es posible, cuales de las siguientes fbfs son 
+tautologias y cuales contradicciones. Justificar las respuestas.
+
+	i- ((¬(A → B))→ C )
+		 
+		Queremos demostrar que (¬A ∨ B) implica logicamente a ((¬(A → B))→ C ), entonces tendremos que demostrar que (¬A ∨ B) → ((¬(A → B))→ C ) 
+		es una tautologia:
+			 ___________________________________
+			|A|B|C|¬A|¬A∨B|A→B|¬(A→B)|(¬(A→B))→C|
+			|V|V|V|F |V   |V  |F     |V         |
+			|V|V|F|F |V   |V  |F     |V         |
+			|V|F|V|F |F   |F  |V     |V         |
+			|V|F|F|F |F   |F  |V     |F         |
+			|F|V|V|V |V   |V  |F     |V         |
+			|F|V|F|V |V   |V  |F     |V         |
+			|F|F|V|V |V   |V  |F     |V         |
+			|F|F|F|V |V   |V  |F     |V         |
+		
+		Ya que sabemos que (¬A ∨ B) es una tautologia solo debemos revizar que los renglones en los que (¬A ∨ B) es V se cumpla que (¬(A→B))→C 
+		sea verdadero, lo cual en este caso si se cumple.
+		.: Si (¬A ∨ B) es tautologia -> ((¬(A → B))→ C ) tambien es una tautologia.
+		
+		Otro camino para demostrarlo puede ser:
+			Se sabe que (¬A ∨ B) es equivalente a (A → B), .: (A → B) es una tutologia, y .: (¬(A → B) ) es una contradiccion, .: ya que el 
+			antecedente siempre sera falso la implicacion siempre sera verdadero independientemente del valor del consecuente C.
+			.: Si (¬A ∨ B) es tautologia -> ((¬(A → B))→ C ) tambien es una tautologia.
+	
+	ii- ( C → ((¬A ) ∨ B))
+			
+		Queremos demostrar que (¬A ∨ B) implica logicamente a ( C → ((¬A ) ∨ B)), entonces tendremos que demostrar que (¬A ∨ B) → (C→((¬A)∨B)) 
+		es una tautologia:
+			 _________________________
+			|A|B|C|¬A|¬A∨B|C→((¬A )∨B)|
+			|V|V|V|F |V   |V          |
+			|V|V|F|F |V   |V          |
+			|V|F|V|F |F   |F          |
+			|V|F|F|F |F   |V          |
+			|F|V|V|V |V   |V          |
+			|F|V|F|V |V   |V          |
+			|F|F|V|V |V   |V          |
+			|F|F|F|V |V   |V          |
+		
+		Ya que sabemos que (¬A ∨ B) es una tautologia solo debemos revizar que los renglones en los que (¬A ∨ B) es V se cumpla que (C→((¬A)∨B))
+		sea verdadero, lo cual en este caso si se cumple.
+		.: Si (¬A ∨ B) es tautologia -> (C→((¬A)∨B)) tambien es una tautologia.
+		
+		Otro camino para demostrarlo puede ser:
+			Se sabe que ((¬A ) ∨ B) es equivalente a (¬A ∨ B), la unica diferencia es que el primero tiene un parentesis redundante, .: Sabemos que 
+			((¬A ) ∨ B) es una tautologia, .: dado que en ( C → ((¬A ) ∨ B)) no puede ocurrir el caso en el que el antecedente es verdadero y el
+			consecuente falso ya que el consecuente es una tautologia, podemos decir que:
+			.:Si (¬A ∨ B) es tautologia -> ( C → ((¬A ) ∨ B)) tambien es una tautologia.
+	
+	iii- ((¬A) → B)		
+		
+		Queremos demostrar que (¬A ∨ B) implica logicamente a ((¬A) → B), entonces tendremos que demostrar que ((¬A) → B) es una tautologia:
+			 _____________________________________
+			|A|B|¬A|¬B|¬A∨B|(¬A)→B|(¬A∨B)→((¬A)→B)|
+			|F|F| V| V|  V |F     |F              |
+			|F|V| V| F|  V |V     |V              |
+			|V|F| F| V|  F |V     |V              |
+			|V|V| F| F|  V |V     |V              |
+		
+		Ya que sabemos que (¬A ∨ B) es una tautologia solo debemos revizar que los renglones en los que (¬A ∨ B) es V se cumpla que ((¬A)→B)
+		sea verdadero, lo cual en este caso no se cumple (1er renglon), pero tampoco son todos falsos, por lo que ((¬A)→B) no es una contradiccion.
+		.: Si (¬A ∨ B) es tautologia no implica que ((¬A)→B) sea una tautologia o una contradiccion, ((¬A)→B) sera un condicional.
+
+3. ¿Es cierto que dadas A y B fbfs cualesquiera, siempre ocurre que si A y A → B son tautologias entonces B tambien lo es? Fundamentar. 
+Ejemplificar con algunos ejemplos concretos escritos en lenguaje natural.
+
+	Si, por que si A → B es verdadero eso implica que A puede tomar cualquier valor y B Ninca sera falso cuando A sea verdadero, pero se que A 
+	siempre es verdadero por que es una tautologia, .: B nunca puede ser falso por que sino A → B no podria ser una tautologia, .: B es una 
+	tautologia.
+	
+	Por ejemplo: 
+	"Yo tengo suerte, si tengo suerte entonces llovera".(Es evidente que llovera, ya que de precondicion sabemos que tengo suerte siempre)
+
+	Puedo demostrarlo por el absurdo:
+		Asumimos lo contrario a lo que queremos demostrar:
+		Las hipotesis son verdaderas y la conclucion es falsa, o sea;
+			
+			Hipotesis:
+				A es tautologia			(i)
+				(A → B) es tautologia	(ii)
+			Conclucion falsa:
+				B no es tautologia		(iii)
+			Demostracion:
+				(iv)	Por (iii), existe una valuacion v tal que v(B)=F.<---------------¬
+				(v)		Por (i), v(A)=V.									  			 |
+				(vi)	Por (ii), v(A → B)=V.											 V
+				(vii)	Por definicion de valoracion y por (v) y (vi), v(B)=V.<------> ABSURDO
+
+4. Sea A una fbf donde aparecen solo los conectivos ∧, ∨, ¬. Sea A´ la fbf que se obtiene a partir de A reemplazando cada ∧ por ∨ y cada ∨ 
+por ∧. ¿Si A es una tautologia, A´ tambien lo es? Justificar. Ejemplificar con algunos ejemplos escritos en lenguaje natural.
+		
+		Buscare un caso en el que eso no se cumpla para demostrar que no se cumple siempre:
+		Elijamos una A que sea una tautologia que contenga los 3 conectivos, como
+		
+			A = (a ∧ a) ∨ ¬a
+			
+		Entonces la A´ que sigue tambien debera serlo:
+		
+			A´= (a ∨ a) ∧ ¬a
+		
+		Armare la tabla de verdad para ver si esto se cumple:
+			 ___________________________________
+			| a	| (a ∧ a) ∨ ¬a	| (a ∨ a) ∧ ¬a	|
+			| F	|		V		|		F		|
+			| V	|		V		|		F		|
+		
+		En este caso A´ resulto ser una contradiccion.
+		.: ya que encontre un caso en el que no se cumple queda probado que si A es una tautologia, no necesariamente A´ tambien lo sera.
+		
+		Un ejemplo de A en lenguaje natural puede ser:
+			"Soy feliz y soy feliz, o no soy feliz" (seria como decir ((a ∧ a) ∨ ¬a) que es equivalente a (a ∨ ¬a) lo cual seria "soy feliz o 
+			no soy feliz", siempre se tiene que dar uno de los dos, .: Es una tautologia)
+		Un ejemplo de A´ derivado de A seria:
+			"Soy feliz o soy feliz, y no soy feliz" (seria como decir ((a ∨ a) ∧ ¬a) que es equivalente a (a ∧ ¬a) lo cual seria "soy feliz y 
+			no soy feliz", es imposible que se den ambos a la vez, .: Es una contradiccion)
+
+5. Demostrar que cualquier tautologia proposicional que este escrita usando los conectivos ¬, ∨, ∧, → contiene alguna ocurrencia ya sea del 
+simbolo ”¬” o del simbolo ”→”. 
+Idea: Demostrar que cualquier formula que contenga solo la conjuncion y disyuncion puede tomar el valor F.
+	
+	Para demostrar que A <<Puede>> tomar el valor falso vamos a contruir una valuacion en particular en la cual A sea falsa.
+	Sea v una valuación, que asigna el valor falso a todas las letras. O sea v(pi)=F para todo i. En esa valuación la Fbf A tambien va a tomar
+	el valor falso.
+	
+	vamos a demostrarlo formalmente usando inducción sobre la estructura de A:
+	
+		Para demostrar por inducción necesitamos un numero natural N. En este caso "N" es la "cantidad de conectivos de la Fbf".
+		
+		Caso base:	N=0
+			Como N es cero, no hay colectivos, entonces A es atomica. O sea A=p1
+			v(p1)=F .: v(A)=F 
+			
+		Hipotesis inductiva (H.I):
+			Asumimos que para toda Fbf A que contiene  solo conjuncion y disyuncion, con N o menos conectivos v(A)=F.
+			
+		Caso N+1:
+			Usando la H.I tenemos que poder provar que v(A)=F, para una formula A que tiene N+1 conectivos.
+			A puede tener 2 formatos:
+				Caso 1: A es (B∨C)		caso 2: A es (B∧C)
+			Vemos que tanto B como C tienen N o menos conectivos, por lo tanto para ellas vale la H.I, es decir v(B)=F y v(C)=F.
+			Entonces por la definicion de la semantica de ∨ y del ∧, tanto en el caso 1 como en el caso 2, v(A)=F.
+		
+		Con esto queda demostrado v(A)=F para cualquier Fbf.
+
+6. ¿Es cierto que en el Calculo de Enunciados pueden escribirse dos fbfs que tengan diferentes letras de proposicion y aun asi ambas fbfs 
+sean logicamente equivalentes?. Fundar.			//Consultar* Creo que si pero no sabria como fundamentarlo.
+	
+	Sí, por ejemplo dos tautologías (p v -p) y (q v -q) son lógicamente equivalentes, Voy a armar la tabla de verdad para que se vea de una 
+	forma mas grafica:
+		 _______________________________
+		| p	| q	|¬p	|¬q	|p v ¬p	|q v -q	|
+		| F	| F	| V	| V	|	V	|	V	|
+		| F	| V	| V	| F	|	V	|	V	|
+		| V	| F	| F	| V	|	V	|	V	|
+		| V	| V	| F	| F	|	V	|	V	|
+	
+	Listo, acabo de demostrar que como minimo hay un caso para las que dos fbfs que tienen diferentes letras de proposicion y aun asi ambas 
+	fbfs son logicamente equivalentes. .: Si es cierto lo que dice el enunciado.
+	
+
+7. Para las tablas dadas a continuacion, encontrar al menos dos fbf del Calculo de Enunciados que las tenga por tablas de verdad.
+Ayuda: alcanza con usar p, q, ¬, ∧, ∨.
+
+	p q f?
+	V V V
+	V F V
+	F V V
+	F F V
+	
+		Para esta podemos tomar la formula ((p ∨ ¬p) ∧ (q ∨ ¬q)), tambien podemos usar ((p ∨ ¬p) ∨ (q ∨ ¬q)).
+	
+	p q f?
+	V V V
+	V F F
+	F V V
+	F F F
+	
+		Para esta podemos tomar la formula ((p ∧ q) ∨ (¬p ∧ q)), tambien podemos usar (¬((¬p ∨ ¬q) ∧ (p ∨ ¬q))).
+	
+	p q f?
+	V V V
+	V F V
+	F V F
+	F F F
+		
+		Para esta podemos tomar la formula ((p ∧ q) ∨ (p ∧ ¬q)), tambien podemos usar (¬((¬p ∨ ¬q) ∧ (¬p ∨ q))).
+
+8. Determinar cuales de las siguientes fbfs son logicamente implicadas por la fbf (A ∧ B). Fundamentar. 
+Def. de implicacion logica, ver def. 1.7 del Hamilton.
+
+	Se sabe que A=>B si y solo si A->B es una tautologia.
+
+	i- A 
+		 _______________________________
+		| A	| B	|  (A ∧ B)	|(A ∧ B)→A	|
+		| F	| F	|	  F		|	  V		|
+		| F	| V	|	  F		|	  V		|
+		| V	| F	|	  F		|	  V		|
+		| V	| V	|	  V		|	  V		|
+		.:A es implicada logicamente por (A ∧ B)
+	
+	ii- B 
+		 _______________________________
+		| A	| B	|  (A ∧ B)	|(A ∧ B)→B	|
+		| F	| F	|	  F		|	  V		|
+		| F	| V	|	  F		|	  V		|
+		| V	| F	|	  F		|	  V		|
+		| V	| V	|	  V		|	  V		|
+		.:B es implicada logicamente por (A ∧ B)
+	
+	iii- A ∨ B
+		 ___________________________________________________
+		| A	| B	|  (A ∧ B)	|  (A ∨ B)	|  (A ∧ B)→(A ∨ B)	|
+		| F	| F	|	  F		|	  F		|		  V			|
+		| F	| V	|	  F		|	  V		|		  V			|
+		| V	| F	|	  F		|	  V		|		  V			|
+		| V	| V	|	  V		|	  V		|		  V			|
+		.:(A ∨ B) es implicada logicamente por (A ∧ B)
+	
+	iv- ¬A ∨ B 
+		 _______________________________________________________
+		| A	|¬A	| B	|  (A ∧ B)	| (¬A ∨ B)	| (A ∧ B)→(¬A ∨ B)	|
+		| F	| V	| F	|	  F		|	  V		|		  V			|
+		| F	| V	| V	|	  F		|	  V		|		  V			|
+		| V	| F	| F	|	  F		|	  F		|		  V			|
+		| V	| F	| V	|	  V		|	  V		|		  V			|
+		.:(¬A ∨ B) es implicada logicamente por (A ∧ B)
+	
+	v- ¬B → A 
+		 _______________________________________________________
+		| A	| B	|¬B	|  (A ∧ B)	| (¬B → A)	| (A ∧ B)→(¬B → A)	|
+		| F	| F	| V	|	  F		|	  F		|		  V			|
+		| F	| V	| F	|	  F		|	  V		|		  V			|
+		| V	| F	| V	|	  F		|	  V		|		  V			|
+		| V	| V	| F	|	  V		|	  V		|		  V			|
+		.:(¬B → A) es implicada logicamente por (A ∧ B)
+	
+	vi- A ↔ B
+		 ___________________________________________________
+		| A	| B	|  (A ∧ B)	|  (A ↔ B)	|  (A ∧ B)→(A ↔ B)	|
+		| F	| F	|	  F		|	  F		|		  V			|
+		| F	| V	|	  F		|	  V		|		  V			|
+		| V	| F	|	  F		|	  V		|		  V			|
+		| V	| V	|	  V		|	  V		|		  V			|
+		.:(A ↔ B) es implicada logicamente por (A ∧ B)
+	
+	vii- A → B 
+		 ___________________________________________________
+		| A	| B	|  (A ∧ B)	|  (A → B)	|  (A ∧ B)→(A → B )	|
+		| F	| F	|	  F		|	  		|		  			|
+		| F	| V	|	  F		|	  		|		  			|
+		| V	| F	|	  F		|	  		|		  			|
+		| V	| V	|	  V		|	  		|		  			|
+		.:(A → B) es implicada logicamente por (A ∧ B)
+	
+	viii- ¬B → ¬A 
+		 ___________________________________________________________
+		| A	| B	|¬A	|¬B	|  (A ∧ B)	| (¬B → ¬A)	| (A ∧ B)→(¬B → ¬A)	|
+		| F	| F	| V	| V	|	  F		|	  V		|		  V			|
+		| F	| V	| V	| F	|	  F		|	  V		|		  V			|
+		| V	| F	| F	| V	|	  F		|	  F		|		  V			|
+		| V	| V	| F	| F	|	  V		|	  V		|		  V			|
+		.:(¬B → ¬A) es implicada logicamente por (A ∧ B)
+		
+	ix- B → ¬A
+		 _______________________________________________________
+		| A	|¬A	| B	|  (A ∧ B)	| (B → ¬A)	| (A ∧ B)→(B → ¬A)	|
+		| F	| V	| F	|	  F		|	  V		|		  V			|
+		| F	| V	| V	|	  F		|	  V		|		  V			|
+		| V	| F	| F	|	  F		|	  V		|		  V			|
+		| V	| F	| V	|	  V		|	  F		|		  F			|
+		.:(B → ¬A) no esta implicada logicamente por (A ∧ B)
+
+9. Sea la relacion ≤ tal que dadas fbfs A, B se cumple que A ≤ B sii A → B es una tautologia. 
+Dadas las fbfs: p, p → q, ¬p, p ∧ ¬p, r ∨ ¬r, organizarlas bajo la relacion ≤. Representar graficamente.	//Consultar*
+	 _______________________________________________________________________________________________
+	| r | p	| q	|¬r	|¬p	| p → q	|p ∧ ¬p	| (p ∧ ¬p) → p	|  ¬p → (p → q)	|r ∨ ¬r	| (p → q)→(r ∨ ¬r)	|
+	| V	| F	| F	| F	| V	|	V	|	F	|		V		|		V		|	V	|		  V			|
+	| V	| F	| V	| F	| V	|	V	|	F	|		V		|	  	V		|	V	|		  V			|
+	| V	| V	| F	| F	| F	|	F	|	F	|		V		|		V		|	V	|		  V			|
+	| V	| V	| V	| F	| F	|	V	|	F	|		V		|		V		|	V	|		  V			|
+	| F	| F	| F	| F	| V	|	V	|	F	|		V		|		V		|	V	|		  V			|
+	| F	| F	| V	| F	| V	|	V	|	F	|		V		|		V		|	V	|		  V			|
+	| F	| V	| F	| F	| F	|	F	|	F	|		V		|		V		|	V	|		  v			|
+	| F	| V	| V	| F	| F	|	V	|	F	|		V		|		V		|	V	|		  v			|
+	.: Ya que (¬p → (p → q)) es una tautologia:		¬p ≤ (p → q)
+	.: Ya que (p ∧ ¬p) es una contradiccion:		(p ∧ ¬p) ≤ p	y 	(p ∧ ¬p) ≤ ¬p
+	.: Ya que (r ∨ ¬r) es una tautologia:			(p → q) ≤ (r ∨ ¬r)	y	p ≤ (r ∨ ¬r)
+	
+	.: Puedo organizarlas de la siguiente manera:
+		
+		(p ∧ ¬p) ≤ ¬p ≤ (p → q) ≤ (r ∨ ¬r)
+		
+	.: No logro ubicar p en ningun lado, solo se de ella que:
+		
+		(p ∧ ¬p) ≤ p ≤ (r ∨ ¬r)
+	
+	cualquier otra implicacion con p no es una tutologia
+
+10. Sea A una fbf donde aparecen solo los conectivos ∧, ¬. Sea A´ la fbf que se obtiene a partir de A reemplazando cada ∧ por ∨ y cada letra 
+de proposicion por su negacion (o sea, cada p por ¬p, cada q por ¬q, etc.). ¿Es cierto que A´ es logicamente equivalente a ¬A? 
+Fundamentar. Ejemplificar con algunos ejemplos concretos escritos en lenguaje natural.
+	
+	Probemos con (p^-p) a ver que sucede:
+		 _______________________
+		| p	|-p	| p^-p	|¬p ∨ p	|
+		| F	| V	|	F	|	V	|
+		| V	| F	|	F	|	V	|
+		
+	Listo, acabo de demostrar por contra-ejemplo que lo que no es necesariamente cierto que que A´ es logicamente equivalente a ¬A.
+	
+	Voy a intentar poner un ejemplo en lenguaje natural:
+		
+		A = "soy feliz y no soy feliz"
+		A´= "no soy feliz o soy feliz"
+	
+	Es evidente que ambas frases no se refieren a lo mismo, y esta demostrado en la tabla de mas arriva que no son logicamente equivalentes.
+
+11. Sea # el operador binario definido como p#q =def (p ∧ ¬q) ∨ (¬p ∧ q). 
+Def. deimplicacion logica, ver def. 1.7 del Hamilton.
+	 ___________________________________________
+	| p	| q	|p#q|¬p	|¬q | (p ∧ ¬q)	| (¬p ∧ q)	|
+	| F	| F	| F	| V	| V	|	  F		|	  F		|
+	| F	| V	| V	| V	| F	|	  F		|	  V		|
+	| V	| F	| V	| F	| V	|	  V		|	  F		|
+	| V	| V	| F	| F	| F	|	  F		|	  F		|
+	
+	De esta forma tenemos la tabla de verdad de #.
+
+	i- Probar que # es asociativo, es decir, x#(y#z) es logicamente equivalente a (x#y)#z.
+		 ___________________________________________________________
+		| x	| y	| z	|y#z|x#y|x#(y#z)|(x#y)#z|(x#(y#z))<->((x#y)#z)	|
+		| F	| F	| F	| F	| F	|	F	|	F	|			V			|
+		| F	| F	| V	| V	| F	|	V	|	V	|			V			|
+		| F	| V	| F	| V	| V	|	V	|	V	|			V			|
+		| F	| V	| V	| F	| V	|	F	|	F	|			V			|
+		| V	| F	| F	| F	| V	|	V	|	V	|			V			|
+		| V	| F	| V	| V	| V	|	F	|	F	|			V			|
+		| V	| V	| F	| V	| F	|	F	|	F	|			V			|
+		| V	| V	| V	| F	| F	|	V	|	V	|			V			|
+		
+		.: # es asociativo, es decir, x#(y#z) es logicamente equivalente a (x#y)#z.
+	
+	ii- Probar que # es conmutativo, es decir, y#z es logicamente equivalente a z#y.
+		 ___________________________________
+		| x	| y	| z	|y#z|z#y| (y#z)<->(z#y)	|
+		| F	| F	| F	| F	| F	|		V		|
+		| F	| F	| V	| V	| V	|		V		|
+		| F	| V	| F	| V	| V	|		V		|
+		| F	| V	| V	| F	| F	|		V		|
+		
+		.: # es conmutativo, es decir, y#z es logicamente equivalente a z#y.
+
+12. Demostrar que las siguientes formulas son logicamente equivalentes.
+
+	i- (p → q) es logicamente equivalente a (¬p ∨ q)
+		 ___________________________________________________
+		| p	| q	|¬p	|(p → q)| (¬p ∨ q)	|(p → q)<->(¬p ∨ q)	|
+		| F	| F	| V	|	V	|	  V		|		  V			|
+		| F	| V	| V	|	V	|	  V		|		  V			|
+		| V	| F	| F	|	F	|	  F		|		  V			|
+		| V	| V	| F	|	V	|	  V		|		  V			|
+		.: (p → q) es logicamente equivalente a (¬p ∨ q)
+		
+	ii- (p ↔ q) es logicamente equivalente a ((p → q) ∧ (q → p))
+		 ___________________________________________________________________________
+		| p	| q	|(p ↔ q)|  ((p → q) ∧ (q → p))	|  (p ↔ q) <-> ((p → q) ∧ (q → p))	|
+		| F	| F	|	V	|			V			|				  V					|
+		| F	| V	|	F	|			F			|				  V					|
+		| V	| F	|	F	|			F			|				  V					|
+		| V	| V	|	V	|			V			|				  V					|
+		.: (p ↔ q) es logicamente equivalente a ((p → q) ∧ (q → p))
+	
+	iii- (¬(p ∧ q)) es logicamente equivalente a (¬p ∨ ¬q)
+		 ________________________________________________________________
+		| p	| q	|¬p	|¬q	|(¬(p ∧ q))	| (¬p ∨ ¬q)	|(¬(p ∧ q))<->(¬p ∨ ¬q)	|
+		| F	| F	| V	| V	|	  V		|	  V		|			V			|
+		| F	| V	| V	| F	|	  V		|	  V		|			V			|
+		| V	| F	| F	| V	|	  V		|	  V		|			V			|
+		| V	| V	| F	| F	|	  F		|	  F		|			V			|
+		.: (¬(p ∧ q)) es logicamente equivalente a (¬p ∨ ¬q)
+	
+	iv- (¬(p ∨ q)) es logicamente equivalente a (¬p ∧ ¬q)

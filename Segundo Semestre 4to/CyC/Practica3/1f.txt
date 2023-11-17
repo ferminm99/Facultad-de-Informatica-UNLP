@@ -1,0 +1,21 @@
+name: f
+init: q0
+accept: qA
+
+q0,a,_
+q0,a,a,>,>
+
+q0,b,_
+q1,b,a,>,>
+
+q1,b,_
+q1,b,a,>,>
+
+q1,c,_
+q2,c,_,-,<
+
+q2,c,a
+q2,c,a,>,<
+
+q2,_,_
+qA,_,_,-,-
