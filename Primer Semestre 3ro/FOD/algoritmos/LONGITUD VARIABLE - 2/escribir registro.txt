@@ -1,0 +1,22 @@
+procedure escribir_registro(var a : file; e : empleado);
+	var
+		tam : byte;
+	begin
+		// tamaño del registro
+		tam := sizeof(e.cod) + sizeof(e.dni) + (length(e.apellido) + 1) + (length(e.nombre) + 1)  // + 1 byte por cada string
+			+ sizeof(e.peso) + sizeof(e.estatura) + sizeof(e.fecha)
+
+		blockwrite(a, tam, sizeof(tam)); // escribir tamaño del archivo, se podria poner 1 en lugar de ese sizeof ya que ocupa 1 byte
+		 
+		// resto de datos
+
+		// recordar que para los integer se usa sizeof y para strings se usa length
+
+		blockwrite(a, e.cod, sizeof(e.cod));
+		blockwrite(a, e.dni, sizeof(e.dni));
+		blockwrite(a, e.apellido, length(e.apellido)+1);
+		blockwrite(a, e.nombre, length(e.nombre)+1);
+		blockwrite(a, e.peso, sizeof(e.peso));
+		blockwrite(a, e.estatura, sizeof(e.estatura));
+		blockwrite(a, e.fecha, sizeof(e.fecha));
+	end;

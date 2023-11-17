@@ -1,0 +1,15 @@
+procedure escribirRegistro(var aPer: file; var r:rPersona);
+	var
+		tam:integer;
+	begin
+	    tam:= length(r.apellido)+ 1;  // Guarda la longitud del string luego el campo completo
+	    BlockWrite(aPer,tam,sizeOf(tam)); // Guarda tantos bytes como ocupa el tipo de dato integer usado para tam
+	    BlockWrite(aPer,r.apellido,tam);
+	    
+	    tam:= length(r.nombre)+ 1;
+	    BlockWrite(aPer,tam,sizeOf(tam));
+	    BlockWrite(aPer,r.nombre,tam);
+	    
+	    BlockWrite(aPer,r.fnac,sizeOf(r.fnac)); // Guarda tantos bytes como ocupa el tipo de dato longint (fnac)
+
+	end;

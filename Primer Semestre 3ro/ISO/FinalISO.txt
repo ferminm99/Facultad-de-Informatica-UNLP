@@ -1,0 +1,41 @@
+-Sistema Operativo definicion
+-Componentes
+-Sistema operativo: Gestiona HW,controla la ejecucion de procesos,interfaz entre aplicaciones y HW
+-Objetivos
+-Servicios
+						MEMORIA:
+-Elementos basicos de una pc		-El SO debe: ...
+-Registros del procesador		-direcciones logicas y fisicas
+-interrupciones				-Dir logicas vs Fisicas
+					-MMU
+-Problemas que un SO debe evitar	-Particiones fijas y dinamicas
+-Apoyo del hardware			-Fragmentacion
+-modos de ejecucion			-Problemas de reg base + lim
+-Proteccion de memoria,cpu,e/s		-Paginacion
+-system calls				-Segmentacion
+-categorias de system calls		
+					-Motivacion para memoria virtual
+-Evolucion de SO			-Como se puede trabajar
+-Evolucion historica			-Ventajas
+-Multiprogramacion			-Que se necesita para esta?
+-Tiempo compartido			-Memoria Virtual con Paginacion
+					-Page faults
+-Proceso				-Tabla de paginas y tamaño pag
+-Componentes del proceso		-Translation Lookaside Buffer
+-Atributos del proceso			-Asignacion de Marcos
+-PCB					-Reemplazo de paginas (alcance)
+-Espacio de direcciones			-Trashing (hiperpaginacion)
+-Contexto				-Working set y PFF
+-Enfoques de diseño del kernel		-Memoria compartida
+					-Mapeo de archivo a memoria
+-Estados de un proceso			-Copia en escritura
+-Colas de procesos (PCB)		-Area de intercambio
+-Recorrido de los procesos por estado
+
+-Algoritmos apropiativos y no apropiativos
+-Algoritmos de planificacion: los 3 tipos
+
+-Creacion de procesos
+-Actividad de creacion
+-Relacion procesos padre e hijo
+-Procesos cooperativos e independientes

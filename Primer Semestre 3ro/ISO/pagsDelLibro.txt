@@ -1,0 +1,6 @@
+Sistemas operativos: pagina 10 a 58
+Procesos: Pagina 107 a 143, chusmear la 149
+Memoria: Pagina 307 a 327, 339 a 358
+Planificacion: pagina 401 a 427,451 a 463
+E/S: pagina 489 a 522
+Gestion de ficheros: pag 547 a 574

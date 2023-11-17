@@ -1,0 +1,24 @@
+
+#!/bin/bash
+
+# resultado: 48
+numeros=(20 11 7)
+suma=0
+
+for i in ${numeros[*]}
+do
+
+    if [ "$(expr $i % 2)" -eq 0 ]
+    then
+
+        echo "$i"
+
+    else
+
+        suma=$(expr $suma + $i)
+
+    fi
+
+done
+
+echo "la suma de los numeros impares es: $suma"

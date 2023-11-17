@@ -1,0 +1,93 @@
+
+#!/bin/bash
+
+pila=()
+elemento=""
+
+function push() {
+
+    pila[${#pila[*]}]=$1
+
+    return 0
+
+}
+
+function pop() {
+
+    posicion_sacar=$(expr ${#pila[*]} - 1)
+
+    elemento=${pila[$posicion_sacar]}
+    unset pila[$posicion_sacar]
+
+    return 0
+
+}
+
+function print() {
+
+    echo "${pila[*]}"
+
+}
+
+function length() {
+
+    echo "${#pila[*]}"
+
+}
+
+select opcion in "agregar" "sacar" "imprimir" "salir"
+do
+
+    case $opcion in
+        "agregar")
+
+            echo "valor: "
+            read valor
+
+            push $valor
+
+        ;;
+
+        "sacar")
+
+            pop
+
+            echo "valor obtenido: $elemento"
+
+        ;;
+        "imprimir")
+
+            select opcion_imp in "elementos" "tamaño"
+            do
+
+                case $opcion_imp in
+
+                    "elementos")
+
+                        print
+
+                    ;;
+                    "tamaño")
+
+                        length
+
+                    ;;
+
+                esac
+
+                break
+
+            done
+
+        ;;
+        "salir")
+
+            break
+
+        ;;
+
+
+    esac
+
+done
+

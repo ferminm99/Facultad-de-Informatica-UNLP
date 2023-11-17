@@ -1,0 +1,16 @@
+
+#!/bin/bash
+
+vector1=(1 3 5 7 9)
+vector2=(2 4 6 8 10)
+
+#resultado = 3 7 11 15 19
+
+size=${#vector1[*]}
+
+for (( i = 0; i < $size; i++ ))
+do
+
+    echo "la suma de los elementos de la posicion $i de los vectores es $(expr ${vector1[$i]} + ${vector2[$i]})"
+
+done

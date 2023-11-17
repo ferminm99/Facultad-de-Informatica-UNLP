@@ -1,0 +1,38 @@
+procedure eliminar(var a : arch; dni : integer);
+	var
+		r : reg;
+		cabecera : integer;
+		encontrado : boolean;
+
+		pos_eli : integer;
+	begin
+		reset(a); // abrir el archivo
+
+		// leer la cabecera
+		read_reg(a, r);
+		cabecera := r.dni;
+
+		encontrado := false; // setear boolean de encontrado en false
+
+		read_reg(a, r); // leer primer registro
+		while(r.dni <> valor_alto)and(not encontrado) do begin // recorrer hasta encontrar o hasta el final
+			if(r.dni = dni) then
+				encontrado := true
+			else
+				read_reg(a, r);
+		end;
+		if(encontrado) then begin
+			seek(a, filepos(a)-1); // volver una posicion para quedarse apuntando al reg a borrar
+			pos_eli := filepos(a); // guardar el nrr del registro a borrar
+			r.dni := cabecera; // preparar un registro a escribir con el valor de la cabecera
+			write(a, r); // escribir en el lugar del registro borrado el registro con el valor de la cabecera
+			
+			// actualizar cabecera con el nrr del registro borrado
+			seek(a, 0);
+			r.dni := pos_eli * -1;
+			r.nombre := '';
+			write(a, r);
+		
+		end else writeln('no se encontro el dni a eliminar');
+		close(a);
+	end;

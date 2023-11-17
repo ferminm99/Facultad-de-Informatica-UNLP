@@ -1,0 +1,115 @@
+6-
+G= ( N, T, S, P)
+N = {<palabra>, <letra> }
+T = {a,b,c...z,A,B,...,Z}
+S = <palabra>
+P = {
+<palabra>::= <letra> | <palabra><letra>
+<letra> ::= a  | b |...|z |A|B|...|Z
+}
+
+7-
+
+EBNF
+
+G= ( N, T, S, P)
+N = {<real>,<entero>,<decimal>, <digito> }
+T = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+S = <real>
+P = {
+<real>::= <entero>[',' <decimal>]
+<entero>::= [+|-] <digito>{<digito>}*
+<decimal>::= <digito>{<digito>}*
+<digito> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+}
+
+----------------------------------------------
+
+BNF
+
+G= ( N, T, S, P)
+N = {<real>,<entero>,<decimal>, <digito> }
+T = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+S = <real>
+P = {
+<real>::= <signo><entero> | <signo><entero>',' <decimal> | <entero>',' <decimal> | <entero>
+<entero>::=  <digito><entero> | <digito>
+<decimal>::= <digito><decimal> | <digito>
+<signo>::= + | -
+<digito> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+}
+
+10-
+
+Sin prioridad de operadores
+G= ( N, T, S, P)
+N = {<exp>,<letra>,<variable>,<operador>,<valor>,<real>,<entero>,<decimal>, <digito> }
+T = {0,...,9, a,...,z,A,...,Z}
+S = <real>
+P = {
+<exp>::= <valor>[ <operador> <exp>]
+<valor>::= (<real>|<variable>) 
+<variable>::= <letra>{<letra>|<digito>}*
+<operador>::= + | - | * | /
+<real>::= <entero>[',' <decimal>]
+<entero>::= [+|-] <digito>{<digito>}*
+<decimal>::= <digito>{<digito>}*
+<digito> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+<letra>::= a | b |...| z | A | B | ... | Z
+}
+
+Con prioridad de operadores
+G= ( N, T, S, P)
+N = {<exp>,<letra>,<variable>,<operador>,<valor>,<real>,<entero>,<decimal>, <digito> }
+T = {0,...,9, a,...,z,A,...,Z}
+S = <real>
+P = {
+<exp>::= <termino> [(*|/) <exp>]
+<termino>::= <valor> [(+|-) <termino>]
+<valor>::= (<real>|<variable>) 
+<variable>::= <letra>{<letra>|<digito>}*
+<operador>::= + | - | * | /
+<real>::= <entero>[',' <decimal>]
+<entero>::= [+|-] <digito>{<digito>}*
+<decimal>::= <digito>{<digito>}*
+<digito> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+<letra>::= a | b |...| z | A | B | ... | Z
+}
+
+12-
+
+G= ( N, T, S, P)
+N = {<texto>,<atributos>,<nombre_atributo>,<texto>}
+T = {ascii,title,id,class,style,lang,dir}
+S = <div>
+P = {
+<div>::= '<div '{<atributos>}'>' <bloque> '</div>'
+<atributos>::= <nombre_atributo> '="'[<texto>]'";'
+<nombre_atributo>::= title | id | class | style | lang | dir
+<texto>::= {ascii}*
+<bloque>::= ...
+}
+
+13- Creo que no se podia
+
+14-
+función para javascript
+G= ( N, T, S, P)
+N = {}
+T = {}
+S = <cabecera> 
+P = {
+<cabecera> ::= “function ” <variable> “(“ <parametro> {“,” <parametro>}* “)” “{“ <sentencias> “}” 
+<variable> ::= <letra> {<caracter>}*
+<letra> ::= a..z | A..Z | “$” | “_”
+<caracter> ::= ascii
+<parametro> ::= <variable> | <numero>
+<numero> ::= [(+|-)] {<digito>}+ [“,”{<digito>}+]
+<digito> ::= 0..9
+<sentencias> ::= jajaXD
+}
+
+
+
+
+

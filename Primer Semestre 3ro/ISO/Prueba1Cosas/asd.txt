@@ -1,0 +1,145 @@
+#!/bin/bash
+function init(){
+	pila=()
+}
+function push(){
+	pila[ ${#pila[@]} ]=$1
+	return 0	
+}
+function pop(){
+	if[ ${#pila[@]} gt 0]; then
+		unset pila[ ${#pila[@]} ]
+	else
+		echo "La pila esta vacia"
+		return 1
+	fi
+	return 0
+}
+function size(){
+	echo ${$#pila[*]}
+}
+function print(){
+	echo ${$pila[*]}
+}
+
+init 
+usuarios=($(cat /etc/passwd | grep /home | cut -d ":" -f1))
+for i in usuarios; do
+	push $i
+done
+for i in {1..3}; do
+	pop
+	if [ $? ne 0]; then
+		break
+	fi
+done
+size
+
+
+///
+
+while true; do
+	if [ -n $(ps -eo comm | grep my-service)  ]; then
+		killall -9 my-service
+		if [ -e /var/log/my-service/my-service.log ]; then do
+			tar -cvzf /var/my-service/history /var/log/my-service/
+			rm -r /var/log/my-service/ 
+			-x /bin/my-service/process-my-service-log.sh
+		fi
+	fi
+	sleep 30min
+done
+
+///
+
+#!/bin/bash
+arreglo=($( cat /etc/passwd | grep /home | cut -d ":" -f1))
+
+
+function existe(){
+for i in arreglo; do
+	if[ $i = $1]; then 
+		return 1
+	fi
+done
+return 2
+}
+
+function ejecutar(){
+	if[ $(ps -u $1 -o comm | grep $2) ]; then 
+		return 1
+	else
+		return 0
+	fi
+}
+
+function cantidad(){
+	echo ${#arreglo[@]}
+}
+
+function todos(){
+	echo ${arreglo[*]}
+}
+
+///
+
+
+#!/bin/bash
+
+if[ $1 = "C"]; then
+	echo "Ingrese los farenheit"
+	read far
+	C= $( expr $(expr 5 \* $( expr $far - 32 )) / 9 )
+	echo $C	
+elif [ $1 = "F" ]; then
+	echo "Ingrese los celsius"
+	read cel
+	F= $( expr $(expr $(expr 9 \* $cel ) / 5 ) + 32 )
+	echo $F
+fi
+
+///
+#!bin/bash
+cant=0
+while true; do
+	if [ $(ps -eo comm | grep apache) ]; then
+		let cant++
+	if [ cant ne 10 ]; then
+		sleep 5
+	else
+		echo "El proceso apache se encontro corriendo 10 ocasiones"
+		break	
+	fi
+done
+exit 50
+
+
+///
+
+#!/bin/bash
+flag=$1
+if [ -z flag ]; then
+	exit 1
+else
+	if[ $flag = "-m" ]; then
+		echo musica
+	fi
+	elif [ $flag = "-v"]; then
+		echo video
+	fi
+fi
+if [ -z $2 ]
+	exit 2
+fi 
+lista=()
+for ( i=1; i<$#; i++); do
+	lista[i-1]=$i
+done
+
+
+for i in $lista; do 
+	if[]
+done
+
+
+

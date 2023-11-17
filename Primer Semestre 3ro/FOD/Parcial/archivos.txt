@@ -1,0 +1,26 @@
+--------------------------------Practica1:-------------------------------------------------
+Ejercicio3y4: contiene todo lo de listar, modificar empleado, añadir empleado,etc.
+Ejercicio5y6: contiene todo lo de listar pero con mas cosas todavia y crea archivo desde un archivo txt
+Ejercicio 7: mas de lo mismo
+
+-------------------------------Practica 2--------------------------
+
+ejercicio 2: vector de detalles para actualizar archivo maestro
+ejercicio 4: lo mismo que el 2 pero con 2 comprobaciones en el minimo, una ubicacion fisica y un quilombo de la fecha minimo
+ejercicio 5: archivo maestro y detalles con todo lo de listar
+ejercicio 6,7: version pito del 8 (el 6 incluye arch detalles)
+ejercicio 8: lo de informar teniendo orden por varias cosas y usar un vector que generamos en base a un archivo
+ ejercicio 9: lo del 8 pero con vector de archivos detalle
+ejercicio 10: version nazi del 7,8.
+ejercicio 11: mas o menos lo mismo pero con 2 detalles separados y una ubicacion fisica
+ejercicio 12: = a los anteriores pero con vector de detalles
+ejercicio 13 y 14: los mas completos en todo pero no tienen listar.
+
+-------------------------------Practica 3------------------------
+
+ejercicio 1: baja de un registro copiando el ultimo en la posicion del que borras
+ejercicio 2: eliminar de forma logica
+ejercicio 3: tecnica de lista invertida (0 al inicio), dar de alta, modificar y dar de baja
+ejercicio4y5: lo mismo que el de arriba pero con string
+ejercicio6: version mas completa
+ejercicio7: version mas completa 2

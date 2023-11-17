@@ -1,0 +1,48 @@
+
+#!/bin/bash
+
+if [ $# -lt 1 ]
+then
+
+    echo "error: se requiere al menos un argumento"
+
+    exit 1
+
+fi
+
+arguments=($*)
+quant_nonexistent=0
+
+for ((i = 0; i < ${#arguments[*]}; i++))
+do
+    if [ $(expr $i % 2) -eq 0 ]
+    then
+
+        if [ -e "${arguments[$i]}" ]
+        then
+
+            if [ -d "${arguments[$i]}" ]
+            then
+
+                type="directorio"
+
+            else
+
+                type="archivo"
+
+            fi
+
+            echo "la ruta \"${arguments[$i]}\" existe y es un $type"
+
+        else
+
+            let "quant_nonexistent++"
+
+        fi
+
+    fi
+
+done
+
+echo "cantidad inexistente: $quant_nonexistent"
+

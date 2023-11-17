@@ -1,0 +1,535 @@
+		2: 0 (320) 1 (490) 4 (555) 5 (641) 3
+0: (13)(153) 1: (325)(341)(431)(460) 4: (500)(507) 5: (608)(633) 3: (790)(923)
+
+Operaciones:
+árbol B de orden 5
+resolución de underflow debe utilizar política a izquierda
++445, -490, -507, -608. 
+
++445= Overflow nodo 1,(325)(341)(431)(445)(460), se crea nodo 6, (431) es padre, overflow nodo 2,  (320) (431) (490) (555) (641), se crea nodo 7, sube 490 como padre al nuevo nodo 8.
+
+L2,L1,E1,E6,E2,E7,E8
+			         8: 2(490)7
+	2: 0 (320) 1 (431)      		7: 4 (555) 5 (641) 3
+0: (13)(153) 1: (325)(341)   6:(445)(460) 	4: (500)(507) 5: (608)(633) 3: (790)(923)
+
+-490= Se elimina el nodo sin inconvenientes
+L8,L7,L4,E4,E8
+			         8: 2(500)7
+	2: 0 (320) 1 (431)      		7: 4 (555) 5 (641) 3
+0: (13)(153) 1: (325)(341)   6:(445)(460) 	4: (507) 5: (608)(633) 3: (790)(923)
+
+-507= Underflow nodo 4, 555 608 633, se redistribuye con el nodo derecho y queda 608 como padre
+L8,L7,L4, L5, E4, E5, E7
+			        8: 2(500)7
+	2: 0 (320) 1 (431)      		7: 4 (608) 5 (641) 3
+0: (13)(153) 1: (325)(341)   6:(445)(460) 	4: (555) 5:(633) 3: (790)(923)
+
+-608= Underflow nodo 5, se produce una union con el nodo izquierdo en el nodo 4, se libera el nodo 5
+L8,L7,L5, L4, E4, E5 LIBERADO, E7
+			        8: 2(500)7
+	2: 0 (320) 1 (431)      		7: 4 (641) 3
+0: (13)(153) 1: (325)(341)   6:(445)(460) 	4: (555)(633) 3: (790)(923)
+
+8-
+árbol B+ de orden 4 y con política de resolución de underflows a derecha
+Operaciones: +150, -500.
+
+		4: 0 (340) 1 (400) 2 (500) 3
+0: (11)(50)(77) 1 1: (340)(350)(360) 2 2: (400)(410)(420) 3 3: (520)(530) -1
+
++150 = Overflow nodo 0,  (11)(50)(77)(150), se crea nodo 5, 77 sube como padre, 0 (77) 5 (340) 1 (400) 2 (500), se crea nodo 6, 400 sube como padre en el nuevo nodo 7
+L4, L0, E0, E5, E4, E6, E7
+			       7: (400)
+		4: 0 (77) 5 (340) 1                           6: 2 (500) 3
+0: (11)(50)  5: (77)(150) 1 1: (340)(350)(360) 2 2: (400)(410)(420) 3 3: (520)(530) -1
+
+9- Dado el siguiente árbol B de orden 4, mostrar como quedaría el mismo luego de realizar
+las siguientes operaciones: +2, +10, +95, +60, -40, -102.
+Ante disparidad de carga, el nodo izquierdo debe quedar más cargado.
+Política de resolución de underflows: derecha.
+
+	   2: 0 (56) 1
+0: (23)(34)(40) 	1: (67) (89) (102)
+
++2: Overflow nodo 0, (2)(23)(34)(40), se crea nuevo nodo 3 y sube 34 como padre al nodo 2
+L2,L0,E0,E3,E2
+
+		         2: 0 (34) 3 (56) 1
+0: (2)(23)		        3: (40) 		1: (67) (89) (102)
+
++10: 
+L2,L0,E0
+
+ 		         2: 0 (34) 3 (56) 1
+0: (2)(10)		       3: (40) 		1: (67) (89) (102)
+
++95: Overflow nodo 1, (67) (89) (95) (102), se crea nuevo nodo 4 y sube como padre el 95
+L2,L1,E1,E4,E2
+
+			      2:  0 (34) 3 (56) 1 (95)
+0: (2)(10)		      3: (40) 		1: (67) (89)    	4:(102)
+
++60: 
+L2,L1,E1
+
+			2:  0 (34) 3 (56) 1 (95)
+0: (2)(10)		      3: (40) 		1: (60)(67) (89)    	4:(102)
+
+-40: Underflow nodo 3, redistribuye con el nodo 1, 34 60 67 89, 67 sube como padre
+L2,L3,L1,E3,E1,E2
+			2: 0 (67) 3 (56) 1 (95)
+0: (2)(10)		      3: (34)(60)	1:  (89)    	4:(102)
+
+-102: Se produce underflow en el nodo 4, se une con el nodo 1
+L2,L4,L1,E1, E4 LIBERADO, E2
+
+		2: 0 (67) 3 (56) 1 
+0: (2)(10)		      3: (34)(60)    1:  (89) (95) 
+
+
+
+10-
+Dado el siguiente árbol B de orden 6, mostrar como quedaría el mismo luego de realizar
+las siguientes operaciones: +15, +71, +3, +48, -56, -71.
+Política de resolución de underflows: derecha o izquierda
+Ante disparidad de carga, el nodo izquierdo debe quedar más cargado.
+
+0: (34) (56) (78) (100) (176)
+
++15 = Overflow nodo 0, (15) (34) (56) (78) (100) (176), se crea nodo 1 y 78 sube como padre al nuevo nodo 2
+L0, E0, E1, E2
+
+	2: (78) 
+0: (15) (34) (56) 1: (100) (176)
+
++71: 
+L2,L0,E0
+
+ 		2: 0 (78) 1
+0: (15) (34) (56) (71)            1: (100) (176)
+
++3: 
+L2,L0,E0
+
+ 		2: 0 (78) 1
+0: (3) (15) (34) (56) (71)            1: (100) (176)
+
++48: Overflow nodo 0, (3) (15) (34) (48) (56) (71), se crea nuevo nodo 3 y sube 48 como padre al nodo 2
+L2,L0,E0,E3,E2
+
+ 		2: 0 (48) 3 (78) 1
+0: (3) (15) (34)     	    3: (56) (71)            1: (100) (176)
+
+-56: Se elimina el 56 y produce underflow en el nodo 3, se redistribuye con el de la izquierda, (3) (15) (34) (48) (71), 34 queda como padre   
+L2,L3,E3,L1,L0,E0,E3,E2
+
+		2: 0 (34) 3 (78) 1
+0: (3) (15)     	    3: (48) (71)            1: (100) (176)
+
+-71: Se elimina el 71, se produce underflow y se produce una union con el de la derecha
+L2,L3,E3, L1, L0, E3, E1 LIBERADO, E2
+
+		2: 0 (34) 3 
+0: (3) (15)     	    3: (48) (78) (100) (176) 
+
+11- Dado el siguiente árbol B de orden 5, mostrar como quedaría el mismo luego de realizar
+las siguientes operaciones: +450, -485, -511, -614.
+Ante disparidad de carga, el nodo izquierdo debe quedar más cargado.
+Política de resolución de underflows: derecha.
+
+				2: 0 (315) 1 (485) 4 (547) 5 (639) 3
+0: (148)(223) 	1: (333)(390)(442)(454) 	4: (508)(511) 	5: (614)(633) 	3: (789)(915)
+
++450: Overflow en nodo 1, (333)(390)(442)(450)(454), se crea nuevo nodo 6 y 442 sube como padre, se produce overflow en el nodo 2, (315) (442) (485) (547) (639), se crea nuevo nodo 7 y sube 485 como padre
+
+						8: (485)
+		2: 0 (315) 1 (442) 6   				         7: 4 (547) 5 (639) 3
+0: (148)(223) 	1: (333)(390)	 6: (450)(454) 		4: (508)(511) 	5: (614)(633) 	3: (789)(915)
+
+
+-485: 
+L8,L7,L4,E4,E8
+
+						8: (508)
+		2: 0 (315) 1 (442) 6   				         7: 4 (547) 5 (639) 3
+0: (148)(223) 	1: (333)(390)	 6: (450)(454) 		4: (511) 	5: (614)(633) 	3: (789)(915)
+
+-511: Underflow nodo 4, (547)(614)(633), sube 614 como padre
+L8,L7,L4,E4,L5,E4,E5,E7
+
+						8: (508)
+		2: 0 (315) 1 (442) 6   				         7: 4 (614) 5 (639) 3
+0: (148)(223) 	1: (333)(390)	 6: (450)(454) 		4: (547)	5: (633) 	3: (789)(915)
+
+-614: Underflow nodo 4, se une con nodo 5
+L8,L7,L4,E4,E7,L5,E4,E5 LIBERADO, E7
+
+
+						8: (508)
+		2: 0 (315) 1 (442) 6   				7: 4 (639) 3
+0: (148)(223) 	1: (333)(390)	 6: (450)(454) 		4: (547) (633) 	3: (789)(915)
+
+
+12-  Dado el siguiente árbol B de orden 5 , mostrar como quedaría el mismo luego de
+realizar las siguientes operaciones: +15, -45, -50.
+Ante disparidad de carga, el nodo izquierdo debe quedar más cargado.
+Política de resolución de underflows: izquierda.
+
+		2: 0 (56) 1
+0:(10)(35)(45)(50)			1: (66) (70) (88)(120)
+
++15: Overflow nodo 0, (10)(15)(35)(45)(50), se crea nuevo nodo 3 y sube 35 como padre
+L2,L0,E0,E3,E2
+
+			2: 0 (35) 3 (56) 1
+0:(10)(15)		3: (45)(50)		1: (66) (70) (88)(120)
+
+-45: 
+
+			2: 0 (35) 3 (56) 1
+0:(10)(15)		3: (50)		1: (66) (70) (88)(120)
+
+-50: Underflow nodo 3, se redistribuye con el nodo de la izquierda, 10 15 35, el 15 sube como padre
+
+	           2: 0 (15) 3 (56) 1
+0:(10)		3: (35)		1: (66) (70) (88)(120)
+
+13-  Dada las siguientes operaciones, mostrar la construcción paso a paso de un árbol B de
+orden 4: +50 , +70, +40, +15, +90, +120, +115, +45, +30, +100, +112, +77, -45, -40, -50, -90, -100.
+Ante disparidad de carga, el nodo izquierdo debe quedar más cargado.
+Política de resolución de underflows: izquierda o derecha.
+
++50,+70,+40:
+L0,E0 x3
+	0: (40) (50) (70)
+
++15: Overflow nodo 0, (15) (40) (50) (70), se crea el nuevo nodo 1 y sube 50 al nuevo nodo 2 como padre.
+
+L0,E0,E1,E2
+	2: 0 (50) 1
+0: (15) (40) 	1:(70)
+
++90,120: 
+L2,L1, E1 x2
+	2: 0 (50) 1
+0: (15) (40) 	1:(70) (90) (120)
+
++115: Overflow nodo 1, (70) (90) (115) (120), se crea el nuevo nodo 3 y sube 115 como padre.
+
+L2,L1,E1,E3,E2
+	           2: 0 (50) 1 (115) 3
+0: (15) (40) 	1:(70) (90) 	3: (120)
+
++45: 
+L2,L0,E0
+	           2: 0 (50) 1 (115) 3
+0: (15) (40) (45)	1:(70) (90) 	3: (120)
+
++30: Overflow nodo 0, (15) (30) (40) (45), se crea nuevo nodo 4 y sube 40 como padre al nodo 2.
+L2,L0,E0,E4,E2
+	           	2: 0 (40) 4 (50) 1 (115) 3
+0: (15) (30)          4: (45)	  1:(70) (90) 	3: (120)
+ 
++100: 
+L2,L1,E1
+
+	           	2: 0 (40) 4 (50) 1 (115) 3
+0: (15) (30)          4: (45)	  1:(70) (90) (100)	3: (120)
+
++112: Overflow nodo 1,(70) (90) (100) (112),  se crea nuevo nodo 5 y sube el nodo 100 como padre al nodo 2, se produce overflow,(40) (50) (100) (115), se crea nuevo nodo 6 y sube 100 como padre.
+L2,L1,E1,E5,E2,E6,E7
+			7: 2 (100) 6
+	           	2: 0 (40) 4 (50) 1             	6: 5 (115) 3
+0: (15) (30)          4: (45)	  1:(70) (90)        5:(112)	3: (120)
+
++77: 
+L7,L2,L1,E1
+			7: 2 (100) 6
+	           	2: 0 (40) 4 (50) 1             	6: 5 (115) 3
+0: (15) (30)          4: (45)	  1:(70) (77) (90)        5:(112)	3: (120)
+
+-50, -90, -100.
+
+-45: Underflow nodo 4, se redistribuye con el nodo izquierdo, 15 30 40, 30 como padre.
+L7,L2,L4, L0, E0, E4, E2
+			7: 2 (100) 6
+	  2: 0 (30) 4 (50) 1             		6: 5 (115) 3
+0: (15)         4:(40) 	  1:(70) (77) (90)             5:(112)	3: (120)
+
+-40: Underflow nodo 4, se redistribuye con el nodo 1, (50) (70) (77) (90), 77 sube como padre.
+L7,L2,L4, L0, L1, E4, E1, E2
+
+			7: 2 (100) 6
+	  2: 0 (30) 4 (77) 1             	6: 5 (115) 3
+0: (15)         4: (50)(70)  1: (90)             5:(112)	3: (120)
+
+-50: 
+L7,L2,E4
+			7: 2 (100) 6
+	  2: 0 (30) 4 (77) 1             	6: 5 (115) 3
+0: (15)         4: (70)  1: (90)             5:(112)	3: (120)
+
+-90: Underflow nodo 4, se une con el nodo 4, 70 77 90, sube 70 como padre.
+L7,L2,L1,E1,L4,E4,E1 LIBERADO ,E2
+		      7: 2 (100) 6
+	  2: 0 (30) 4 	           	6: 5 (115) 3
+0: (15)         4: (70) (77) 	         5:(112)	3: (120)
+
+-100: Underflow nodo 5, se une con el nodo 3, se produce underflow en el nodo 6
+L7, L6, L5, E5, L3, E3 LIBERADO, E6, L2, E2, E6 LIBERADO, E7 LIBERADO
+
+	        2: 0 (30) 4 (112) 5	        
+0: (15)         4: (70) (77)	 5:(115) (120)
+
+14-
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+
+15- Dado el siguiente árbol B de orden 6, mostrar como quedaría el mismo luego de realizar
+las siguientes operaciones: +300, +577, -586, -570, -380, -460.
+Ante disparidad de carga, el nodo izquierdo debe quedar más cargado.
+Política de resolución de underflows: izquierda o derecha.
+							2: 0 (216) 1 (460) 4 (570) 5 (689) 3 (777) 6
+0: (100)(159)(171)		1: (222)(256)(358)(380)(423)		4: (505)(522)	5: (586)(599)(615)(623)(680)		3: (703)(725)	6: (789)(915)(1000)
+
++300: Overflow nodo 1, (222)(256)(300)(358)(380)(423), se crea nuevo nodo 7 y sube 358 como padre, produce overflow,(216) (358) (460) (570) (689) (777), se crea nuevo nodo 8 y sube como padre 570.
+L2,L1,E1,E7,E2,E8,E9
+
+								9: 2 (570) 8
+			2: 0 (216) 1 (358) 7 (460) 4 								8: 5 (689) 3 (777) 6
+0: (100)(159)(171)	1: (222)(256)(300)        7: (380)(423)	4: (505)(522)			5: (586)(599)(615)(623)(680)		3: (703)(725)	6: (789)(915)(1000)
+
++577: Se produce overflow en el nodo 5, (577)(586)(599)(615)(623)(680), sube 615 como padre.
+
+L9,L8,L5,E5, E10, E8
+								9: 2 (570) 8
+			2: 0 (216) 1 (358) 7 (460) 4 								8: 5 (615) 9 (689) 3 (777) 6
+0: (100)(159)(171)	1: (222)(256)(300)        7: (380)(423)	4: (505)(522)			5: (577)(586)(599)	         10: (623)(680)		3: (703)(725)	6: (789)(915)(1000)
+
+-586: 
+L9,L8,L5,E5
+								9: 2 (570) 8
+			2: 0 (216) 1 (358) 7 (460) 4 								8: 5 (615) 9 (689) 3 (777) 6
+0: (100)(159)(171)	1: (222)(256)(300)        7: (380)(423)	4: (505)(522)			5: (577)(599)	         10: (623)(680)		3: (703)(725)	6: (789)(915)(1000)
+
+-380: Underflow nodo 7, redistribuye con el de la izquierda, (222)(256)(300)(358)(423), 300 sube como padre
+L9,L2,L7,E7,L1,E1,E7,E2
+
+								9: 2 (570) 8
+			2: 0 (216) 1 (300)  7 (460) 4 								8: 5 (615) 9 (689) 3 (777) 6
+0: (100)(159)(171)	1: (222)(256)        7: (423)(358)	4: (505)(522)			5: (577)(599)	         10: (623)(680)		3: (703)(725)	6: (789)(915)(1000)
+
+-460: Underflow nodo 4, se une con el nodo 7.
+L9,L2,L4,L7,E7,E4 LIBERADO,E2
+
+
+								9: 2 (570) 8
+			2: 0 (216) 1 (300)  7 									8: 5 (615) 9 (689) 3 (777) 6
+	0: (100)(159)(171)	1: (222)(256)        7: (423)(358)(505)				5: (577)(599)	         10: (623)(680)		3: (703)(725)	6: (789)(915)(1000)
+
+16,17-
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+---------------------------
+18-Dada las siguientes operaciones, mostrar la construcción paso a paso de un árbol B+
+de orden 4:
++67, +56, +96, +10, +28, +95, +16, +46, +23, +36, +120, +130, +60, +57, -96, -67, -95, -60,
+-120, -57, -56.
+Ante disparidad de carga, el nodo derecho debe quedar más cargado.
+Política de resolución de underflows: derecha o izquierda.
+
++67
+E0
+	0: (67)
+
++56
+L0,E0
+	0: (56) (67)
++96
+L0,E0
+	0: (56) (67) (96)
++10 = Overflow nodo 0,(10) (56) (67) (96), crea nuevo nodo 1 y sube 56 como padre
+L0,E0,E1,E2
+	   2: 0 (56) 1
+0: (10) (56) 	1: (67) (96)
+
++28: 
+L2,L0,E0
+	   2: 0 (56) 1
+0: (10) (28) (56) 	1: (67) (96)
+
++95: 
+L2, L1, E1
+	   2: 0 (56) 1
+0: (10) (28) (56) 	1: (67) (95) (96)
+
++16: Overflow nodo 0, (10) (16) (28) (56), se crea nuevo nodo 3 y sube como padre el 16.
+L2, L0, E0, E3, E2
+	   2: 0 (16) 3 (56) 1
+0: (10) (16)      3: (28) (56) 	1: (67) (95) (96)
+
++46: 
+L2,L3,E3
+	   	2: 0 (16) 3 (56) 1
+0: (10) (16)      3: (28) (43) (56) 	1: (67) (95) (96)
+
++23: Overflow nodo 3 (23) (28) (43) (56), se crea nuevo nodo 4 y sube 28 como padre.
+L2,L3,E3, E4, E2
+	   	2: 0 (16) 3 (28) 4 (56) 1
+0: (10) (16)      3: (23) (28)   4: (43) (56) 	1: (67) (95) (96)
+
++36: 
+L2,L4,E4
+	   	      2: 0 (16) 3 (28) 4 (56) 1
+0: (10) (16)      3: (23) (28)   	4:(36) (43) (56) 	1: (67) (95) (96)
+
++120: Overflow nodo 1, (67) (95) (96) (120), se crea nuevo nodo 5 y sube como padre 95, overflow en nodo 2, (16)(28)(56)(95), se crea nuevo nodo 6 y sube como padre el 28 a otro nuevo nodo 7.
+L2,L1,E1,E5,E2,E6,E7
+			7: 2 (28) 6
+	2: 0 (16) 3    				6: 4 (56) 1 (95) 5
+0: (10) (16)      3: (23) (28)   		4:(36) (43) (56) 	1: (67) (95) 	5: (96) (120)
+
++130: 
+L7,L6,L5,E5
+			7: 2 (28) 6
+	2: 0 (16) 3    				6: 4 (56) 1 (95) 5
+0: (10) (16)      3: (23) (28)   		4:(36) (43) (56) 	1: (67) (95) 	5: (96) (120) (130)
+
++60:
+L7,L6,L1,E1
+			7: 2 (28) 6
+	2: 0 (16) 3    				6: 4 (56) 1 (95) 5
+0: (10) (16)      3: (23) (28)   		4:(36) (43) (56) 	1: (60) (67) (95) 	5: (96) (120) (130)
+
++57: Overflow nodo 1, (57) (60) (67) (95), crea nuevo nodo 8 y sube como padre el nodo 60.
+L7,L6,L1,E1,E8,E6
+			7: 2 (28) 6
+	2: 0 (16) 3    				6: 4 (56) 1  (60) 8 (95) 5
+0: (10) (16)      3: (23) (28)   		4:(36) (43) (56) 	1: (57) (60)     8: (67) (95) 	5: (96) (120) (130)
+
+-96: 
+L7, L6, L5, E5
+			7: 2 (28) 6
+	2: 0 (16) 3    				6: 4 (56) 1  (60) 8 (95) 5
+0: (10) (16)      3: (23) (28)   		4:(36) (43) (56) 	1: (57) (60)     8: (67) (95) 	5: (120) (130)
+
+-67:
+L7, L6, L8, E8
+			7: 2 (28) 6
+	2: 0 (16) 3    				6: 4 (56) 1  (60) 8 (95) 5
+0: (10) (16)      3: (23) (28)   		4:(36) (43) (56) 	1: (57) (60)     8: (95) 	5: (120) (130)
+
+-95, -60, -120, -57, -56.
+
+-95: Underflow nodo 8, se redistribuye con el de la izquierda.
+L7,L6,L8,L5,E8,E5,E6
+			7: 2 (28) 6
+	2: 0 (16) 3    				6: 4 (56) 1  (60) 8 (120) 5
+0: (10) (16)      3: (23) (28)   		4:(36) (43) (56) 	1: (57) (60)     8: (120) 	5: (130)
+
+-60:
+L7,L6,L1,E1
+			7: 2 (28) 6
+	2: 0 (16) 3    			6: 4 (56) 1  (60) 8 (120) 5
+0: (10) (16)      3: (23) (28)   		4:(36) (43) (56) 	1: (57)     8: (120) 	5: (130)
+
+-120:  Underflow nodo 8, une con el nodo 5.
+L7,L6,L8, L5, L1, E8, E5 LIBERADO, E6
+			7: 2 (28) 6
+	2: 0 (16) 3    			6: 4 (56) 1  (60) 8 
+0: (10) (16)      3: (23) (28)   		4:(36) (43) (56) 	1: (57)     8: (130) 
+
+-57: Underflow nodo 1, redistribuye con el nodo 4, (36) (43) (56), sube 43 como padre.
+L7,L6,L1, L8,L4,E4,E1,E6
+			7: 2 (28) 6
+	2: 0 (16) 3    			6: 4 (43) 1  (60) 8 
+0: (10) (16)      3: (23) (28)   		4:(36) (43)	1: (56)     8: (130) 
+
+-56: Underflow nodo 1
+L7,L6,L1,L8,L4, E4, E1, E6
+			7: 2 (28) 6
+	2: 0 (16) 3    			6: 4 (43) 1  (60) 8 
+0: (10) (16)      3: (23) (28)   		4:(36) (43)	1: (56)     8: (130) 
+
+
+19. Dado el siguiente árbol B+ de orden 4, mostrar cómo quedaría definido el árbol luego
+de realizar las siguientes operaciones: -56, -23, -1.
+	2: 0 (56) 1
+0: (1)(23) 1 	1: (56) (75) (107)
+
+-56:
+L2,L1,E1
+	2: 0 (56) 1
+0: (1)(23) 1 	1: (75) (107)
+
+-23: 
+L2,L0,E0
+        2: 0 (56) 1
+0: (1) 1 	1: (75) (107)
+
+-1: Se produce underflow en 0, redistribuye con 1, (56) (75) (107), 75 queda como padre
+L2,L0,L1,E0,E1,E2
+        2: 0 (75) 1
+0: (56) 1 	1:  (107)
+
+20. Dado el siguiente árbol B+ de orden 4 , mostrar como quedaría el árbol luego de
+realizar cada operación : +96, -10, -67, -23, -37.
+
++96: 
+L2,L1,E1
+	2: 0 (37) 3 (67) 1
+0: (10)(23) 3 3: (37)(45) 1 1: (67) (77) (96)
+
+-10: 
+L2,L0,E0
+	2: 0 (37) 3 (67) 1
+0: (23) 3 3: (37)(45) 1 1: (67) (77) (96)
+
+-67: 
+L2,L1,E1
+	2: 0 (37) 3 (67) 1
+0: (23) 3 3: (37)(45) 1 1: (77) (96)
+
+-23: Underflow en nodo 0, redistribuyo con el nodo 3.
+L2,L0,L3,E0,E3,E2
+	2: 0 (45) 3 (67) 1
+0: (37) 3 3: (45) 1 1: (77) (96)
+
+-37: Underflow nodo 0, union con nodo 3.
+L2,L0,L3,E0,E3 LIBERADO,E2
+
+	2: 0 (45) 3 (67) 1
+       0: (45) 1 	1: (77) (96)
+
+
+
+
+
+
+
+
+
+
+

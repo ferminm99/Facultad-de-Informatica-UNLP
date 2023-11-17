@@ -1,0 +1,90 @@
+
+#!/bin/bash
+
+function buscar_archivo() {
+
+    for ((i = 0; i < ${#archivos[*]}; i++))
+    do
+
+        if [ "${archivos[$i]}" = "$1" ]
+        then
+
+            posicion_archivo="$i"
+
+            return 0
+
+        fi
+
+    done
+
+    return 1
+
+}
+
+function ver_archivo() {
+
+    buscar_archivo $1
+
+    if [ $? -ne 0 ]
+    then
+
+        echo "archivo no encontrado"
+
+        return 5
+
+    fi
+
+    echo $1
+
+    return 0
+
+}
+
+function cantidad_archivos() {
+
+    echo "${#archivos[*]}"
+
+    return 0
+
+}
+
+function borrar_archivo() {
+
+    buscar_archivo $1
+
+    if [ $? -ne 0 ]
+    then
+
+        echo "archivo no encontrado"
+
+        return 10
+
+    fi
+
+    echo "¿desea eliminar el archivo logicamente?"
+    select opcion in "si" "no"
+    do
+
+        if [ $opcion = "no" ]
+        then
+
+            rm $directorio/$1
+
+        fi
+
+        unset archivos[$posicion_archivo]
+
+        break
+
+    done
+
+    return 0
+
+}
+
+directorio="/home"
+extension="doc"
+
+archivos=($(grep -r *.doc /home )
+
+archivos=($(ls $directorio -p | grep / -v | grep -e "\.$extension\$"))

@@ -1,0 +1,90 @@
+
+#!/bin/bash
+
+function inicializar() {
+
+    arreglo=()
+
+    return 0
+
+}
+
+function agregar_elemento() {
+
+    arreglo[${#arreglo[*]}]=$1
+
+    return 0
+
+}
+
+function eliminar_elemento() {
+
+    if [ $1 -ge 0 ] && [ $1 -lt ${#arreglo[*]} ]
+    then
+
+        unset arreglo[$1]
+
+    else
+
+        return 1
+
+    fi
+
+    return 0
+
+}
+
+function longitud() {
+
+    echo "${#arreglo[*]}"
+
+    return 0
+
+}
+
+function imprimir() {
+
+    echo "${arreglo[*]}"
+
+    return 0
+
+}
+
+function inicializar_con_valores() {
+
+    valores=""
+
+    for ((i=0; i < $1; i++))
+    do
+
+        valores="$valores$2 "
+
+    done
+
+    arreglo=($valores)
+
+    return 0
+
+}
+
+inicializar
+agregar_elemento "gallina"
+agregar_elemento "perro"
+agregar_elemento "cocodrilo"
+agregar_elemento "gabiota"
+agregar_elemento "delfin"
+imprimir
+longitud
+eliminar_elemento -1
+echo "resultado tras \"eliminar_elemento -1\": $?"
+eliminar_elemento 10
+echo "resultado tras \"eliminar_elemento 10\": $?"
+imprimir
+longitud
+eliminar_elemento 2
+imprimir
+longitud
+
+inicializar_con_valores "8" "oso"
+imprimir
+longitud

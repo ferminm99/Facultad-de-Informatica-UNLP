@@ -1,0 +1,71 @@
+
+#!/bin/bash
+
+if [ $# -eq 0 ]
+then
+
+    echo "error: se requieren argumentos"
+
+    exit 1
+
+elif [ $1 = "-b" ] && [ $# -eq 1 ]
+then
+
+    echo "error: la opcion \"-b\" requiere un argumento"
+
+    exit 2
+
+fi
+
+group_name="users"
+group_line=$(cat /etc/group | grep -e "^$group_name:")
+
+if [ -z $group_line ]
+then
+
+    echo "error: el grupo \"$group_name\" no existe"
+
+    exit 3
+
+fi
+
+users=($(echo $group_line | cut -d : -f 4 | tr "," " "))
+
+case $1 in
+    "-b")
+
+        if [ -n "${users[$2]}" ]
+        then
+
+            echo "${users[$2]}"
+
+        else
+
+            echo "error: el elemento de la posicion $2 no existe"
+
+            exit 5
+
+        fi
+
+    ;;
+
+    "-l")
+
+        echo "${#users[*]}"
+
+    ;;
+    "-i")
+
+        echo "${users[*]}"
+
+    ;;
+    *)
+
+        echo "error: opcion \"$1\" no valida"
+
+        exit 4
+
+    ;;
+esac
+
+exit 0

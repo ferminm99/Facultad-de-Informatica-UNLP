@@ -1,0 +1,15 @@
+1) Se incrementa en uno el valor asociado a la cubeta saturada.
+2) Se genera una nueva cubeta con el mismo valor asociado a la cubeta saturada.
+
+
+Si hay que aumentar direcciones:
+
+Se compara el valor de la cubeta con el valor asociado a la tabla -> El primero es mayor que el segundo.
+La tabla no dispone de entradas suficientes para direccionar a la nueva cubeta.
+La tabla tiene una celda única, y como se dispone ahora de dos nodos, hace falta generar más direcciones. 
+La cantidad de celdas de la tabla se duplica y el valor asociado a la tabla se incrementa en uno. 
+
+sino hay que aumentar direcciones:
+
+El valor asociado a ambas cubetas coincide con el valor asociado a la tabla en memoria. Por lo tanto:
+La tabla posee direcciones suficientes para direccionar a la nueva cubeta y la cantidad de celdas NO debe ser duplicada!

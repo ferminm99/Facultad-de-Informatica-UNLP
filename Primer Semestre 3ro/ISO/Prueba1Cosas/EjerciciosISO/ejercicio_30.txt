@@ -1,0 +1,46 @@
+
+#!/bin/bash
+
+subdirectorio="bin"
+
+if [ ! -d ~/$subdirectorio ]
+then
+
+    mkdir ~/$subdirectorio
+
+fi
+
+archivos=$(ls)
+archivos_movidos="0"
+
+for i in $archivos
+do
+
+    if [ -f "$i" ] && [ -x "$i" ]
+    then
+
+        mv $i ~/$subdirectorio/
+
+        if [ $? -eq 0 ]
+        then
+
+            echo $i
+
+            let "archivos_movidos++"
+
+        fi
+
+    fi
+
+done
+
+if [ $archivos_movidos -gt 0 ]
+then
+
+    echo "se han movido $archivos_movidos archivos"
+
+else
+
+    echo "no se ha movido ningun archivo"
+
+fi

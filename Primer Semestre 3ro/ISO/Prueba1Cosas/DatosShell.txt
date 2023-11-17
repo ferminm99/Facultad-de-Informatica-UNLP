@@ -1,0 +1,132 @@
+NOMBRE="pepe" Para crear la variable se asigna sin espacios
+echo $NOMBRE Para acceder a una variable se usa $
+echo $NOMBREesto_no_es_parte_de_la_variable Esto no accede a la variable
+echo ${NOMBRE}esto_no_es_parte_de_la_variable Esto si accede a la variable porque las {} separan
+Los nombres de variables pueden tener mayusculas,minusculas,numeros y _  Pero no pueden empezar con un numero
+Pero podemos hacer nombre=5 y echo $nombre va a imprimir 5
+arreglo_a= (1 2 3 4) 
+arreglo_a[2]=spam le asigno la palabra spam al 3 elemento del arreglo
+echo ${arreglo_a[2]} Asi se accede al arregle, aca no son opcionales las llaves
+copia=${arreglo_a[2]} Le asigno a copia spam
+echo ${arreglo[@]} o ${arreglo[*]} Imprimo todos los elementos del arreglo con cualquiera de esas formas
+echo ${#arreglo[@]} o ${#arreglo[*]} Imprimo la cantidad de elementos del arreglo con cualquiera de esas formas
+unset arreglo[2] Borra el elemento que habia en 2 reduce el tamaño y supongo que el ultimo coso del vector queda vacio porque dice no elimina lo pos pero no se si se refiere a la 2 o a la ultima del arreglo
+Las comillas simples no permiten usar resultados de comandos ('${ls}') y variables ('${var}') 
+Se puede leer comandos de la forma `comando` y $(comando)
+Siempre hay que escribir #!/bin/bash al principio de todo para indicar que interprete utilizara el script
+Para ejecutarlo ./mi_script.sh ?????? bash mi_script.sh o en modo debug bash -x mi_script.sh
+
+./nombre_script  arg1 arg2 argN Asi pasamos los argumentos a un script
+Los scripts pueden recibir argumentos en su invocacion. Para accederlos: 
+	$0 contiene la invocacion al script
+	$1, $2, $3 ... contienen cada uno de los argumentos
+	$# contiene la cantidad de argumentos recibidos
+	$* contiene la lista de todos los argumentos
+	$? contiene el valor del retorno del ultimo comando ejecutado
+Para terminar un script se utiliza la funcion exit. Puede devolver entre 0 y 255
+	El valor 0 indica que el script se ejecuto de forma exitosa
+	Un valor distinto indica un codigo de error
+	Se puede consultar el exit status imprimiendo la variable $?
+Las variables no inicializadas son reemplazadas por un valor nulo a 0. Por defecto son globales
+Para definir una variable local en una funcion se define local variable
+Las variables de entorno son heredadas por los procesos hijos. Para exponer una se usa export
+	export VARIABLE_GLOBAL="Mi var global"
+	comando
+	#Comando vera entre sus variables de entorno a VARIABLE_GLOBAL
+Condiciones: 
+	-z STRING String vacio
+	-n STRING String no vacio	
+	STRING == STRING equal
+	STRING != STRING not equal
+	NUM -eq NUM equal
+	NUM -ne NUM not equal
+	NUM -lt NUM lesser than 
+	NUM -le NUM lesser than or equal
+	NUM -gt NUM greater than
+	NUM -ge NUM greater than or equal
+	STRING =~ STRING regexp
+	NUM < NUM condiciones numericas
+	&& es and y || or como en java
+Para las comparaciones estas podemos usar test por ej test 3 gt 2 && echo "SI" || echo "NO" imprime si si es mayor o no si es menor
+La otra forma es usar ["hola" = "hola"]; echo $? imprimiria 0 porque son iguales
+expr: expr arg1 op arg2
+	$ expr 15 = 3 $ expr 15 + 3
+	$ expr 15 % 3 $ expr 15 \* 3
+	$ expr 15 – 3 $ expr 15 / 3
+	$ expr 15 != 5 $ expr 15 \> 3
+	$ expr 15 \< 3 $ expr 15 \<= 3
+
+Supongo que con variables de entorno se refiere a locales????
+
+Estructuras de control = 
+	case $variable in
+	       "valor 1")
+		codigo
+	        ;;
+	       "valor 2")
+		codigo
+	        ;;
+	esac
+	select variable in opcion1 opcion2 opcion3
+	do
+	     #En $variable esta el valor elegido
+	done
+	
+	Se podria usar estos dos anteriores y hacer esto:
+	select action in New Exit
+	do
+	case $action in
+		"New")
+			echo "Se eligio NEW"
+		;;
+		"Exit")
+			exit 0
+		;;
+	done
+	
+	while [condition];
+	do
+		codigo
+	done
+
+	until [condition];
+	do
+		codigo
+	done	
+
+	for i in /etc/rc.*; 
+	     echo $i
+	done
+	for i in {1..5}; do
+	     echo $i
+	done
+	for ((i = 0; i < 100; i++)); do
+	     echo $i
+	done
+	if (($a < $b)); then
+	   echo "$a is smaller than $b"
+	fi
+	if [[ "$A" == "$B" ]]; then
+	   echo "A y b son iguales"
+	elif
+  	   echo "No son iguales"
+	fi
+	while true do
+		codigo (se usaria continue para continuar y break para cortar creo)
+	done
+	break sirve para cortar un loop (while o for supongo)
+	continue sirve para saltearse una iteracion
+	let i++ sirve para incrementar i en uno
+
+un ejemplo de funcion seria:
+	mayor(){
+		echo "Se van a comparar los valores $*"
+		if [$1 -gt $2]; then
+			echo "$1 es el mayor"
+			return 1
+		fi
+		echo "$2 es el mayor"
+		return 0
+	}
+	mayor 5 6 # Lo invoca y le envia los valores 5 y 6
+	echo $? #Imprime el exit status de la funcion

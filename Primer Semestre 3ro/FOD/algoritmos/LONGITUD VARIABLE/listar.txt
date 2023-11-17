@@ -1,0 +1,41 @@
+procedure listar();
+	var
+		buffer : byte;
+		campo : String;
+		r : producto;
+		arch : file;
+		nombre_archivo : String;
+		nro_campo : integer;
+	begin
+		writeln('Ingresar nombre del archivo'); readln(nombre_archivo);
+		assign(arch,nombre_archivo);
+		reset(arch, 1); // abrir archivo, nunca olvidar el 1
+		while(not eof(arch)) do begin // recorrer hasta el final (o puede ser hasta encontrar cierto registro)
+			
+			blockread(arch, buffer, 1); nro_campo := 0; // primer blockread, de nuevo no olvidar el 1
+
+			while(campo <> sr) and (not eof(arch)) do begin // recorrer hasta encontrar el separador de registros
+				
+				campo = ''; // inicializar una variable con un string vacio para ir concatenando las letras del campo
+
+				while(campo <> sr) and (campo <> sc) and (not eof(arch)) do begin // recorrer hasta encontrar el separador de campo
+					campo = campo + buffer; // concatenar la variable donde se lee el blockread a lo que habia en la variable string
+					blockread(arch, buffer, 1); // hacer de nuevo el blockread
+				end;
+
+				case(nro_campo) of // guardar el campo cargado en su respectivo campo de registro
+					0: r.nombre := campo;
+					1: r.descripcion := campo;
+					2: r.precio := StrToInt(campo);
+					3: r.st_minimo := StrToInt(campo);
+					4: r.st_actual := StrToInt(campo);
+				end;
+
+				if(campo = sc) and (not eof(arch)) do begin // verificar que no se llego al final del registro
+					blockread(arch, buffer, 1); // esta lectura se hace para que el archivo quede apuntando a la proxima letra, ya que se leyo 							   //el caracter para separar el campo y si no se concatenaria ese caracter al proximo campo
+					nro_campo := nro_campo + 1;
+				end;
+			end;
+			informar_producto(r); // procesar lo que sea necesario
+		end;
+	end;

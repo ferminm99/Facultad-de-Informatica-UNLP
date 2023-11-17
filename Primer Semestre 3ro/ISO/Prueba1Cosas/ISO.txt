@@ -1,0 +1,257 @@
+mkdir: Crear nueva carpeta
+cd: Moverme entre carpetas
+	cd ./ nos movemos desde donde estamos
+	cd .. vuelve al anterior
+ls: Listar archivos de donde estoy parado
+	ls –l: Muestra una lista del contenido del directorio añadiendo información adicional de los ficheros o carpetas, como permisos, fecha y hora de creación o modificación, etc…
+	ls –a: Muestra una lista de todos los ficheros del directorio, incluyendo los ficheros o carpetas ocultos.
+touch: crear un archivo
+pwd: visualizar la ruta donde estoy parado
+find: Busca archivos (si usas * por ej: iso* te salen todos los que tienen la cadena iso)
+	find / -name *.so Busca todos los archivos .so
+	find /home/miusuario -name "*.txt" Busca todos los archivos en ese directorio con extension.txt
+	find / -name nombre_de_archivo Busca todos los archivos con ese nombre
+	find / -user nombreusuario Busca archivos por nombre de usuario
+	find . -size 54k Busca archivos por su peso (34 kilobytes)
+	find / -type f -name asd Busca  archivos de nombre asd
+df: Informa la cantidad de espacio libre en disco
+who: Muestra los usuarios conectados al sistema
+users
+rm: Borra archivos (rm -r borra directorios) 
+cat:	cat > nombredearchivo permite escribir sobre el archivo
+	cat nombrearchivo permite imprimir el archivo
+	cat -n imprime el archivo mostrandote el numero de la linea al principio de cada una
+	cat -b lo mismo que el anterior nomas que numera solo las que tienen texto
+more: Es igual al anterior nomas que pagina el contenido y es mas adecuado para leer archivos largos
+less: Lo mismo que los anteriores pero este mostrara el contenido en modo editor de texto y para moverte utilizas combinaciones de teclado
+tail: Muestra las ultimas lineas en pantalla de un archivo (tail -2 mostraria las 2 ultimas lineas)
+
+Para estos comandos tengo que acceder a /sbin/...  
+[
+shutdown: sudo shutdown apaga el ordenar en un minuto
+	shutdown --help podemos ver los parametros que soporta el comando
+	sudo shutdown -r con el parametro r reinicia el ordenador
+	sudo shutdown -c con el parametro c cancela un apagado programado
+	sudo shutdown now apaga el ordenador inmediatamente
+reboot: Reinicia el sistema saltandose la espera programada
+halt: Detiene todos los procesos y apaga el equipo
+]
+
+locate: Es lo mismo que find pero es mas rapido
+	locate nombredelarchivo Busca el archivo con ese nombre
+	locate miarchivo | grep bin Busca el archivo con ese nombre y donde aparezca texto bin
+	
+updatedb: Actualiza la base de datos porque si no haces esto el locate no detecta cosas nuevas o detecta cosas borradas(usa sudo)
+
+uname: Sirve para imprimir info del sistema linux.
+	uname -a nos da toda la info disponible
+	uname -s nos dice linux
+	uname -n nos dice el sistema operativo/distribucion que estamos usando
+	uname -r la version
+	uname -m los bits
+
+grep: busca un patron o palabra y imprime las lineas que lo tienen, para mas info grep -help
+	-i: la búsqueda no distinguirá entre mayúsculas y minúsculas. Es decir, si quieres buscar la palabra “auto” será lo mismo que “AUTO”
+	-c: solo mostrará el número de líneas que coinciden con el patrón buscado
+	-r: habilita la búsqueda recursiva en el directorio actual
+	-n: busca líneas y precede cada línea coincidente con un número de línea.
+	-v: con esta opción, se nos muestran las líneas que no coinciden con el patrón que hemos buscado
+
+dmesg: Lista el buffer de mensajes del nucleo
+	Para activarlo si no funciona uso: sudo sysctl kernel.dmesg_restrict=0
+	dmesg -H Muestra una salida mas legible para los usuarios
+	dmesg -w no se bien que hace
+	dmesg -u se limita solo a mensajes de espacio de usuario
+	dmesg --level=alert,info 
+	dmesg --level=err,warn
+	dmesg --level=err,warn -T podemos saber en que hs ocurrio el error gracias a -T
+	dmesg | grep sda
+
+lspci: Lista todos los componentes tipo PCI(Peripheral Component Interconnect)
+
+at: Se usa para ejecutar un comando en cierto periodo de tiempo una vez (hay que instalarlo al at antes)
+
+netstat: Muestra conexiones de red, tablas de ruteo, estadísticas de interfaces, etc.
+
+	netstat --inet muestra solo las conexiones activas TCP/IP.
+	netstat -p trata de identificar el proceso que esta manejando esta conexión
+	netstat -l lista los puertos que están abiertos (conexiones establecidas).
+	netstat -atpn lista los puestos pero de una forma más resumida y mejor que ejecutando netstat -l es similar a ejecutar el comando ss -ant
+	netstat -r muestra las rutas (similar a ejecutar route -r)
+	netstat -lnp64 forma abreviada de salida
+
+-sudo: Te da privilegios de admin
+
+mount: Monta o muestra un listado de dispositivos.
+	mount sin parámetros muestra la lista de dispositivos montados (la cual se encuentra en /etc/mtab).
+	mount -o loop -t iso9660 archivo.iso /root/Desktop/imagen monta la imagen ISO archivo.iso en /root/Desktop/imagen
+
+umount: Desmonta sistema de ficheros
+
+head: El comando head nos permite mostrar en pantalla el contenido de un archivo indicandole el número de lineas que queremos visualizar. Por defecto se muestran las primeras 10 líneas.
+	-n (por ej -5 nos muestra las 5 primeras) Permite visualizar en pantalla las primeras n lineas del archivo
+	-c Permite visualizar en pantalla los primeros K caracteres del archivo
+	-q Evita que se muestren los titulos del archivo.
+	-v Muestra siempre los titulos del archivo.
+losetup: es un dispositivo de bloques virtual que apunta a un fichero normal y corriente de nuestro sistema de ficheros
+	Este es medioo bardo capaz mas tarde verlo
+write: sirve para enviar mensajes a otro usuario por terminal  
+	Para activar los mensajes hago mesg y  Lo que significa si se puede enviar mensajes, si no quiero pongo mesg n
+	write nombreusuario
+	Escribo mensaje 
+	control+d
+mkfs: Crea un sistema de archivos
+	mkfs [options] [-t type fs-options] device [size]
+	Por ejemplo mkfs -t ext2 /dev/fd0
+fdisk: Sirve para ver, crear, cambiar el tamaño, eliminar, cambiar, copiar y mover particiones
+	sudo fdisk -l Ver todas las particiones de disco existentes
+	sudo fdisk -l /dev/sdb Ver la partición en un disco específico
+	sudo fdisk /dev/sda Ver todos los comandos fdisk
+
+nano: Es un editor de texto
+
+useradd: Añade un nuevo usuario
+	useradd -m nombreusuario Crea usuario en home
+	useradd -m -d /home/... nombreusuario Hace que el usuario tenga una carpeta en un lugar diferente al predeterminado
+	useradd -m -G nombregrupo nombreusuario Agrega un usuario y lo asigna a un grupo
+	useradd -m jsmith -c "john smith" Agrega usuario jsmith con comentario john smith, sirve para diferenciar usuarios
+	????useradd --help muestra todos los comandos
+	????useradd -b /home pepe crear nuevo usuario pepe en home
+	useradd passwd pepe
+userdel: Borra un usuario
+	userdel -r pepe Borra el directorio del usuario 
+	userdel pepe Borra el usuario
+usermod: Modifica el usuario
+	 usermod -a -G contabilidad pedro Pone a pedro en el grupo contabilidad
+	usermod -g retirados pedro Cambia a pedro al grupo retirados
+su: Cambia de usuario y inicia sesion con ese otro
+	su pepe ingresa al usuario pepe
+	su - pepe ingresa al shell con las preferencias del usuario pepe
+	su - ingresa con el usuario que tenemos en modo root(te pide contraseña)
+skill: Cierra sesion por ej skill pepe
+exit: Sale del interprete de comandos (cierra sesion del ultimo usuario logueado y vuelve al anterior)
+addgroup: Crea un grupo del sistema 
+	Si se invoca adduser con la  opción  --group  y  sin  las  opciones  --system  o  addgroup respectivamente, añadirá un grupo de usuarios.
+	Si se invoca adduser con la opción --system se añadirá un grupo del sistema.
+groupdel: Borra un grupo
+Archivos involucrados con lo anterior: 
+	/ Etc / group Información de la cuenta de grupo.
+	/ Etc / gshadow Información de la cuenta de grupo seguro.
+	/ Etc / passwd Información de la cuenta del usuario.
+	/ Etc / shadow Información de la cuenta de usuario seguro.
+
+getent: getent group nombredelgrupo nos muestra los usuarios en este grupo
+passwd: Cambia la contraseña por ej passwd pepe y te da una opcion para poner la nueva password
+users: Muestra todos los usuarios conectados
+chmod: se usa para cambiar los permisos de archivos o directorios
+	chmod u = rwx, g = rx, o = r mi-archivo.txt Las letras u , g y o representan “usuario”, “grupo” y “otro”
+	4 significa “leer”,
+	2 significa “escribir”,
+	1 significa “ejecutar”, y
+	0 significa “sin permiso”.
+	Entonces 7 es la combinación de permisos 4 + 2 + 1 (leer, escribir y ejecutar), 5 es 4 + 0 + 1 (leer, no escribir y ejecutar), y 4 es 4 + 0 + 0 (leer, no escribir y no ejecutar).
+	Se podria usar -r para ver los permisos de usuario, -w para los de grupo y -x para otros
+chown: se usa para cambiar dueño del archivo
+	chown usuario file1 Cambia el archivo file1 a usuario
+	chown usuario file1 dir1 Cambia el archivo file1 y la carpeta dir1 a usuario
+	chown usuario:users file1 Cambia el archivo file1 a usuario y a grupo users. Sin el nombre desp de : se cambia al grupo de inicio de sesion del usuario especificado
+chgrp: se usa para cambiar el grupo principal del archivo
+	chgrp desarrollo algo.txt Cambia al archivo algo.txt sobre grupo desarrollo
+du: lista el peso en disco de los directorios
+df: muestra informacion sobre el espacio ocupado y libre de los bloques de 1k
+ln: Crear enlaces (por ej ln texto.txt nombreCarpeta) 
+cp: copiar archivo
+	cp [opciones]... origen... directorio
+           Opciones
+	-a	archive files
+	-f	copia forzada al remover el archivo destino si es necesario
+	-i	interactivo, pide confirmación del usuario antes de sobre escribir
+	-l	enlaces en vez de copia
+	-L	seguir enlaces simbólicos
+	-n	no sobre escribir archivos
+	-R	copia recursiva recursive copy (including hidden files)
+	-u	actualizar, copia cuando la fuente es mas reciente que el destino
+	-v	muestra mensajes informativos
+mv: mover o cambiar el nombre de un archivo
+	mv nombre1.txt archivo1.txt Cambia nombre de archivo
+	mv directorio nueva-carpeta Cambia nombre de directorio
+	mv archivo1.txt ./nueva-carpeta Mueve archivo
+
+ps: Sirve para ver el estado de un proceso
+	ps -ef muestra los procesos en ejecucion
+	ps -A > /home/proceso.txt guarda la lista de procesos en proceso.txt
+	ps -e visualiza todos los procesos del sistema (o ps -A)
+	ps -j visualiza información sobre el PGID y SID.
+ 	ps l visualiza "mucha" información sobre los procesos(difiere a poner el signo menos delante).
+	ps -f visualiza los parámetros con los que se levanto el proceso.
+	ps -a muestra también los procesos de otros usuarios.
+	ps -N niega el efecto de cualquier opción que se haya especificado.
+	ps -x muestra procesos que no están controlados por ninguna terminal.
+	ps -u pepe visualiza información de los procesos del usuario pepe
+
+kill: Destruye un proceso
+	kill -l Muestra una lista de todas las señales.
+	Kill 0  Detiene todos los procesos excepto su shell de inicio de sesión.
+	kill -1 Colgar, se genera cuando nos desconectamos del terminal.
+	kill -2 Interrupción, se genera cuando se pulsa Ctrl+C
+	kill -3 Salir.
+	kill -9 Muerte segura, los hijos puede que queden huérfanos.
+	kill %1 mata el trabajo número 1 (ver jobs).
+	kill -9 $$ sale del shell actual sin guardar el historial de comandos.
+	kill -HUP PID Reinicia el proceso, es más confiable reiniciarlo ejecutando /etc/init.d/proceso restart
+pskill
+pstree: muestra todos los procesos en forma de arbol
+killall: Destruye un grupo de procesos
+top: Muestra procesos con info en tiempo real
+nice: Inicia un proceso con una prioridad determinada o modifica esa prioridad
+
+tar: sirve para empaquetar
+	tar -cvf output.tar /ruta/entrada Crea un archivo simple
+	tar -cvzf output.tar.gz /ruta/entrada Crea un archivo comprimido GZIP
+	tar -cvf output.tar /ruta/entrada1/ruta/entrada2 /ruta/entrada3 Comprime los directorios entrada1,entrada2 y 3
+	tar -tvf output.tar Ver el contenido de un tar
+	tar -ztvf output.tar.gz Ver el contenido de un archivo gzip
+	tar -xvf archivo.tar desempaquete el archivo
+	//
+	tar -cvf archivo.tar archivo1 archivo2 archivo3 Por lo que entiendo crea un archivo.tar de los otros 3 archivos sobre la carpeta en la que se encuentra
+	
+	
+gzip: sirve para comprimir
+	gzip nombredearchivo Asi se comprime un archivo
+	gzip -d nombre_archivo.gz Asi se descomprime un archivo
+zgrep: es un grep para archivos
+wc: se utiliza para realizar conteos de una salida de comando
+man: Muestra las páginas de ayuda (manuales) de los distintos comandos.
+El * simboliza todo por ej rm * borra todo lo que hay en ese directorio y cp * /home -R  copia todo lo que hay donde esta parado a home
+pwd > /home/fermin99/direc manda los archivos sobre los que esta parado a direc ???????????????
+
+cut : 	cut -d " " -f 1 fichero.txt Saca  el primer campo de un fichero delimitado por el espacio (agarra el primero)
+	cut -d " " -f 1,3 fichero.txt Saca  el primer y tercer campo de un fichero delimitado por el espacio (el primero y el 3ero)
+	cut -c 1-10 fichero.txt Saca los primeros 10 caracteres de un fichero
+tr : se usa para sustituir o eliminar
+	tr a-z A-Z Sustituye minusculas por mayusculas
+	tr [:lower:][:upper:] [:upper:][:lower:] Sustituye minusculas por mayusculas y mayusculas por minusculas
+	tr -d a Elimina el caracter a
+	tr -s [:space:] Suprime la repeticion de espacios en blanco
+
+stat -c %U archivo usuario al que pertenece un archivo
+stat -c %G archivo grupo al que pertenece un archivo
+
+-O te dice si el usuario tiene permisos sobre el archivo que esta ejecutando
+////////////////////////ps -eo pid,comm procesos del sistema y si quiero agarrar hago cut -d " " -f4
+ps -e todos los procesos sin saber usuario (tiene un monton de mierdas)
+ps -eo comm | grep  .so$ Todos los nombres de los procesos con .so
+ps -u fermin99 -o comm todos los nombres de los procesos de fermin99
+
+kill -9 123 mata al proceso con pid 123
+killall -9 nombreproceso Borra procesos con ese nombre
+pkill -e -9 nombreproceso Borra proceso especifico
+wc -c  lee la cantidad de caracteres
+wc -l lee la cantidad de lineas
+cat /etc/passwd | grep /home | cut -d ":" -f1
+cat /etc/group | grep /home | cut -d ":" -f
+
+-e : Sirve para ver si existe un archivo tipo -e archivo y dice si existe o no
+Se usa sleep para esperar por ej sleep 10 espera 10 segundos
+f es para archivos y d para directorios
+El > se usa para destruye lo que habia colocando la cosa nueva y el >> se usa para agregar al final si existe o si no lo crea
