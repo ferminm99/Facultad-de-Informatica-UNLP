@@ -1,0 +1,9 @@
+Santi Alfredo Alejo - 15955/6
+Huggias Thomas - 16230/8
+URL = "http://localhost:8080/login"
+version de pharo: 8.0
+
+la carpeta "paquetes separados" tiene los paquetes individuales por si el paquete con los tags tiene algun problema
+
+los test de "Sistema" y "Usuario" tardan por tener instrucciones de "delay" para controlar el orden de las preguntas
+
